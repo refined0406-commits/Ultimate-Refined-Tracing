@@ -1,0 +1,51 @@
+LIBRARY KERNEL32.dll
+EXPORTS
+ CreateFileW
+ ReadFile
+ CloseHandle
+ GetModuleHandleW
+ GetModuleFileNameW
+ VirtualAlloc
+ VirtualFree
+ VirtualProtect
+ FlushInstructionCache
+ GetCurrentProcess
+ GetProcessMitigationPolicy
+ GetModuleHandleExW
+ InitOnceExecuteOnce
+ GetSystemDirectoryW
+ LoadLibraryW
+ GetProcAddress
+ DisableThreadLibraryCalls
+ GetCurrentThreadId
+ GetFileSizeEx
+ CreateMutexW
+ ReplaceFileW
+ GetTickCount64
+
+ WriteFile
+ GetStdHandle
+ ExitProcess
+
+CreateThread
+WaitForSingleObject
+FindFirstChangeNotificationW
+FindNextChangeNotification
+FindCloseChangeNotificationW
+FindCloseChangeNotification
+SetFilePointer
+GetFileAttributesW
+GetFileAttributesExW
+GetPrivateProfileStringW
+GetEnvironmentVariableW
+CreateDirectoryW
+GetLastError
+FlushFileBuffers
+MoveFileExW
+DeleteFileW
+WritePrivateProfileStringW
+
+Sleep
+
+GetSystemTime
+GetCurrentProcessId

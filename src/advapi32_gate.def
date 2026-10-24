@@ -1,0 +1,8 @@
+LIBRARY ADVAPI32.dll
+EXPORTS
+ CryptAcquireContextW
+ CryptCreateHash
+ CryptHashData
+ CryptGetHashParam
+ CryptDestroyHash
+ CryptReleaseContext
