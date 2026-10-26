@@ -1,4 +1,7 @@
 /* V5.1.0-rc3: RTGI Shading Rays Per Probe is removed and always Native/Auto.
+ * V5.2.0 RC6: RTGI Quality/Performance Shading Frame Budget are removed too and always
+ * Native/Auto: a saved RTQualityShadingBudget / RTPerfShadingBudget value is never read and
+ * ShadingRaysPerFrameBudget (slot[4]) is never written, while the other four fields still apply.
  * Drives the real cr01_rt_legacy501.c adapter with mocked engine slots and a
  * mocked settings store that still holds rc2/V5.0 Shading Rays values. Proves
  * the saved values are ignored (NumShadingRaysPerProbe stays native 32) while
@@ -44,7 +47,12 @@ int main(void){
  CHECK(cr01_rt_legacy501_reload(path),"reload with leftover saved Shading Rays Per Probe = 16 (both groups)");
  for(int i=0;i<50;i++)cr01_rt_legacy501_tick(1u,1u);
  CHECK(shading==32u,"Normal RT + Master On: NumShadingRaysPerProbe stays native 32 (saved 16 ignored)");
- CHECK(slot[0]==64u&&slot[1]==16u&&slot[2]==65536u&&slot[3]==2u&&slot[4]==262144u,"other five RTGI fields still applied (64/16/65536/2/262144)");
+ CHECK(slot[0]==64u&&slot[1]==16u&&slot[2]==65536u&&slot[3]==2u,"other four RTGI fields still applied (64/16/65536/2)");
+ CHECK(slot[4]==524288u,"RC6: saved Shading Frame Budget 262144 ignored: ShadingRaysPerFrameBudget stays native 524288");
+ setkv("RTQualityShadingBudget","999");setkv("RTPerfShadingBudget","abc");
+ CHECK(cr01_rt_legacy501_reload(path),"RC6: garbage leftover Shading Frame Budget values cannot invalidate the other RTGI preferences");
+ for(int i=0;i<10;i++)cr01_rt_legacy501_tick(1u,1u);
+ CHECK(slot[4]==524288u&&slot[0]==64u,"RC6: budget native, others still applied");
  setkv("RTQualityShadingRaysPerProbe","8");setkv("RTPerfShadingRaysPerProbe","24");
  CHECK(cr01_rt_legacy501_reload(path),"reload with other leftover values (8/24) still valid");
  for(int i=0;i<10;i++)cr01_rt_legacy501_tick(1u,1u);

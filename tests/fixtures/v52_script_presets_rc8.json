@@ -1,0 +1,206 @@
+{
+ "AOContrast": [
+  "RefinedTracingCR01",
+  "0",
+  "0",
+  "0"
+ ],
+ "AORadius": [
+  "RefinedTracingCR01",
+  "0",
+  "0",
+  "0"
+ ],
+ "AOStrength": [
+  "RefinedTracingCR01",
+  "0",
+  "0",
+  "0"
+ ],
+ "AmbientOcclusion": [
+  "RefinedTracingCR01",
+  "0",
+  "0",
+  "0"
+ ],
+ "CPUDistantTrees": [
+  "RefinedTracingCR01",
+  "1",
+  "1",
+  "0"
+ ],
+ "CPUFastBoneReads": [
+  "RefinedTracingCR01",
+  "1",
+  "1",
+  "0"
+ ],
+ "CPUPhysicsLOD": [
+  "RefinedTracingCR01",
+  "1",
+  "1",
+  "0"
+ ],
+ "GeometryBounces": [
+  "RefinedTracingCR01",
+  "1",
+  "1",
+  "6"
+ ],
+ "GrassDay": [
+  "RefinedTracingCR01",
+  "0",
+  "0",
+  "0"
+ ],
+ "GrassNight": [
+  "RefinedTracingCR01",
+  "0",
+  "0",
+  "0"
+ ],
+ "HairBounces": [
+  "RefinedTracingCR01",
+  "1",
+  "4",
+  "6"
+ ],
+ "IndirectLight": [
+  "RefinedTracingCR01",
+  "1.20",
+  "1.10",
+  "1.00"
+ ],
+ "PTBillboards": [
+  "RefinedTracingCR01",
+  "2",
+  "2",
+  "1"
+ ],
+ "PTShadows": [
+  "RefinedTracingCR01",
+  "2",
+  "1",
+  "1"
+ ],
+ "RTPerfAOQuality": [
+  "RefinedTracingCR01",
+  "1",
+  "2",
+  "4"
+ ],
+ "RTPerfClassificationPrimary": [
+  "RefinedTracingCR01",
+  "32",
+  "64",
+  "128"
+ ],
+ "RTPerfClassificationSecondary": [
+  "RefinedTracingCR01",
+  "12",
+  "16",
+  "32"
+ ],
+ "RTPerfGlobalShadingLimit": [
+  "RefinedTracingCR01",
+  "4096",
+  "12288",
+  "32768"
+ ],
+ "RTPerfGrid1ShadingLimit": [
+  "RefinedTracingCR01",
+  "16384",
+  "49152",
+  "262144"
+ ],
+ "RTPerfMaxProbes": [
+  "RefinedTracingCR01",
+  "8192",
+  "65536",
+  "262144"
+ ],
+ "RTQualityAOQuality": [
+  "RefinedTracingCR01",
+  "1",
+  "2",
+  "4"
+ ],
+ "RTQualityClassificationPrimary": [
+  "RefinedTracingCR01",
+  "32",
+  "64",
+  "128"
+ ],
+ "RTQualityClassificationSecondary": [
+  "RefinedTracingCR01",
+  "12",
+  "16",
+  "32"
+ ],
+ "RTQualityGlobalShadingLimit": [
+  "RefinedTracingCR01",
+  "4096",
+  "12288",
+  "32768"
+ ],
+ "RTQualityGrid1ShadingLimit": [
+  "RefinedTracingCR01",
+  "16384",
+  "49152",
+  "262144"
+ ],
+ "RTQualityMaxProbes": [
+  "RefinedTracingCR01",
+  "8192",
+  "65536",
+  "262144"
+ ],
+ "RTReflLocalLights": [
+  "RefinedTracingCR01",
+  "1",
+  "1",
+  "0"
+ ],
+ "RTShadowFoliageDetail": [
+  "RefinedTracingCR01",
+  "3",
+  "2",
+  "0"
+ ],
+ "RTShadowLocalLights": [
+  "RefinedTracingCR01",
+  "4",
+  "2",
+  "0"
+ ],
+ "RayTracedOptimizations": [
+  "RefinedTracingCR01",
+  "1",
+  "1",
+  "1"
+ ],
+ "SkyImpact": [
+  "RefinedTracingCR01",
+  "1.00",
+  "1.00",
+  "1.00"
+ ],
+ "SpecularCheckerboard": [
+  "RefinedTracingCR01",
+  "1",
+  "2",
+  "2"
+ ],
+ "SpecularScreenSpace": [
+  "RefinedTracingCR01",
+  "2",
+  "1",
+  "1"
+ ],
+ "SunImpact": [
+  "RefinedTracingCR01",
+  "1.00",
+  "1.00",
+  "1.00"
+ ]
+}

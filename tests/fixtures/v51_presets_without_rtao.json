@@ -1,0 +1,56 @@
+{
+  "0": {
+    "QuickPresetSelect": "0"
+  },
+  "1": {
+    "QuickPresetSelect": "1",
+    "RTQualityClassificationPrimary": "32",
+    "RTQualityClassificationSecondary": "12",
+    "RTQualityMaxProbes": "8192",
+    "RTQualityAOQuality": "1",
+    "RTQualityShadingBudget": "65536",
+    "RTQualityGlobalShadingLimit": "4096",
+    "RTQualityGrid1ShadingLimit": "16384",
+    "RTPerfClassificationPrimary": "32",
+    "RTPerfClassificationSecondary": "12",
+    "RTPerfMaxProbes": "8192",
+    "RTPerfAOQuality": "1",
+    "RTPerfShadingBudget": "65536",
+    "RTPerfGlobalShadingLimit": "4096",
+    "RTPerfGrid1ShadingLimit": "16384"
+  },
+  "2": {
+    "QuickPresetSelect": "2",
+    "RTQualityClassificationPrimary": "64",
+    "RTQualityClassificationSecondary": "16",
+    "RTQualityMaxProbes": "65536",
+    "RTQualityAOQuality": "2",
+    "RTQualityShadingBudget": "262144",
+    "RTQualityGlobalShadingLimit": "12288",
+    "RTQualityGrid1ShadingLimit": "49152",
+    "RTPerfClassificationPrimary": "64",
+    "RTPerfClassificationSecondary": "16",
+    "RTPerfMaxProbes": "65536",
+    "RTPerfAOQuality": "2",
+    "RTPerfShadingBudget": "262144",
+    "RTPerfGlobalShadingLimit": "12288",
+    "RTPerfGrid1ShadingLimit": "49152"
+  },
+  "3": {
+    "QuickPresetSelect": "3",
+    "RTQualityClassificationPrimary": "128",
+    "RTQualityClassificationSecondary": "32",
+    "RTQualityMaxProbes": "262144",
+    "RTQualityAOQuality": "4",
+    "RTQualityShadingBudget": "524288",
+    "RTQualityGlobalShadingLimit": "32768",
+    "RTQualityGrid1ShadingLimit": "262144",
+    "RTPerfClassificationPrimary": "128",
+    "RTPerfClassificationSecondary": "32",
+    "RTPerfMaxProbes": "262144",
+    "RTPerfAOQuality": "4",
+    "RTPerfShadingBudget": "524288",
+    "RTPerfGlobalShadingLimit": "32768",
+    "RTPerfGrid1ShadingLimit": "262144"
+  }
+}
