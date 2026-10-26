@@ -1,0 +1,50 @@
+{
+  "status": "PRIVATE V5.2.0 RC3 GAMEPLAY TEST CANDIDATE; NOT APPROVED FOR NEXUS/GITHUB",
+  "baseline_v51_dev_sha256": "564c2094b07d33a652d73a473560a2f5b8bf1bafdd8b38d64c18db6600427c41",
+  "source_checkpoint_sha256": "93ca9ebc95bd0648443eea895bee42a74ea57f54c34f2097623b34c51fa33528",
+  "user_wcc_results_zip": "URT_RUN_20261025_040010.zip",
+  "user_wcc_results_zip_sha256": "7dcaea9539a4eb30ea1ee62a8b47b1b1939dce6bd6ff6ad1b2aece92f0c2c643",
+  "wcc_source_sha256": "4c65ac3a72cc29cb656d2994a69edcdc55074b9e72f91ce057b778486b7741f9",
+  "wcc_menu_sha256": "16c68eefcec899a3e679980aa98139ef6dc74bd857293c3b3d95dbac6160fd05",
+  "wcc_blob_sha256": "27d0a30851a006602cc3c8c0574bb46865aeb172228f7bdb8b9ff8822f12095e",
+  "compiled_blob_bytes": 20327,
+  "wcc_exit_code": 0,
+  "wcc_receipt_reported_workspaces_restored": true,
+  "asi_sha256": "6e6dd9de3b4e16fcb3cc4075201ae920f4f264b4152264f883096d4c97559f1e",
+  "native_build_two_pass_byte_identical": true,
+  "host_tests": "23/23 PASS, 0 FAIL (offline only)",
+  "visible_controls": 45,
+  "new_controls_retained": 7,
+  "retired_original_rtao_controls": 4,
+  "retired_new_controls": [
+    "PT: Scene Range",
+    "PT: Texture Detail in Reflections and Bounces",
+    "Texture Memory Budget",
+    "Texture Sharpness (Mip Bias)"
+  ],
+  "only_texture_row": "Textures Streamed at Once",
+  "localisations": 18,
+  "pt_shader_sources_match_protected_v51": true,
+  "in_game_compatibility_verified": false,
+  "in_game_native_ultraplus_preserved_verified": false,
+  "separator_right_side_after_scrolling_verified": false,
+  "separator_fix_status": "R5 caption padding restored; runtime redraw/scrolling NOT confirmed fixed",
+  "private_packages": {
+    "MAIN": {
+      "file": "Ultimate_Refined_Tracing_V5.2.0_CURATED_PRIVATE_RC3_MAIN.zip",
+      "sha256": "32187d78784a139015ba88522ba95a8829692464924e844ce08b9ebfb9bceaad",
+      "bytes": 10242148
+    },
+    "ASI_ONLY": {
+      "file": "Ultimate_Refined_Tracing_V5.2.0_CURATED_PRIVATE_RC3_ASI_ONLY.zip",
+      "sha256": "d6400eb23eb2db355b3e15b061d0c012bf5e63a71c012bc0110b6c00a16451ba",
+      "bytes": 9856813
+    }
+  },
+  "blockers": [
+    "Verify native Ultra+ remains Ultra+ after URT edits/On-Off/restart",
+    "Verify both named-separator lines survive scrolling",
+    "Check Orange Hair Fix RT+PT and Immersive World in-game",
+    "Check Quick Presets, menu, persistence and restart stability"
+  ]
+}

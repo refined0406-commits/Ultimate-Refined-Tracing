@@ -1,0 +1,17 @@
+BUILD STATUS — V5.2.0 CURATED PRIVATE TEST CANDIDATE
+
+Protected authoritative source: V5.1.0 final development source, sha256
+564c2094b07d33a652d73a473560a2f5b8bf1bafdd8b38d64c18db6600427c41.
+
+Selected new controls: exactly 11; legacy RTAO controls deliberately retired: 4.
+Menu: 49 visible interactive controls, 5 named separators, 2 subtle.
+Localisation: 18 languages. Native ASI: deterministic double build.
+Windows WCC compiled SUCCESS: 20735-byte blob sha256 4b700ef8d9e2799515150dd514f8558b617d919ff81191085ce02e49758b4a75
+WCC result receipt: docs/evidence_v52_curated/WCC_BUILD_RECEIPT.txt.
+Build gate: game/wcc/V52_VERIFIED_WCC.json.
+Host suite last run: 21/21 pass (offline, no game executable).
+PRIVATE TEST ONLY: in-game compatibility, menu/persistence, FG/RT/PT and saved
+graphics settings invariants remain unverified. NOT APPROVED FOR NEXUS.
+
+R5 200-control overhaul remains separate archival research only.
+Protected PT shader unmodified.

@@ -1,0 +1,48 @@
+Subject: Ultimate Refined Tracing (Witcher 3, mod 13075) V5.1.0 - quarantine review request
+
+Hello Nexus moderation team,
+
+[Send only if Nexus quarantines the V5.1.0 files. Replace this line with the detection
+names Nexus or VirusTotal reports.]
+Both V5.1.0 files of Ultimate Refined Tracing (MAIN and ASI-ONLY) were quarantined after upload.
+I have audited both archives and believe these are false positives.
+I would be grateful for a manual review.
+
+Files (SHA-256):
+  Ultimate_Refined_Tracing_V5.1.0_MAIN.zip      db042b0c9bc158aecd058408722f923a6606de69df278ae7aabc3dfbe69bb8f9
+  Ultimate_Refined_Tracing_V5.1.0_ASI_ONLY.zip  ee275bd015ec3428bb7f70858a94c7392a616ae2b64f0490a9f7a221b920772c
+
+Native code in the archives (everything else is XML, Witcher string tables, a UI .redswf and compiled
+WitcherScript):
+  bin/x64_dx12/UltimateRefinedTracing.asi  942cddbd31cb8e4f72ec94fb80413ddb2da8425175d7569dcb2e46bf8a93cd27
+      The mod itself: my own C code, compiled reproducibly with clang 18 / lld (no CRT). Rebuilding the
+      source reproduces this file and both archives byte for byte.
+  bin/x64_dx12/winmm.dll (MAIN only)       031a3e5576d91dce1e438d36b9a3d462c7334ab4791990a8ff1e3ddc0e132daf
+      Unmodified Ultimate ASI Loader 9.7.4 by ThirteenAG (MIT). It is byte-identical to dinput8.dll in the
+      official GitHub release asset Ultimate-ASI-Loader-NoPDB_x64.zip
+      (https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/tag/v9.7.4; zip digest e5860e7d...45d1),
+      renamed to winmm.dll as the loader documents.
+
+What the ASI does: it is a performance mod for Witcher 3 Patch 5.01 (ray/path tracing).
+- It runs only inside witcher3.exe.
+- It verifies the game executable's SHA-256.
+- It reads the game's settings without ever writing them.
+- It applies byte-verified in-process code patches, the standard technique for game mods.
+- It stores its own settings and log file.
+
+What the ASI does not contain:
+- It imports only KERNEL32 and ADVAPI32 (CryptoAPI hashing).
+- No networking APIs and no URLs or IP addresses.
+- No access to other processes (no OpenProcess/WriteProcessMemory/CreateRemoteThread).
+- No process creation and no registry writes.
+- No packing or obfuscation.
+
+Why it may be flagged: the ASI is a new, unsigned, small DLL that modifies code in its host process.
+Generic heuristics commonly flag that profile. The ASI-ONLY file, which does not contain the loader,
+is also quarantined.
+
+The previous versions (V5.0.0 and V4.3.1) use the same toolchain and techniques. I can provide the complete source
+and build package privately for verification, and answer any questions.
+
+Thank you,
+[author name]

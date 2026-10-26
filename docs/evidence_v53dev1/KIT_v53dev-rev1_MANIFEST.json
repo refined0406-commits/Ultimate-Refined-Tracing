@@ -1,0 +1,11 @@
+{
+  "kit": "v53dev-rev1",
+  "ops": 2,
+  "baseline_sha256": "a43cec54c1528c525b3c0c0c32414a5faaf447683f6fee8e63119461584d4ac7",
+  "candidate_sha256": "16e98bc7b2f0aa9882eec33cddb7b04da0b8782276e946ffeacf865851d7c31d",
+  "menu_sha256": "17153995dcacd1f529ea4a987a627fcd7381e3ce03f300a4e148473252c3c1dc",
+  "described_controls": 63,
+  "results_zip": "URT_V53_DEV1_RESULTS.zip",
+  "zip": "URT_V5.3_DEV1_PRIVATE_WCC_KIT_v53dev-rev1.zip",
+  "zip_sha256": "3fc018f2ed809428d872f9cf316af067dbfdc4913a6a9b6b0c03695f01715bed"
+}

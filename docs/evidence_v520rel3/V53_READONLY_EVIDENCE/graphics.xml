@@ -1,0 +1,874 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<UserConfig>
+	<Group id="Graphics" displayName="video.general" tags="refreshEngineWithTexturesReload;graphics">
+		<PresetsArray>
+			<Preset id="0" displayName="low">
+				<Entry overrideGroup="Graphics" 	varId="Virtual_TexturesOptionVar"		value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_LevelOfDetailOptionVar"	value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_WaterOptionVar"			value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_TerrainOptionVar"		value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_ShadowsOptionVar"		value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksLevel"			value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksAALevel"		value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksQualityPreset"	value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_GrassOptionVar"			value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_FoliageVisibility"		value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_CommunitySpawnLimit"		value="0"/>
+				<Entry overrideGroup="Rendering/RT"	varId="EnableRT"						value="false"/>
+				<Entry overrideGroup="Rendering/RT"	varId="RTGIPreset"						value="false"/>				
+				<Entry overrideGroup="Rendering/RT"	varId="EnableRtRadiance"				value="false"/>	
+				<Entry overrideGroup="Rendering/RT" varId="Shadows"							value="0"/>
+				<Entry overrideGroup="Rendering/RT"	varId="RTAOEnabled"						value="false"/>	
+				<Entry overrideGroup="Rendering/RT/PathTracer" varId="PTHairQualityMode"	value="0"/>
+				<Entry overrideGroup="Rendering"	varId="Virtual_SSREnabled"				value="false"/>	
+				<Entry overrideGroup="PostProcess"	varId="SSAOEnabled"						value="3"/>	
+				<Entry overrideGroup="PostProcess" 	varId="Virtual_GTAOQuality"				value="0"/>
+				<Entry overrideGroup="Rendering/Shadows" varId="ScreenShadows" 				value="true"/>
+				<Entry overrideGroup="PostProcess" varId="SharpenAmount"					value="0"/>
+			</Preset>
+			<Preset id="1" displayName="medium">
+				<Entry overrideGroup="Graphics" 	varId="Virtual_TexturesOptionVar"		value="1"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_LevelOfDetailOptionVar"	value="1"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_WaterOptionVar"			value="1"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_TerrainOptionVar"		value="1"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_ShadowsOptionVar"		value="1"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksLevel"			value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksAALevel"		value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksQualityPreset"	value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_GrassOptionVar"			value="1"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_FoliageVisibility"		value="1"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_CommunitySpawnLimit"		value="1"/>
+				<Entry overrideGroup="Rendering/RT"	varId="EnableRT"						value="false"/>
+				<Entry overrideGroup="Rendering/RT"	varId="RTGIPreset"						value="false"/>
+				<Entry overrideGroup="Rendering/RT"	varId="EnableRtRadiance"				value="false"/>	
+				<Entry overrideGroup="Rendering/RT"	varId="Shadows"							value="0"/>
+				<Entry overrideGroup="Rendering/RT"	varId="RTAOEnabled"						value="false"/>	
+				<Entry overrideGroup="Rendering/RT/PathTracer" varId="PTHairQualityMode"	value="0"/>
+				<Entry overrideGroup="Rendering"	varId="Virtual_SSREnabled"				value="false"/>
+				<Entry overrideGroup="PostProcess"	varId="SSAOEnabled"						value="3"/>
+				<Entry overrideGroup="PostProcess" 	varId="Virtual_GTAOQuality"				value="1"/>
+				<Entry overrideGroup="Rendering/Shadows" varId="ScreenShadows" 				value="true"/>
+				<Entry overrideGroup="PostProcess" varId="SharpenAmount"					value="0"/>
+			</Preset>
+			<Preset id="2" displayName="high">
+				<Entry overrideGroup="Graphics" 	varId="Virtual_TexturesOptionVar"		value="2"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_LevelOfDetailOptionVar" 	value="2"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_WaterOptionVar" 			value="2"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_TerrainOptionVar" 		value="2"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_ShadowsOptionVar" 		value="2"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksLevel" 			value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksAALevel"		value="2"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksQualityPreset"	value="1"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_GrassOptionVar"			value="2"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_FoliageVisibility"		value="2"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_CommunitySpawnLimit"		value="2"/>
+				<Entry overrideGroup="Rendering/RT" varId="EnableRT"						value="false"/>
+				<Entry overrideGroup="Rendering/RT"	varId="RTGIPreset"						value="false"/>				
+				<Entry overrideGroup="Rendering/RT"	varId="EnableRtRadiance"				value="false"/>	
+				<Entry overrideGroup="Rendering/RT"	varId="Shadows"							value="0"/>
+				<Entry overrideGroup="Rendering/RT"	varId="RTAOEnabled"						value="false"/>
+				<Entry overrideGroup="Rendering/RT/PathTracer" varId="PTHairQualityMode"	value="0"/>
+				<Entry overrideGroup="Rendering"	varId="Virtual_SSREnabled"				value="true"/>
+				<Entry overrideGroup="PostProcess"	varId="SSAOEnabled"						value="3"/>
+				<Entry overrideGroup="PostProcess" 	varId="Virtual_GTAOQuality"				value="2"/>
+				<Entry overrideGroup="Rendering/Shadows" varId="ScreenShadows" 				value="true"/>
+				<Entry overrideGroup="PostProcess" varId="SharpenAmount"					value="0"/>
+			</Preset>
+			<Preset id="3" displayName="uber">
+				<Entry overrideGroup="Graphics" 	varId="Virtual_TexturesOptionVar" 		value="3"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_LevelOfDetailOptionVar" 	value="3"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_WaterOptionVar" 			value="3"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_TerrainOptionVar" 		value="3"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_ShadowsOptionVar" 		value="3"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksLevel" 			value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksAALevel"		value="2"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksQualityPreset"	value="1"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_GrassOptionVar"			value="3"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_FoliageVisibility"		value="3"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_CommunitySpawnLimit"		value="3"/>
+				<Entry overrideGroup="Rendering/RT" varId="EnableRT"						value="false"/>	
+				<Entry overrideGroup="Rendering/RT"	varId="RTGIPreset"						value="false"/>
+				<Entry overrideGroup="Rendering/RT" varId="EnableRtRadiance"				value="false"/>	
+				<Entry overrideGroup="Rendering/RT" varId="Shadows"							value="0"/>	
+				<Entry overrideGroup="Rendering/RT" varId="RTAOEnabled"						value="false"/>
+				<Entry overrideGroup="Rendering/RT/PathTracer" varId="PTHairQualityMode"	value="0"/>
+				<Entry overrideGroup="Rendering"	varId="Virtual_SSREnabled"				value="true"/>
+				<Entry overrideGroup="PostProcess"	varId="SSAOEnabled"						value="3"/>
+				<Entry overrideGroup="PostProcess" 	varId="Virtual_GTAOQuality"				value="3"/>
+				<Entry overrideGroup="Rendering/Shadows" varId="ScreenShadows" 				value="true"/>
+				<Entry overrideGroup="PostProcess" varId="SharpenAmount"					value="0"/>
+			</Preset>
+			<Preset id="4" displayName="btn_rt">
+				<Entry overrideGroup="Graphics" 	varId="Virtual_TexturesOptionVar" 		value="4"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_LevelOfDetailOptionVar" 	value="4"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_WaterOptionVar" 			value="4"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_TerrainOptionVar" 		value="4"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_ShadowsOptionVar" 		value="4"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksLevel" 			value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksAALevel"		value="3"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksQualityPreset"	value="1"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_GrassOptionVar"			value="4"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_FoliageVisibility"		value="4"/>
+				<Entry overrideGroup="Graphics"		varId="Virtual_CommunitySpawnLimit"		value="4"/>
+				<Entry overrideGroup="Rendering/RT"	varId="EnableRT"						value="true"/>
+				<Entry overrideGroup="Rendering/RT"	varId="RTGIPreset"						value="false"/>					
+				<Entry overrideGroup="Rendering/RT"	varId="EnableRtRadiance"				value="true"/>	
+				<Entry overrideGroup="Rendering/RT"	varId="Shadows"							value="1"/>
+				<Entry overrideGroup="Rendering/RT"	varId="RTAOEnabled"						value="false"/>
+				<Entry overrideGroup="Rendering/RT/PathTracer" varId="PTHairQualityMode"	value="0"/>
+				<Entry overrideGroup="Rendering"	varId="Virtual_SSREnabled"				value="true"/>
+				<Entry overrideGroup="PostProcess"	varId="SSAOEnabled"						value="3"/>	
+				<Entry overrideGroup="PostProcess" 	varId="Virtual_GTAOQuality"				value="3"/>
+				<Entry overrideGroup="Rendering/Shadows" varId="ScreenShadows" 				value="true"/>
+				<Entry overrideGroup="PostProcess" varId="SharpenAmount"					value="0"/>
+			</Preset>
+			<Preset id="5" displayName="btn_rt_ultra">
+				<Entry overrideGroup="Graphics" 	varId="Virtual_TexturesOptionVar" 		value="4"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_LevelOfDetailOptionVar" 	value="4"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_WaterOptionVar" 			value="4"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_TerrainOptionVar" 		value="4"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_ShadowsOptionVar" 		value="4"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksLevel" 			value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksAALevel"		value="3"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksQualityPreset"	value="1"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_GrassOptionVar"			value="4"/>
+				<Entry overrideGroup="Graphics"		varId="Virtual_FoliageVisibility"		value="4"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_CommunitySpawnLimit"		value="4"/>
+				<Entry overrideGroup="Rendering/RT"	varId="EnableRT"						value="true"/>	
+				<Entry overrideGroup="Rendering/RT"	varId="RTGIPreset"						value="true"/>
+				<Entry overrideGroup="Rendering/RT"	varId="EnableRtRadiance"				value="true"/>	
+				<Entry overrideGroup="Rendering/RT"	varId="Shadows"							value="2"/>
+				<Entry overrideGroup="Rendering/RT"	varId="RTAOEnabled"						value="true"/>
+				<Entry overrideGroup="Rendering/RT/PathTracer" varId="PTHairQualityMode"	value="3"/>
+				<Entry overrideGroup="Rendering"	varId="Virtual_SSREnabled"				value="true"/>
+				<Entry overrideGroup="PostProcess"	varId="SSAOEnabled"						value="3"/>
+				<Entry overrideGroup="PostProcess" 	varId="Virtual_GTAOQuality"				value="3"/>
+				<Entry overrideGroup="Rendering/Shadows" varId="ScreenShadows" 				value="true"/>
+				<Entry overrideGroup="PostProcess" varId="SharpenAmount"					value="0"/>
+			</Preset>
+			<Preset id="6" displayName="steamdeck">
+				<Entry overrideGroup="Graphics" 	varId="Virtual_TexturesOptionVar"		value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_LevelOfDetailOptionVar"	value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_WaterOptionVar"			value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_TerrainOptionVar"		value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_ShadowsOptionVar"		value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksLevel"			value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksAALevel"		value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_HairWorksQualityPreset"	value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_GrassOptionVar"			value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_FoliageVisibility"		value="0"/>
+				<Entry overrideGroup="Graphics" 	varId="Virtual_CommunitySpawnLimit"		value="0"/>					
+				<Entry overrideGroup="Rendering/RT"	varId="EnableRT"						value="false"/>
+				<Entry overrideGroup="Rendering/RT"	varId="RTGIPreset"						value="false"/>	
+				<Entry overrideGroup="Rendering/RT"	varId="EnableRtRadiance"				value="false"/>	
+				<Entry overrideGroup="Rendering/RT"	varId="Shadows"							value="0"/>
+				<Entry overrideGroup="Rendering/RT"	varId="RTAOEnabled"						value="false"/>
+				<Entry overrideGroup="Rendering/RT/PathTracer" varId="PTHairQualityMode"	value="0"/>
+				<Entry overrideGroup="Rendering"	varId="Virtual_SSREnabled"				value="false"/>	
+				<Entry overrideGroup="PostProcess"	varId="SSAOEnabled"						value="3"/>
+				<Entry overrideGroup="PostProcess" 	varId="Virtual_GTAOQuality"				value="0"/>
+				<Entry overrideGroup="Rendering/Shadows" varId="ScreenShadows" 				value="true"/>
+				<Entry overrideGroup="PostProcess" varId="SharpenAmount"					value="0"/>
+			</Preset>
+		</PresetsArray>
+
+		<VisibleVars>
+
+			<!-- Enable Ray-Tracing -->
+			<Var overrideGroup="Rendering/RT" id="EnableRT" displayName="preset_value_rt" displayType="TOGGLE" tags="customDisplayName;customPresetIfChanged;enableIfRTSupported"/>
+
+			<!-- Path Tracer -->
+			<Var overrideGroup="Rendering/RT/PathTracer" id="PTEnable" displayName="option_rt_enable_path_tracer" displayType="TOGGLE" tags="customDisplayName;enableIfRT;indent;customPresetIfChanged;enableIfRTSupported"/>
+
+			<!-- Ray Tracing Performance Preset -->
+			<Var overrideGroup="Rendering/RT" id="RTGIPreset" displayName="option_rt_global_illumination" displayType="OPTIONS" tags="customNames;customDisplayName;enableIfRT;indent;customPresetIfChanged;enableIfRTSupported;disableIfPT">
+				<OptionsArray>
+					<Option id="0" displayName="dlss_perf">
+						<Entry overrideGroup="Rendering/RT" varId="RTGIPreset" value="false"/>
+					</Option>
+					<Option id="1" displayName="dlss_quality">
+						<Entry overrideGroup="Rendering/RT" varId="RTGIPreset" value="true"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			<!-- Ray Traced Reflection -->
+			<Var overrideGroup="Rendering/RT" id="EnableRtRadiance" displayName="enable_rt_radiance" displayType="TOGGLE" tags="customDisplayName;enableIfRT;indent;customPresetIfChanged;enableIfRTSupported;disableIfPT"/>
+
+			<!-- Ray Traced Shadows -->
+			<Var id="Virtual_RTShadows" displayName="enable_rt_shadows" displayType="OPTIONS" tags="customNames;enableIfRT;indent;customPresetIfChanged;enableIfRTSupported;disableIfPT">
+				<OptionsArray>
+					<Option id="0" displayName="panel_mainmenu_option_value_off">
+						<Entry overrideGroup="Rendering/RT" varId="Shadows" value="0"/>
+					</Option>
+					<Option id="1" displayName="dlss_perf">
+						<Entry overrideGroup="Rendering/RT" varId="Shadows" value="1"/>
+					</Option>
+					<Option id="2" displayName="dlss_quality">
+						<Entry overrideGroup="Rendering/RT" varId="Shadows" value="2"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- Ray Traced Ambient Occlusion -->
+			<Var overrideGroup="Rendering/RT" id="RTAOEnabled" displayName="option_rt_ambient_occlusion" displayType="TOGGLE" tags="customDisplayName;enableIfRT;indent;customPresetIfChanged;enableIfRTSupported;disableIfPT"/>
+			
+            <Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+
+			<!-- Anti Aliasing -->
+			<Var id="AAMode" displayName="allow_Antialias" displayType="OPTIONSWITHCOND" tags="customNames;nonLocalizedExceptFirst">
+				<OptionsArray>
+					<Option id="0" displayName="panel_mainmenu_option_value_off">
+						<Entry overrideGroup="PostProcess" varId="AAMode" value="0"/>
+					</Option>
+					<Option id="1" displayName="FXAA">
+						<Entry overrideGroup="PostProcess" varId="AAMode" value="1"/>
+					</Option>
+					<Option id="2" displayName="AMD FSR Upscaling">
+						<Entry overrideGroup="PostProcess" varId="AAMode" value="5"/>
+					</Option>					
+					<Option id="3" displayName="XeSS">
+						<Entry overrideGroup="PostProcess" varId="AAMode" value="7"/>
+					</Option>
+					<Option id="4" displayName="DLSS">
+						<Entry overrideGroup="PostProcess" varId="AAMode" value="6"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- FSR Quality (AMD FidelityFX(tm) Super Resolution) -->
+			<Var id="FSRQuality" displayName="fsr_quality" displayType="OPTIONS" tags="customNames;enableIfFSR;indent">
+				<OptionsArray>
+					<Option id="0" displayName="dlss_auto">
+						<Entry overrideGroup="PostProcess" varId="FSR2Quality" value="0"/>
+					</Option>
+					<!-- MB: Only show when FSR4 is supported -->
+					<Option id="1" displayName="option_nativeaa" tags="enableIfFSR4">
+						<Entry overrideGroup="PostProcess" varId="FSR2Quality" value="1"/>
+					</Option>
+					<Option id="2" displayName="dlss_quality">
+						<Entry overrideGroup="PostProcess" varId="FSR2Quality" value="2"/>
+					</Option>
+					<Option id="3" displayName="dlss_balanced">
+						<Entry overrideGroup="PostProcess" varId="FSR2Quality" value="3"/>
+					</Option>
+					<Option id="4" displayName="dlss_perf">
+						<Entry overrideGroup="PostProcess" varId="FSR2Quality" value="4"/>
+					</Option>
+					<Option id="5" displayName="dlss_ultraperf">
+						<Entry overrideGroup="PostProcess" varId="FSR2Quality" value="5"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- DLSS Quality (Deep Learning Super Sampling) -->
+			<Var id="DLSSQuality" displayName="dlss_quality" displayType="OPTIONS" tags="customNames;enableIfDLSS;indent">
+				<OptionsArray>
+					<Option id="0" displayName="dlss_auto">
+						<Entry overrideGroup="PostProcess" varId="DLSSQuality" value="0"/>
+					</Option>
+					<Option id="1" displayName="dlss_quality">
+						<Entry overrideGroup="PostProcess" varId="DLSSQuality" value="1"/>
+					</Option>
+					<Option id="2" displayName="dlss_balanced">
+						<Entry overrideGroup="PostProcess" varId="DLSSQuality" value="2"/>
+					</Option>
+					<Option id="3" displayName="dlss_perf">
+						<Entry overrideGroup="PostProcess" varId="DLSSQuality" value="3"/>
+					</Option>
+					<Option id="4" displayName="dlss_ultraperf">
+						<Entry overrideGroup="PostProcess" varId="DLSSQuality" value="4"/>
+					</Option>
+					<Option id="5" displayName="option_dlss_dlaa">
+						<Entry overrideGroup="PostProcess" varId="DLSSQuality" value="5"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- DLSS Ray Reconstruction -->
+			<Var overrideGroup="PostProcess" id="EnableDLSSRR" displayName="dlss_r" displayType="TOGGLE" tags="customNames;enableIfDLSS;enableIfDLSSRRSupported;enableIfRT;indent"/>
+
+			<!-- XESS Quality (Intel(tm) Xe Super Resolution) -->
+			<Var id="XESSQuality" displayName="xess_quality" displayType="OPTIONS" tags="customNames;enableIfXESS;indent">
+				<OptionsArray>
+					<Option id="0" displayName="dlss_auto">
+						<Entry overrideGroup="PostProcess" varId="XESSQuality" value="0"/>
+					</Option>
+					<Option id="1" displayName="option_nativeaa">
+						<Entry overrideGroup="PostProcess" varId="XESSQuality" value="1"/>
+					</Option>
+					<Option id="2" displayName="option_xess_ultra_quality_plus">
+						<Entry overrideGroup="PostProcess" varId="XESSQuality" value="2"/>
+					</Option>
+					<Option id="3" displayName="xess_ultraquality">
+						<Entry overrideGroup="PostProcess" varId="XESSQuality" value="3"/>
+					</Option>
+					<Option id="4" displayName="dlss_quality">
+						<Entry overrideGroup="PostProcess" varId="XESSQuality" value="4"/>
+					</Option>
+					<Option id="5" displayName="dlss_balanced">
+						<Entry overrideGroup="PostProcess" varId="XESSQuality" value="5"/>
+					</Option>
+					<Option id="6" displayName="dlss_perf">
+						<Entry overrideGroup="PostProcess" varId="XESSQuality" value="6"/>
+					</Option>
+					<Option id="7" displayName="dlss_ultraperf">
+						<Entry overrideGroup="PostProcess" varId="XESSQuality" value="7"/>
+					</Option>					
+				</OptionsArray>
+			</Var>
+
+			<!-- Dynamic Resolution Scaling -->
+			<Var overrideGroup="PostProcess" id="Virtual_DynamicResolutionScaling" displayName="DynamicResolutionScaling" displayType="OPTIONS" tags="customNames;customDisplayName;disableIfDLSS;disableIfDLSSG;disableIfXESS">
+				<OptionsArray>
+					<Option id="0" displayName="panel_mainmenu_option_value_off">
+						<Entry overrideGroup="Rendering/DRS" varId="Enable" value="false"/>
+					</Option>
+					<Option id="1" displayName="panel_mainmenu_option_value_on">
+						<Entry overrideGroup="Rendering/DRS" varId="Enable" value="true"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+            <Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+
+			<!-- DLSSG, DLSS Frame Generation -->
+			<Var overrideGroup="PostProcess" id="Virtual_DLSSG" displayName="dlss_frame_generation" displayType="OPTIONS" tags="customNames;enableIfDLSSGSupported;disableIfXessLowLatency;disableIfXessFG;disableIfFSRFramegen;disableIfAMDAntiLag">
+				<OptionsArray>
+					<ListingFunction name="ListFrameGenerationModes"/>
+				</OptionsArray>
+			</Var>
+
+			<!-- DLSSG, DLSS Frame Generation Count -->
+			<Var overrideGroup="PostProcess" id="Virtual_DLSSG_Count" displayName="dlss_frame_generation_count" displayType="OPTIONS" tags="customNames;enableIfDLSSGSupported;enableIfDLSSG;disableIfDLSSGDynamic;nonLocalized;disableIfXessLowLatency;disableIfXessFG;disableIfFSRFramegen;disableIfAMDAntiLag;indent">
+				<OptionsArray>
+					<ListingFunction name="ListFrameGenerationOptions"/>
+				</OptionsArray>
+			</Var>
+
+			<!-- NVIVIA Reflex Low Latency -->
+			<Var overrideGroup="PostProcess" id="Virtual_Reflex" displayName="nvidia_reflex_low_latency" displayType="OPTIONS" tags="customNames;enableIfReflexSupported;disableIfDLSSGAndSet1;disableIfXessLowLatency;disableIfXessFG;disableIfFSRFramegen;disableIfAMDAntiLag">
+				<OptionsArray>
+					<Option id="0" displayName="panel_mainmenu_option_value_off">
+						<Entry overrideGroup="Viewport" varId="ReflexMode" value="0"/>
+					</Option>
+					<Option id="1" displayName="panel_mainmenu_option_value_on">
+						<Entry overrideGroup="Viewport" varId="ReflexMode" value="1"/>
+					</Option>
+					<Option id="2" displayName="option_nvidia_reflex_boost">
+						<Entry overrideGroup="Viewport" varId="ReflexMode" value="2"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- FSR Frame Generation -->
+			<Var overrideGroup="PostProcess" id="Virtual_FSRFramegen" displayName="amd_fsr_frame_generation" displayType="OPTIONS" tags="customNames;enableIfFSRFramegenSupported;disableIfDLSSG;disableIfReflex;disableIfXessFG;disableIfXessLowLatency">
+				<OptionsArray>
+					<Option id="0" displayName="panel_mainmenu_option_value_off">
+						<Entry overrideGroup="PostProcess" varId="FSRFramegen" value="0"/>
+					</Option>
+					<Option id="1" displayName="panel_mainmenu_option_value_on">
+						<Entry overrideGroup="PostProcess" varId="FSRFramegen" value="1"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- AMD Anti-Lag 2 -->
+			<Var overrideGroup="PostProcess" id="AMDAntiLag" displayName="amd_fsr_latency_reduction" displayType="OPTIONS" tags="customNames;enableIfAMDAntiLagSupported;disableIfDLSSG;disableIfReflex;disableIfXessFG;disableIfXessLowLatency">
+				<OptionsArray>
+					<Option id="0" displayName="panel_mainmenu_option_value_off">
+						<Entry overrideGroup="Viewport" varId="AMDAntiLag" value="0"/>
+					</Option>
+					<Option id="1" displayName="panel_mainmenu_option_value_on">
+						<Entry overrideGroup="Viewport" varId="AMDAntiLag" value="1"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+			
+			<!-- XeLL & XeFG -->
+			<Var id="XessFrameGeneration" overrideGroup="PostProcess"  displayName="option_xess_frame_generation" displayType="TOGGLE" tags="customDisplayName;customNames;disableIfDLSSG;disableIfReflex;disableIfFSRFramegen;disableIfAMDAntiLag" />
+            <Var id="XeLowLatency" overrideGroup="PostProcess"  displayName="option_xess_low_latency" displayType="TOGGLE" tags="customDisplayName;customNames;disableIfDLSSG;disableIfReflex;disableIfFSRFramegen;disableIfAMDAntiLag" />
+			<!-- <Var overrideGroup="Viewport" id="VSync" displayName="vsync" displayType="TOGGLE" tags="buffered;disableIfDLSSG"/> -->
+			<!-- <Var id="XeLowLatencyFrameRateControl" overrideGroup="PostProcess"  displayName="xe_low_latency_frame_control" displayType="TOGGLE" tags="customDisplayName;customNames;enableIfXessFGSupported;indent" /> -->			
+			
+            <Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+
+			<!-- HairWorks -->
+            <Var id="Virtual_HairWorksLevel" displayName="use_hair_works" displayType="OPTIONS" tags="refreshEngine;customNames;customPresetIfChanged;disableIfIntelGPU">
+				<OptionsArray>
+					<Option id="0" displayName="panel_mainmenu_option_value_off">
+						<Entry overrideGroup="Rendering" varId="HairWorksLevel" value="0"/>
+					</Option>
+					<Option id="1" displayName="Geralt">
+						<Entry overrideGroup="Rendering" varId="HairWorksLevel" value="1"/>
+					</Option>
+					<Option id="2" displayName="panel_mainmenu_option_value_on">
+						<Entry overrideGroup="Rendering" varId="HairWorksLevel" value="2"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- Path Traced Hair -->
+			<Var overrideGroup="Rendering/RT/PathTracer" id="PTHairQualityMode" displayName="option_rt_pt_hair" displayType="TOGGLE" tags="customDisplayName;enableIfHairWorks;enableIfPT;enableIfPTHair;indent;customPresetIfChanged;refreshEngine;enableIfLinearSweptSpheresSupported">
+				<OptionsArray>
+					<Option id="0" displayName="panel_mainmenu_option_value_off">
+						<Entry overrideGroup="Rendering/RT/PathTracer" varId="PTHairQualityMode" value="0"/>
+					</Option>
+					<Option id="1" displayName="panel_mainmenu_option_value_on">
+						<Entry overrideGroup="Rendering/RT/PathTracer" varId="PTHairQualityMode" value="3"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- HairWorks AA -->
+			<Var id="Virtual_HairWorksAALevel" displayName="hair_works_aa" displayType="OPTIONS" tags="customNames;nonLocalized;enableIfHairWorks;indent;customPresetIfChanged;disableIfIntelGPU">
+				<OptionsArray>
+					<Option id="0" displayName="0">
+						<Entry overrideGroup="Rendering" varId="HairWorksAALevel" value="0"/>
+					</Option>
+					<Option id="1" displayName="2">
+						<Entry overrideGroup="Rendering" varId="HairWorksAALevel" value="2"/>
+					</Option>
+					<Option id="2" displayName="4">
+						<Entry overrideGroup="Rendering" varId="HairWorksAALevel" value="4"/>
+					</Option>
+					<Option id="3" displayName="8">
+						<Entry overrideGroup="Rendering" varId="HairWorksAALevel" value="8"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- HairWorks Quality -->
+			<Var id="Virtual_HairWorksQualityPreset" displayName="hair_works_preset" displayType="OPTIONS" tags="refreshEngine;enableIfHairWorks;indent;customPresetIfChanged;disableIfIntelGPU">
+				<OptionsArray>
+					<Option id="0" displayName="low">
+						<Entry overrideGroup="Rendering" varId="HairWorksGlobalStrandSmoothness" value="2"/>
+						<Entry overrideGroup="Rendering" varId="HairWorkstGlobalDensityLimit" 	 value="0.35"/>
+						<Entry overrideGroup="Rendering" varId="HairWorksGlobalDensityQuality"	 value="0.75"/>
+						<Entry overrideGroup="Rendering" varId="HairWorksGlobalDetailLODFactor"	 value="0.65"/>
+						<Entry overrideGroup="Rendering" varId="HairWorksGlobalWidthLimit" 		 value="2.25"/>
+					</Option>
+					<Option id="1" displayName="high">
+						<Entry overrideGroup="Rendering" varId="HairWorksGlobalStrandSmoothness" value="3"/>
+						<Entry overrideGroup="Rendering" varId="HairWorkstGlobalDensityLimit"	 value="2.0"/>
+						<Entry overrideGroup="Rendering" varId="HairWorksGlobalDensityQuality"	 value="1.0"/>
+						<Entry overrideGroup="Rendering" varId="HairWorksGlobalDetailLODFactor"	 value="1.0"/>
+						<Entry overrideGroup="Rendering" varId="HairWorksGlobalWidthLimit"		 value="5.0"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+            <Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+
+			<!-- Sharpen -->
+			<Var overrideGroup="PostProcess" id="Virtual_SharpenAmount" displayName="allow_sharpen" displayType="OPTIONS" tags="customNames;disableIfFSR">
+				<OptionsArray>
+					<Option id="0" displayName="panel_mainmenu_option_value_off">
+						<Entry overrideGroup="PostProcess" varId="SharpenAmount" value="0"/>
+					</Option>
+					<Option id="1" displayName="preset_value_low">
+						<Entry overrideGroup="PostProcess" varId="SharpenAmount" value="1"/>
+					</Option>
+					<Option id="2" displayName="preset_value_high">
+						<Entry overrideGroup="PostProcess" varId="SharpenAmount" value="2"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- Screen Space Ambient Occlusion -->
+			<Var overrideGroup="PostProcess" id="SSAOEnabled" displayName="option_ssao" displayType="OPTIONS" tags="customDisplayName;customNames;disableIfRTAO;nonLocalizedExceptFirst">
+				<OptionsArray>
+					<Option id="0" displayName="panel_mainmenu_option_value_off">
+						<Entry overrideGroup="PostProcess" varId="SSAOEnabled" value="0"/>
+					</Option>
+					<Option id="1" displayName="GTAO">
+						<Entry overrideGroup="PostProcess" varId="SSAOEnabled" value="3"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- GTAO Quality -->
+			<Var overrideGroup="Viewport" id="Virtual_GTAOQuality" displayName="gtao_quality" displayType="OPTIONS" tags="disableIfRTAO;enableIfGTAO;indent">
+				<OptionsArray>
+					<Option id="0" displayName="low">
+						<Entry overrideGroup="PostProcess" varId="GTAOQuality" value="0"/>
+					</Option>
+					<Option id="1" displayName="medium">
+						<Entry overrideGroup="PostProcess" varId="GTAOQuality" value="1"/>
+					</Option>
+					<Option id="2" displayName="high">
+						<Entry overrideGroup="PostProcess" varId="GTAOQuality" value="2"/>
+					</Option>
+					<Option id="3" displayName="uber">
+						<Entry overrideGroup="PostProcess" varId="GTAOQuality" value="3"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- Screen Space Reflection -->
+			<Var overrideGroup="Rendering" id="Virtual_SSREnabled" displayName="option_screen_space_reflection" displayType="OPTIONS" tags="customDisplayName;disableIfRTR">
+				<OptionsArray>
+					<Option id="0" displayName="low">
+						<Entry overrideGroup="Rendering" varId="SSREnabled" value="false"/>
+					</Option>
+					<Option id="1" displayName="high">
+						<Entry overrideGroup="Rendering" varId="SSREnabled" value="true"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- Motion Blur -->
+			<Var overrideGroup="PostProcess" id="AllowMotionBlur" displayName="allow_motion_blur" displayType="TOGGLE"/>
+			
+			<Var overrideGroup="PostProcess" id="MotionBlurIntensity" displayName="motion_blur_intensity" displayType="SLIDER;1;10;9" tags="enableIfMotionBlur;indent"/>
+
+			<!-- Radial Blur - Unsure what this is used for -->
+            <Var overrideGroup="PostProcess" id="AllowBlur" displayName="allow_blur" displayType="TOGGLE"/>
+
+			<!-- Bloom -->
+			<Var overrideGroup="PostProcess" id="AllowBloom" displayName="allow_bloom" displayType="TOGGLE"/>
+
+			<!-- Depth of Field -->
+            <Var overrideGroup="PostProcess" id="AllowDOF" displayName="allow_dof" displayType="TOGGLE"/>
+
+			<!-- Chromatic Aberration -->
+            <Var overrideGroup="PostProcess" id="AllowChromaticAberration" displayName="allow_chromatic_aberration" displayType="TOGGLE"/>
+
+			<!-- Vignetting -->
+			<Var overrideGroup="PostProcess" id="AllowVignette" displayName="allow_vignette" displayType="TOGGLE"/>
+
+			<!-- Light Shafts - God rays -->
+			<Var overrideGroup="PostProcess" id="AllowShafts" displayName="allow_shafts" displayType="TOGGLE"/>
+
+			<!-- Dirty lens -->
+			<Var overrideGroup="PostProcess" id="AllowLensEffects" displayName="allow_lens_effects" displayType="TOGGLE"/>
+
+            <Var id="Separator" displayName="" displayType="SUBTLE_SEPARATOR"/>
+
+			<!-- Number of Background Characters -->			
+			<Var id="Virtual_CommunitySpawnLimit" displayName="community_density_settings" displayType="OPTIONS" tags="customPresetIfChanged">
+				<OptionsArray>
+					<Option id="0" displayName="low">
+						<Entry overrideGroup="Gameplay/EntityPool" varId="SpawnedLimit" value="75"/>
+					</Option>
+					<Option id="1" displayName="medium">
+						<Entry overrideGroup="Gameplay/EntityPool" varId="SpawnedLimit" value="100"/>
+					</Option>
+					<Option id="2" displayName="high">
+						<Entry overrideGroup="Gameplay/EntityPool" varId="SpawnedLimit" value="130"/>
+					</Option>
+					<Option id="3" displayName="uber">
+						<Entry overrideGroup="Gameplay/EntityPool" varId="SpawnedLimit" value="150"/>
+					</Option>
+					<Option id="4" displayName="ultra+">
+						<Entry overrideGroup="Gameplay/EntityPool" varId="SpawnedLimit" value="160"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- Shadow Quality -->
+            <Var id="Virtual_ShadowsOptionVar" displayName="shadows" displayType="OPTIONS" tags="refreshEngineWithTexturesReload;customPresetIfChanged;disableIfRTShadows">
+				<OptionsArray>
+					<Option id="0" displayName="low">
+						<Entry overrideGroup="Rendering" varId="CascadeShadowFadeTreshold" 	value="2.0"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale0" 	value="1.0"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale1" 	value="1.0"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale2" 	value="1.0"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale3" 	value="1.0"/>	
+						<Entry overrideGroup="Rendering" varId="CascadeShadowQuality" 		value="0"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowmapSize" 		value="1024"/>
+						<Entry overrideGroup="Rendering" varId="MaxCascadeCount" 				value="3"/>
+						<Entry overrideGroup="Rendering" varId="MaxTerrainShadowAtlasCount" 	value="2"/>
+						<Entry overrideGroup="Rendering" varId="MaxCubeShadowSize" 			value="256"/>
+						<Entry overrideGroup="Rendering" varId="MaxSpotShadowSize" 			value="256"/>
+					</Option>
+					<Option id="1" displayName="medium">
+						<Entry overrideGroup="Rendering" varId="CascadeShadowFadeTreshold" 	value="1.5"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale0" 	value="1.0"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale1" 	value="1.0"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale2" 	value="1.0"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale3" 	value="1.0"/>					
+						<Entry overrideGroup="Rendering" varId="CascadeShadowQuality" 		value="0"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowmapSize" 		value="1024"/>
+						<Entry overrideGroup="Rendering" varId="MaxCascadeCount" 				value="4"/>
+						<Entry overrideGroup="Rendering" varId="MaxTerrainShadowAtlasCount" 	value="3"/>
+						<Entry overrideGroup="Rendering" varId="MaxCubeShadowSize" 			value="512"/>
+						<Entry overrideGroup="Rendering" varId="MaxSpotShadowSize" 			value="512"/>
+					</Option>
+					<Option id="2" displayName="high">
+						<Entry overrideGroup="Rendering" varId="CascadeShadowFadeTreshold" 	value="1.0"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale0" 	value="1.0"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale1" 	value="1.0"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale2" 	value="1.2"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale3" 	value="1.2"/>				
+						<Entry overrideGroup="Rendering" varId="CascadeShadowQuality" 		value="1"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowmapSize" 		value="2048"/>
+						<Entry overrideGroup="Rendering" varId="MaxCascadeCount" 				value="4"/>
+						<Entry overrideGroup="Rendering" varId="MaxTerrainShadowAtlasCount" 	value="4"/>
+						<Entry overrideGroup="Rendering" varId="MaxCubeShadowSize" 			value="512"/>
+						<Entry overrideGroup="Rendering" varId="MaxSpotShadowSize" 			value="512"/>
+					</Option>
+					<Option id="3" displayName="uber">
+						<Entry overrideGroup="Rendering" varId="CascadeShadowFadeTreshold" 	value="1.0"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale0" 	value="1.0"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale1" 	value="1.0"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale2" 	value="1.5"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale3" 	value="1.5"/>		
+						<Entry overrideGroup="Rendering" varId="CascadeShadowQuality" 		value="1"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowmapSize" 		value="3072"/>
+						<Entry overrideGroup="Rendering" varId="MaxCascadeCount" 				value="4"/>
+						<Entry overrideGroup="Rendering" varId="MaxTerrainShadowAtlasCount" 	value="4"/>
+						<Entry overrideGroup="Rendering" varId="MaxCubeShadowSize" 			value="512"/>
+						<Entry overrideGroup="Rendering" varId="MaxSpotShadowSize" 			value="512"/>
+					</Option>
+					<Option id="4" displayName="ultra+">
+						<Entry overrideGroup="Rendering" varId="CascadeShadowFadeTreshold" 	value="1.0"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale0" 	value="1.8"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale1" 	value="1.5"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale2" 	value="1.5"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowDistanceScale3" 	value="1.5"/>		
+						<Entry overrideGroup="Rendering" varId="CascadeShadowQuality" 		value="1"/>
+						<Entry overrideGroup="Rendering" varId="CascadeShadowmapSize" 		value="4096"/>
+						<Entry overrideGroup="Rendering" varId="MaxCascadeCount" 				value="4"/>
+						<Entry overrideGroup="Rendering" varId="MaxTerrainShadowAtlasCount" 	value="4"/>
+						<Entry overrideGroup="Rendering" varId="MaxCubeShadowSize" 			value="512"/>
+						<Entry overrideGroup="Rendering" varId="MaxSpotShadowSize" 			value="512"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<Var overrideGroup="Rendering/Shadows" id="ScreenShadows" displayName="screen_space_shadows" displayType="TOGGLE"/>
+
+			<!-- Terrain Quality -->
+			<Var id="Virtual_TerrainOptionVar" displayName="terrain" displayType="OPTIONS" tags="refreshEngine;customPresetIfChanged">
+				<OptionsArray>
+					<Option id="0" displayName="low">
+						<Entry overrideGroup="Rendering" varId="TerrainErrorMetricMultiplier" 		value="30"/>
+						<Entry overrideGroup="Rendering" varId="TerrainScreenSpaceErrorThreshold" 	value="4.0"/>
+						<Entry overrideGroup="Rendering" varId="TerrainScreenSpaceErrorThresholdFar"	value="8.0"/>
+					</Option>
+					<Option id="1" displayName="medium">
+						<Entry overrideGroup="Rendering" varId="TerrainErrorMetricMultiplier" 		value="20"/>
+						<Entry overrideGroup="Rendering" varId="TerrainScreenSpaceErrorThreshold" 	value="3.0"/>
+						<Entry overrideGroup="Rendering" varId="TerrainScreenSpaceErrorThresholdFar"	value="7.0"/>
+					</Option>
+					<Option id="2" displayName="high">
+						<Entry overrideGroup="Rendering" varId="TerrainErrorMetricMultiplier" 		value="10"/>
+						<Entry overrideGroup="Rendering" varId="TerrainScreenSpaceErrorThreshold" 	value="2.0"/>
+						<Entry overrideGroup="Rendering" varId="TerrainScreenSpaceErrorThresholdFar"	value="5.0"/>
+					</Option>
+					<Option id="3" displayName="uber">
+						<Entry overrideGroup="Rendering" varId="TerrainErrorMetricMultiplier" 		value="6"/>
+						<Entry overrideGroup="Rendering" varId="TerrainScreenSpaceErrorThreshold" 	value="1.6"/>
+						<Entry overrideGroup="Rendering" varId="TerrainScreenSpaceErrorThresholdFar" 	value="3.5"/>
+					</Option>
+					<Option id="4" displayName="ultra+">
+						<Entry overrideGroup="Rendering" varId="TerrainErrorMetricMultiplier" 		value="10"/>
+						<Entry overrideGroup="Rendering" varId="TerrainScreenSpaceErrorThreshold" 	value="1.6"/>
+						<Entry overrideGroup="Rendering" varId="TerrainScreenSpaceErrorThresholdFar" 	value="3.5"/>
+					</Option>
+				</OptionsArray>
+			</Var>			
+
+			<!-- Water Quality -->
+			<Var id="Virtual_WaterOptionVar" displayName="water_quality" displayType="OPTIONS" tags="refreshEngine;customPresetIfChanged">
+				<OptionsArray>
+					<Option id="0" displayName="low">
+						<Entry overrideGroup="Rendering" varId="GlobalOceanTesselationFactor" 	value="8"/>
+           				<Entry overrideGroup="Rendering" varId="UseDynamicWaterSimulation" 	value="false"/>
+					</Option>
+					<Option id="1" displayName="medium">
+						<Entry overrideGroup="Rendering" varId="GlobalOceanTesselationFactor" 	value="16"/>
+           				<Entry overrideGroup="Rendering" varId="UseDynamicWaterSimulation" 	value="false"/>
+					</Option>
+					<Option id="2" displayName="high">
+						<Entry overrideGroup="Rendering" varId="GlobalOceanTesselationFactor" 	value="32"/>
+           				<Entry overrideGroup="Rendering" varId="UseDynamicWaterSimulation" 	value="true"/>
+					</Option>
+					<Option id="3" displayName="uber">
+						<Entry overrideGroup="Rendering" varId="GlobalOceanTesselationFactor" 	value="48"/>
+           				<Entry overrideGroup="Rendering" varId="UseDynamicWaterSimulation" 	value="true"/>
+					</Option>
+					<Option id="4" displayName="ultra+">
+						<Entry overrideGroup="Rendering" varId="GlobalOceanTesselationFactor" 	value="52"/>
+           				<Entry overrideGroup="Rendering" varId="UseDynamicWaterSimulation" 	value="true"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- Foliage Visibility Range -->
+			<Var id="Virtual_FoliageVisibility" displayName="foliage_visibility" displayType="OPTIONS" tags="refreshEngine;customPresetIfChanged">
+				<OptionsArray>
+					<Option id="0" displayName="low">
+						<Entry overrideGroup="Foliage" varId="MaxVisibilityDepth" value="4"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="FoliageDistanceScale" value="1"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="GrassDistanceScale" value="1"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="GrassRingSize" value="2097152"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="FoliageShadowDistanceScale" value="8.0"/>
+					</Option>
+					<Option id="1" displayName="medium">
+						<Entry overrideGroup="Foliage" varId="MaxVisibilityDepth" value="8"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="FoliageDistanceScale" value="1.2"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="GrassDistanceScale" value="1.5"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="GrassRingSize" value="3145728"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="FoliageShadowDistanceScale" value="12.0"/>
+					</Option>
+					<Option id="2" displayName="high">
+						<Entry overrideGroup="Foliage" varId="MaxVisibilityDepth" value="12"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="FoliageDistanceScale" value="1.5"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="GrassDistanceScale" value="2"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="GrassRingSize" value="6291456"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="FoliageShadowDistanceScale" value="16.0"/>
+					</Option>
+					<Option id="3" displayName="uber">
+						<Entry overrideGroup="Foliage" varId="MaxVisibilityDepth" value="24"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="FoliageDistanceScale" value="1.8"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="GrassDistanceScale" value="2.5"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="GrassRingSize" value="8388608"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="FoliageShadowDistanceScale" value="48.0"/>
+					</Option>
+					<Option id="4" displayName="ultra+">
+						<Entry overrideGroup="Foliage" varId="MaxVisibilityDepth" value="24"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="FoliageDistanceScale" value="1.8"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="GrassDistanceScale" value="2.5"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="GrassRingSize" value="8388608"/>
+						<Entry overrideGroup="Rendering/SpeedTree" varId="FoliageShadowDistanceScale" value="54.0"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- Grass Density -->
+			<Var id="Virtual_GrassOptionVar" displayName="grass" displayType="OPTIONS" tags="customPresetIfChanged" >
+				<OptionsArray>
+					<Option id="0" displayName="low">
+						<Entry overrideGroup="Rendering" varId="GrassDensity" 	value="1400.0"/>
+					</Option>
+					<Option id="1" displayName="medium">
+						<Entry overrideGroup="Rendering" varId="GrassDensity" 	value="2400.0"/>
+					</Option>
+					<Option id="2" displayName="high">
+						<Entry overrideGroup="Rendering" varId="GrassDensity" 	value="3500.0"/>
+					</Option>
+					<Option id="3" displayName="uber">
+						<Entry overrideGroup="Rendering" varId="GrassDensity" 	value="4750.0"/>
+					</Option>
+					<Option id="4" displayName="ultra+">
+						<Entry overrideGroup="Rendering" varId="GrassDensity" 	value="6000.0"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- Texture Quality -->
+			<Var id="Virtual_TexturesOptionVar" displayName="textures" displayType="OPTIONS" tags="refreshEngineWithTexturesReload;customPresetIfChanged">
+				<OptionsArray>
+					<Option id="0" displayName="low">
+						<Entry overrideGroup="TextureStreaming" 	varId="MaxResidentMipMap" 		value="6"/>
+						<Entry overrideGroup="Rendering" 			varId="MaxTextureSize" 			value="1024"/>
+						<Entry overrideGroup="Rendering" 			varId="MaxAtlasTextureSize"		value="2048"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureDownscale" 		value="2"/>
+						<Entry overrideGroup="Rendering" 			varId="DetailTextureDownscale" 	value="2"/>
+						<Entry overrideGroup="Rendering" 			varId="AtlasTextureDownscale" 	value="2"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureMemoryBudget"		value="400"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureMemoryGUIBudget" 	value="80"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureTimeBudget" 		value="10"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureInFlightBudget" 	value="500"/>
+						<Entry overrideGroup="Rendering" 			varId="MaxTextureAnizotropy" 	value="1"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureMipBias" 			value="0"/>
+						<Entry overrideGroup="Streaming/Textures"	varId="CinematicModeMipBias" 	value="1"/>
+					</Option>
+					<Option id="1" displayName="medium">
+						<Entry overrideGroup="TextureStreaming" 	varId="MaxResidentMipMap" 		value="6"/>
+						<Entry overrideGroup="Rendering" 			varId="MaxTextureSize" 			value="2048"/>
+						<Entry overrideGroup="Rendering" 			varId="MaxAtlasTextureSize"		value="2048"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureDownscale" 		value="1"/>
+						<Entry overrideGroup="Rendering" 			varId="DetailTextureDownscale" 	value="1"/>
+						<Entry overrideGroup="Rendering" 			varId="AtlasTextureDownscale" 	value="1"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureMemoryBudget"		value="600"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureMemoryGUIBudget" 	value="80"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureTimeBudget" 		value="10"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureInFlightBudget" 	value="500"/>
+						<Entry overrideGroup="Rendering" 			varId="MaxTextureAnizotropy" 	value="4"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureMipBias" 			value="0"/>
+						<Entry overrideGroup="Streaming/Textures"	varId="CinematicModeMipBias" 	value="1"/>
+					</Option>
+					<Option id="2" displayName="high">
+						<Entry overrideGroup="TextureStreaming" 	varId="MaxResidentMipMap" 		value="6"/>
+						<Entry overrideGroup="Rendering" 			varId="MaxTextureSize" 			value="2048"/>
+						<Entry overrideGroup="Rendering" 			varId="MaxAtlasTextureSize"		value="2048"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureDownscale" 		value="0"/>
+						<Entry overrideGroup="Rendering" 			varId="DetailTextureDownscale" 	value="0"/>
+						<Entry overrideGroup="Rendering" 			varId="AtlasTextureDownscale" 	value="0"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureMemoryBudget"		value="800"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureMemoryGUIBudget" 	value="80"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureTimeBudget" 		value="10"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureInFlightBudget" 	value="500"/>
+						<Entry overrideGroup="Rendering" 			varId="MaxTextureAnizotropy" 	value="8"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureMipBias" 			value="-0.4"/>
+						<Entry overrideGroup="Streaming/Textures"	varId="CinematicModeMipBias" 	value="1"/>
+					</Option>
+					<Option id="3" displayName="uber">
+						<Entry overrideGroup="TextureStreaming" 	varId="MaxResidentMipMap" 		value="6"/>
+						<Entry overrideGroup="Rendering" 			varId="MaxTextureSize" 			value="4096"/>
+						<Entry overrideGroup="Rendering" 			varId="MaxAtlasTextureSize"		value="4096"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureDownscale" 		value="0"/>
+						<Entry overrideGroup="Rendering" 			varId="DetailTextureDownscale" 	value="0"/>
+						<Entry overrideGroup="Rendering" 			varId="AtlasTextureDownscale" 	value="0"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureMemoryBudget"		value="1200"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureMemoryGUIBudget" 	value="80"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureTimeBudget" 		value="10"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureInFlightBudget" 	value="500"/>
+						<Entry overrideGroup="Rendering" 			varId="MaxTextureAnizotropy" 	value="16"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureMipBias" 			value="-1.0"/>
+						<Entry overrideGroup="Streaming/Textures"	varId="CinematicModeMipBias" 	value="1"/>
+					</Option>
+					<Option id="4" displayName="ultra+">
+						<Entry overrideGroup="TextureStreaming" 	varId="MaxResidentMipMap" 		value="6"/>
+						<Entry overrideGroup="Rendering" 			varId="MaxTextureSize" 			value="4096"/>
+						<Entry overrideGroup="Rendering" 			varId="MaxAtlasTextureSize"		value="4096"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureDownscale" 		value="0"/>
+						<Entry overrideGroup="Rendering" 			varId="DetailTextureDownscale" 	value="0"/>
+						<Entry overrideGroup="Rendering" 			varId="AtlasTextureDownscale" 	value="0"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureMemoryBudget"		value="1200"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureMemoryGUIBudget" 	value="80"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureTimeBudget" 		value="10"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureInFlightBudget" 	value="500"/>
+						<Entry overrideGroup="Rendering" 			varId="MaxTextureAnizotropy" 	value="16"/>
+						<Entry overrideGroup="Rendering" 			varId="TextureMipBias" 			value="-2.0"/>
+						<Entry overrideGroup="Streaming/Textures"	varId="CinematicModeMipBias" 	value="0"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+
+			<!-- Level Of Detail -->
+			<Var id="Virtual_LevelOfDetailOptionVar" displayName="level_of_detail" displayType="OPTIONS" tags="refreshEngine;customPresetIfChanged">
+				<OptionsArray>
+					<Option id="0" displayName="low">
+						<Entry overrideGroup="LevelOfDetail" varId="DecalsHideDistance" 	value="15"/>
+						<Entry overrideGroup="Rendering" varId="MeshLODDistanceScale" value="1"/>
+						<Entry overrideGroup="Rendering" varId="MeshRenderingDistanceScale" value="1.5"/>
+					</Option>
+					<Option id="1" displayName="medium">
+						<Entry overrideGroup="LevelOfDetail" varId="DecalsHideDistance" 	value="30"/>
+						<Entry overrideGroup="Rendering" varId="MeshLODDistanceScale" value="1"/>
+						<Entry overrideGroup="Rendering" varId="MeshRenderingDistanceScale" value="1.5"/>
+					</Option>
+					<Option id="2" displayName="high">
+						<Entry overrideGroup="LevelOfDetail" varId="DecalsHideDistance" 	value="40"/>
+						<Entry overrideGroup="Rendering" varId="MeshLODDistanceScale" value="1.2"/>
+						<Entry overrideGroup="Rendering" varId="MeshRenderingDistanceScale" value="1.5"/>
+					</Option>
+					<Option id="3" displayName="uber">
+						<Entry overrideGroup="LevelOfDetail" varId="DecalsHideDistance" 	value="80"/>
+						<Entry overrideGroup="Rendering" varId="MeshLODDistanceScale" value="1.3"/>
+						<Entry overrideGroup="Rendering" varId="MeshRenderingDistanceScale" value="1.5"/>
+					</Option>
+					<Option id="4" displayName="ultra+">
+						<Entry overrideGroup="LevelOfDetail" varId="DecalsHideDistance" 	value="90"/>
+						<Entry overrideGroup="Rendering" varId="MeshLODDistanceScale" value="1.5"/>
+						<Entry overrideGroup="Rendering" varId="MeshRenderingDistanceScale" value="1.5"/>
+					</Option>
+				</OptionsArray>
+			</Var>
+		</VisibleVars>
+	</Group>
+
+</UserConfig>

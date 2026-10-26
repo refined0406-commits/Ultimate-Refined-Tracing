@@ -1,0 +1,35 @@
+--- V5.2.0-final/RefinedTracingCR01.ws
++++ V5.3-dev1/RefinedTracingCR01.ws
+@@ -71,6 +71,16 @@
+     this.onHover('URTX_TerrainPreload', "", "tooltip_urtx_terrainpreload");
+     this.onHover('URTX_TreeDistance', "", "tooltip_urtx_treedistance");
+     this.onHover('URTX_FGMenuResources', "", "tooltip_urtx_fgmenuresources");
++    // V5.3 private development rows (Native / Auto by default; no Quick Preset assignment)
++    this.onHover('URTX_TexUnloadSpeed', "", "tooltip_urtx_texunloadspeed");
++    this.onHover('URTX_MeshStreamLead', "", "tooltip_urtx_meshstreamlead");
++    this.onHover('URTX_GenericStreamLead', "", "tooltip_urtx_genericstreamlead");
++    this.onHover('URTX_GCDiscardThreshold', "", "tooltip_urtx_gcdiscardthreshold");
++    this.onHover('URTX_GCIdleFrames', "", "tooltip_urtx_gcidleframes");
++    this.onHover('URTX_RTASDefrag', "", "tooltip_urtx_rtasdefrag");
++    this.onHover('URTX_RTASBatch', "", "tooltip_urtx_rtasbatch");
++    this.onHover('URTX_RTGIAlphaTest', "", "tooltip_urtx_rtgialphatest");
++    this.onHover('URTX_PTNoBlueGlow', "", "tooltip_urtx_ptnoblueglow");
+     this.withFallbackMessage("", "tooltip_cr01_fallback");
+   }
+ 
+@@ -158,6 +168,15 @@
+   tags.PushBack('URTX_TerrainPreload');
+   tags.PushBack('URTX_TreeDistance');
+   tags.PushBack('URTX_FGMenuResources');
++  tags.PushBack('URTX_TexUnloadSpeed');
++  tags.PushBack('URTX_MeshStreamLead');
++  tags.PushBack('URTX_GenericStreamLead');
++  tags.PushBack('URTX_GCDiscardThreshold');
++  tags.PushBack('URTX_GCIdleFrames');
++  tags.PushBack('URTX_RTASDefrag');
++  tags.PushBack('URTX_RTASBatch');
++  tags.PushBack('URTX_RTGIAlphaTest');
++  tags.PushBack('URTX_PTNoBlueGlow');
+   rtPerfTags.PushBack('RTPerfClassificationPrimary');
+   rtPerfTags.PushBack('Virtual_RTPerfClassificationSecondary');
+   rtPerfTags.PushBack('RTPerfMaxProbes');
