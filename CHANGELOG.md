@@ -1,5 +1,68 @@
 # Ultimate Refined Tracing changelog
 
+## 5.2.0
+The complete V5.2.0. It includes everything from the earlier (never published) V5.2.0 candidate and from the private development checkpoints that followed it (tagged `v5.3.0-dev1` and `v5.3.0-dev2` in git; never released under that number).
+
+**Menu**
+* One page with named white headings: CPU, Path Tracing, Ray Tracing, RTGI: Quality, RTGI: Performance, RT/PT: Shared, Textures / Rendering, Memory & Streaming, RT Memory Management, Frame Generation (always last). 18 languages.
+* Every adjustable setting has a description in all 18 languages:
+  * what it does, which way to adjust it, and the trade-off;
+  * its Native / Auto value, or "chosen by the game" where the value cannot be verified;
+  * what it affects: FPS, loading and stutter, memory, or only visuals;
+  * when it applies: immediately, in newly loaded areas, or after a restart.
+* Option labels are fully localised (On/Off, "Native / Auto (value)", plain numbers).
+* Separator lines (heading line | title | line):
+  * the game's separator layout no longer hides a heading's right-hand line for good after laying out an empty or unmeasured title (setter fix);
+  * the separator is shown before its title is measured;
+  * it is laid out again whenever its row is resized or redrawn;
+  * a title that cannot be measured yet is retried on the next frame.
+  * Unnamed separators of other menus look as before.
+
+**New controls** (Native / Auto by default)
+* **Path Tracing:** Scene Range, Ambient Occlusion Quality, Skin Bounce Light Desaturation, No Blue Glow on Armour.
+* **Ray Tracing:** Ambient Occlusion Screen-Space Sampling, Screen-Space Indirect Lighting (HBIL), Ambient Occlusion Pre-Trace, Screen-Space Reflection Assist, GI Alpha-Test Texture Detail.
+* **RT/PT:** Fog in Ray-Traced Reflections.
+* **Textures / Rendering:** Textures Streamed at Once, Terrain Preload Distance.
+* **Memory & Streaming:** Texture Unloading Speed, Mesh Streaming Distance, General Streaming Distance, Memory Cleanup Threshold, Memory Cleanup Interval.
+* **RT Memory Management:** RT Acceleration Structure Defragmentation and Build Batch Size. The game reads both once, when ray tracing starts. URT applies the chosen value before that point, so a change takes effect after a game restart.
+* **Frame Generation:** Keep Resources in Menus.
+* PT: Ray-Traced Shadows = Off also skips the CPU wait for the ray-traced scene (URT's form of "No Wait for RT Scene").
+
+**Quick Presets** (Performance / Balanced / Extreme)
+* PT: Scene Range 150 m / Native / Native. PT: Ambient Occlusion Off / Native / Native. PT: Ambient Occlusion Quality 0 / 0 / 3.
+* RT Reflections: Local Lights Off / Off / Native. RT Shadows: Local Light Shadows Off / 4 / Native. RT Shadows: Foliage Detail Very Low / Low / Native.
+* RT: AO Screen-Space Sampling, HBIL and AO Pre-Trace Off / Off / Native. RT: Screen-Space Reflection Assist On / On / Native.
+* RT/PT: Fog in Ray-Traced Reflections Off / Native / Native.
+* Textures Streamed at Once 8 / 8 / 16. Terrain Preload Distance 10 m / 10 m / Native. Frame Generation: Keep Resources in Menus on in all three.
+* PT: Geometry Bounces 1 / 1 / 4 and PT: Hair Bounces 1 / 4 / 10 (Extreme was 6 and 6).
+* RT: GI Alpha-Test Texture Detail 8 / 6 / 4.
+* Texture Unloading Speed 4x / 2x / Native.
+* Mesh Streaming Distance, General Streaming Distance, Memory Cleanup Threshold, Memory Cleanup Interval, RT Acceleration Structure Defragmentation and Build Batch Size: Native / Auto in all three presets (selecting a preset releases any manual value; they stay individually adjustable).
+* PT: No Blue Glow on Armour is never set by a preset.
+* Every other preset value is unchanged from V5.1.0, except that the Shading Frame Budget was removed.
+* Editing any preset-controlled row switches Quick Preset to Off and keeps every value.
+
+**Removed** (always the game's own value; saved values ignored)
+* PT: Ray-Traced Ambient Occlusion, RTAO Ray Count, RTAO Radius, RTAO Strength.
+* RTGI: Quality and Performance Shading Frame Budget.
+
+**Settings protection**
+* URT never writes dx12user.settings.
+* Engine values that the game saves are applied for the session only: the game's save skips them while URT owns them, so URT's choices never become your graphics settings.
+* If the game or another mod changes one of these values, URT steps back until the game has saved it.
+* Texture Quality and Foliage Visibility Range are never touched.
+
+**Compatibility**
+* **Optional W3LoadFix (Nexus 13881):** detected, never required, never bundled. Variables set in its [Override] section are left to it.
+* **DX12 VRAM Relief and RT Memory Stabilizer:** no longer needed. If you keep them, leave the matching URT rows on Native / Auto.
+
+**Unchanged**
+* V5.1.0 optimisations and CPU features.
+* PT Hair Bounces up to 10, and Indirect-Light Compensation with its persistence fix.
+* Renderer isolation and the Game/Gwent Difficulty crash fix.
+* The protected PT shader (Orange Hair Fix RT+PT).
+* Immersive World compatibility and ASI loader coexistence.
+
 ## 5.1.0 (built 2026-10-22)
 **New Normal RT performance controls** (Normal RT only; Path Tracing and raster are never affected; each defaults to Native / Auto = V5.0.0 behaviour)
 * RT Reflections: Local Lights. Off removes lamps and torches from RT reflections.

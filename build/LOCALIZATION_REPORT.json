@@ -1,0 +1,157 @@
+{
+ "languages": {
+  "ar": {
+   "records": 471,
+   "sha256": "bc27e9e276b108b1c7f1d3563c244104716ef99b574826a50166cf652e3d622d",
+   "parent_sha256": "2e1f68a9c700ebfa441ae0ddf9abd2a61d788216fc377fff16400f38d7135b65"
+  },
+  "br": {
+   "records": 471,
+   "sha256": "3dc90d04c92cd024bafa1316cd87e749e3a3ab6a4f5e3d763b09c4a4b0961cb8",
+   "parent_sha256": "94d03a8cd01a231c8518e077d27b00cddffb12839ef12d0bfc4179038e3b64e5"
+  },
+  "cn": {
+   "records": 471,
+   "sha256": "544094828dd69caebae14724750d36c678de137b28f55c7ece54a60292b977c4",
+   "parent_sha256": "9b1e87a9019fb282aade6d00357c147e762acff85defa12301e6594d726c5f6e"
+  },
+  "cz": {
+   "records": 471,
+   "sha256": "d934ac22b7d0c2868a0c9a8d1cfbd4f75f179995907bedf5bfabd852b7442de2",
+   "parent_sha256": "03df13eec4baafcd5e96ceb9df5e66f6a279ec552b44e55731b6585ddd57dfdb"
+  },
+  "de": {
+   "records": 471,
+   "sha256": "9934ee37e614d02e45cf29cde9a86c253eef3936f956a42353ecb3ec37aaef3b",
+   "parent_sha256": "556d9c256c492f9fe0a9cfb33cf662307b9b653e226b165a0ba163c259e5f5dd"
+  },
+  "en": {
+   "records": 471,
+   "sha256": "be6bdeb6ebfe7551ecd895fc29a464e8ea5a31bb5a2f50d03a965f7f7e09c44c",
+   "parent_sha256": "019145a0b8f71ae7ae0de6e1bc6168043e3e593eae4579b981350bddc50c2dd0"
+  },
+  "es": {
+   "records": 471,
+   "sha256": "8d7753ce858b09ae59115dd9296b55f55788839a74069cc9d569a364237ee6ae",
+   "parent_sha256": "44d2066f01606d3ff500a7e3778c9f92ef27b1b60473c039d91855b2ec4082a8"
+  },
+  "esmx": {
+   "records": 471,
+   "sha256": "b9019af9a3fe17c2b80372dbfec049b66d7fe19ae797d4f5fdb0a38a14fcfb10",
+   "parent_sha256": "648a68246bb6562f4eb2938e36f6ee1ec2d7af16b9bcd8a3c1ceccbc41154203"
+  },
+  "fr": {
+   "records": 471,
+   "sha256": "e27d83ba664250f135a331853643eb5f7033c79ee1f56375a79e5de285c6c57c",
+   "parent_sha256": "0b16f967aaee0d7b77dab77bc9b3a469762e604b45d76ba34aa903325fead209"
+  },
+  "hu": {
+   "records": 471,
+   "sha256": "ba79992a0db630ae0450ad6c08749b31d5ca3751606aa2225ce0a8cfc8fa467b",
+   "parent_sha256": "81d9925f8d6eacf2ce37d4e66606d1ca2baf6e0bb0d7e29cf9907a6d2193bac9"
+  },
+  "it": {
+   "records": 471,
+   "sha256": "35ae61f3a6ba9a96dfced2f961917eb5a9f0c85436bd48f43edf8ea514c9c96f",
+   "parent_sha256": "053b391e08a6a5d95df15aed5fcb11e5adc7621adbf69ccc4d9bf2e11cd2ee66"
+  },
+  "jp": {
+   "records": 471,
+   "sha256": "020891e5bfaea5df604e536c5d94b18d99aef62f7aa493616a44f283efd3c251",
+   "parent_sha256": "f4b62ccda00d59409c7250790f9c02bf533ac40932b4c3e8ff0cde663188fc83"
+  },
+  "kr": {
+   "records": 471,
+   "sha256": "f5eaea9619326962af94928d581b1995a6c354f7ea35d1bd3181f4ea0b588ee5",
+   "parent_sha256": "c7206dfdd78c01cd7a8d585185d2b7db1096e51bbce06d651f18ed618621b725"
+  },
+  "pl": {
+   "records": 471,
+   "sha256": "325d4ff055c72820685d735079e9de94e5fb5e3893aa369b44a241e955169415",
+   "parent_sha256": "130a676f76bb1bd50c40ed75ff5785c21a60453742e67c4f183a40690948dbf1"
+  },
+  "ru": {
+   "records": 471,
+   "sha256": "2dbcacb7d8b6a7299570d63b1a7bd6c0e8139e54ca2bae5f5b3209d4664005a8",
+   "parent_sha256": "bc8d257411b36577173e9c715a8497b8708a6985b3a5d3135e1d7a8c4846f213"
+  },
+  "tr": {
+   "records": 471,
+   "sha256": "4fbcb5c05e857d6264021ed3d0f1ffe1a640c23870610969a07c9ae6b8b14d1c",
+   "parent_sha256": "21300bd3a4795e71eb86ad11f2e5f70203a4838a72ab3baa51132a8f494944c2"
+  },
+  "ua": {
+   "records": 471,
+   "sha256": "f9f37b314cf42f08bca576719edb31fe308006532c36ac36793f929b92b9007e",
+   "parent_sha256": "26b816f83d475a068629013d3e03a916a96e7424cb06b4539f8791014534c4b2"
+  },
+  "zh": {
+   "records": 471,
+   "sha256": "24029814a77c0bab2a486dd8172669e2b6f3758ffe7623af9a074b59611df0b0",
+   "parent_sha256": "8dbddb7eff366d335170cf04042062a422367bb477230108acfab44111cac682"
+  }
+ },
+ "new_keys": {
+  "cr01_rt_refl_local_lights": {
+   "id": 1194770000,
+   "hash": "0x21614329"
+  },
+  "option_cr01_rt_refl_local_lights": {
+   "id": 1194770001,
+   "hash": "0x4f444bdf"
+  },
+  "cr01_rt_shadow_local_lights": {
+   "id": 1194770002,
+   "hash": "0x26f13f22"
+  },
+  "option_cr01_rt_shadow_local_lights": {
+   "id": 1194770003,
+   "hash": "0x6834f258"
+  },
+  "cr01_rt_shadow_foliage_detail": {
+   "id": 1194770004,
+   "hash": "0x65bb588"
+  },
+  "option_cr01_rt_shadow_foliage_detail": {
+   "id": 1194770005,
+   "hash": "0x57f733e"
+  },
+  "preset_value_urt_n6": {
+   "id": 1194770006,
+   "hash": "0x2df3293e"
+  },
+  "preset_value_urt_n4": {
+   "id": 1194770007,
+   "hash": "0x2df3293c"
+  },
+  "preset_value_urt_n2": {
+   "id": 1194770008,
+   "hash": "0x2df3293a"
+  },
+  "preset_value_urt_reduced": {
+   "id": 1194770009,
+   "hash": "0x1bef7dc8"
+  },
+  "preset_value_urt_low": {
+   "id": 1194770010,
+   "hash": "0x9071fe5e"
+  },
+  "preset_value_urt_verylow": {
+   "id": 1194770011,
+   "hash": "0xf04fa868"
+  },
+  "tooltip_cr01_rt_refl_local_lights": {
+   "id": 1194770012,
+   "hash": "0xcee21ded"
+  },
+  "tooltip_cr01_rt_shadow_local_lights": {
+   "id": 1194770013,
+   "hash": "0x77a678e6"
+  },
+  "tooltip_cr01_rt_shadow_foliage_detail": {
+   "id": 1194770014,
+   "hash": "0xfea98e4c"
+  }
+ },
+ "changed_existing": null
+}

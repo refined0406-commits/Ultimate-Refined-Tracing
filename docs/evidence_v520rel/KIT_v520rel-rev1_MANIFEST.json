@@ -1,0 +1,11 @@
+{
+  "kit": "v520rel-rev1",
+  "ops": 4,
+  "baseline_sha256": "a43cec54c1528c525b3c0c0c32414a5faaf447683f6fee8e63119461584d4ac7",
+  "candidate_sha256": "baff2f24fbf7fa0b0c087bf88008e03676f07c04f6210d808193afc80f259f06",
+  "menu_sha256": "d22b37420bdf0c097735b3a9e432deb95281837af51a6fc183e58163f3436c17",
+  "described_controls": 63,
+  "results_zip": "URT_V520_RELEASE_RESULTS.zip",
+  "zip": "URT_V5.2.0_RELEASE_WCC_KIT_v520rel-rev1.zip",
+  "zip_sha256": "eabf0a422e62db0a4ac5d33b83f77007299ae9091bd36652e6e95ca322eafba5"
+}

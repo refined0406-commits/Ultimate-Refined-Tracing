@@ -13,7 +13,8 @@ import argparse, hashlib, json, os, shutil, subprocess, sys, time, zipfile
 
 ROOT = Path(__file__).resolve().parent
 SRC = ROOT / 'src'
-VERSION = '5.1.0'
+VERSION = '5.2.0'   # public release identity (the expanded V5.2.0: former private V5.3.0 DEV1/DEV2 checkpoints + final presets)
+ASI_VERSION = VERSION
 
 # Translation units linked into RefinedTracing.asi (order is stable for reproducibility).
 UNITS = '''cr01_rtao_config cr01_dxr_submission_gate cr01_activation_txn cr01_gate_core
@@ -80,7 +81,7 @@ def build_once(out: Path, legacy_proxy: bool):
     objs = []
     for f in units():
         o = out / (f + '.obj')
-        run([CLANG_CL, *CFLAGS, '/I' + str(SRC), '/DURT_VERSION="' + VERSION + '"', '/Fo' + str(o), SRC / (f + '.c')])
+        run([CLANG_CL, *CFLAGS, '/I' + str(SRC), '/DURT_VERSION="' + ASI_VERSION + '"', '/Fo' + str(o), SRC / (f + '.c')])
         objs.append(o)
     run([LLD_LINK, *LFLAGS, '/entry:DllMain', '/def:' + str(SRC / 'cr01_asi_exports.def'),
          '/out:' + str(out / 'UltimateRefinedTracing.asi'), *objs, out / 'kernel32.lib', out / 'advapi32.lib'])
@@ -105,8 +106,37 @@ UAL_SHA = '031a3e5576d91dce1e438d36b9a3d462c7334ab4791990a8ff1e3ddc0e132daf'
 
 def package(out: Path, asi: Path):
     """Deterministic MAIN and ASI-ONLY archives (sorted entries, fixed time)."""
+    # Never emit an installable V5.2 archive with the old V5.1 precompiled.rsblob.
+    receipt = ROOT / 'game' / 'wcc' / 'V52_VERIFIED_WCC.json'
+    if not receipt.is_file():
+        raise SystemExit('BLOCKED: V5.2 genuine WCC compilation receipt not adopted; no installable packages produced.')
+    evidence = json.loads(receipt.read_text())
     run([sys.executable, '-I', ROOT / 'tools' / 'build_v5_locales.py'])
+    run([sys.executable, '-I', ROOT / 'tools' / 'build_v52_locales.py'])
+    run([sys.executable, '-I', ROOT / 'tools' / 'build_v53_locales.py'])
+    run([sys.executable, '-I', ROOT / 'tools' / 'build_v53_dev2_strings.py'])
     run([sys.executable, '-I', ROOT / 'tools' / 'build_v5_menu.py'])
+    run([sys.executable, '-I', ROOT / 'tools' / 'build_v52_menu.py'])
+    required = {
+        'candidate_source_sha256': sha(ROOT / 'game' / 'wcc' / 'RefinedTracingCR01_RTGI3.ws'),
+        'blob_sha256': sha(ROOT / 'game' / 'wcc' / 'precompiled.rsblob'),
+    }
+    if any(evidence.get(k) != v for k,v in required.items()) or evidence.get('wcc_exit_code') != 0 or evidence.get('workspace_restored') is not True:
+        raise SystemExit('BLOCKED: WCC receipt/source/blob inconsistent; no installable packages produced.')
+    # RC5: the menu is the receipt menu minus exactly the two SUBTLE_SEPARATOR rows (proved, not re-pinned).
+    sys.path.insert(0, str(ROOT / 'tools' / 'v52_selected'))
+    import menu_delta
+    try:
+        menu_delta.verify()
+    except AssertionError as e:
+        raise SystemExit('BLOCKED: menu is not the receipt menu minus the documented separator rows: %s' % e)
+    # RC7: the menu movie shipped is the original V5.1.0 asset with the separator right-line repair
+    # (tools/v52_selected/separator_swf_fix.py; byte-size neutral, both movie copies).
+    sys.path.insert(0, str(ROOT / 'tools' / 'v52_selected'))
+    import separator_swf_fix
+    swf = ROOT / 'build' / 'swf' / 'panel_ingamemenu.redswf'
+    swf.parent.mkdir(parents=True, exist_ok=True)
+    swf.write_bytes(separator_swf_fix.patch((ROOT / 'game' / 'wcc' / 'panel_ingamemenu.redswf').read_bytes()))
     if sha(UAL / 'winmm.dll') != UAL_SHA:
         raise SystemExit('third-party loader hash mismatch')
     common = {
@@ -114,7 +144,7 @@ def package(out: Path, asi: Path):
         'bin/x64_dx12/UltimateRefinedTracing.asi': asi,
         'bin/config/r4game/user_config_matrix/pc/RefinedTracing.xml': ROOT / 'build' / 'menu' / 'RefinedTracing.xml',
         'mods/modRefinedTracing/content/precompiled.rsblob': ROOT / 'game' / 'wcc' / 'precompiled.rsblob',
-        'mods/modRefinedTracing/content/gameplay/gui_new/swf/mainmenu/panel_ingamemenu.redswf': ROOT / 'game' / 'wcc' / 'panel_ingamemenu.redswf',
+        'mods/modRefinedTracing/content/gameplay/gui_new/swf/mainmenu/panel_ingamemenu.redswf': swf,
     }
     for p in sorted((ROOT / 'build' / 'loc').glob('*.w3strings')):
         common['mods/modRefinedTracing/content/' + p.name] = p
@@ -143,6 +173,7 @@ def main():
     ap.add_argument('--out', default=str(ROOT / 'out'))
     ap.add_argument('--legacy-proxy', action='store_true', help='also build the optional legacy dinput8 bootstrap')
     ap.add_argument('--no-package', action='store_true')
+    ap.add_argument('--use-asi', help='package this already-tested ASI instead of the fresh build; its sha256 must equal BUILD_EVIDENCE/NATIVE_BUILD_MANIFEST.json')
     a = ap.parse_args()
     CLANG_CL = find_tool(['clang-cl', 'clang-cl-18'])
     LLD_LINK = find_tool(['lld-link', 'lld-link-18'])
@@ -163,8 +194,15 @@ def main():
     manifest = {'version': VERSION, 'toolchain': ver, 'units': units(), 'outputs': r1,
                 'reproducible_two_pass': True}
     if not a.no_package:
-        p1 = package(out, final / 'UltimateRefinedTracing.asi')
-        p2 = package(out, final / 'UltimateRefinedTracing.asi')
+        pkg_asi = final / 'UltimateRefinedTracing.asi'
+        if a.use_asi:
+            pinned = json.loads((ROOT / 'BUILD_EVIDENCE' / 'NATIVE_BUILD_MANIFEST.json').read_text())['outputs']['UltimateRefinedTracing.asi']
+            if sha(Path(a.use_asi)) != pinned:
+                raise SystemExit('BLOCKED: --use-asi is not the pinned, gameplay-tested ASI')
+            pkg_asi = Path(a.use_asi)
+            manifest['packaged_asi'] = {'source': 'pinned prebuilt', 'sha256': pinned}
+        p1 = package(out, pkg_asi)
+        p2 = package(out, pkg_asi)
         if {k: v['sha256'] for k, v in p1.items()} != {k: v['sha256'] for k, v in p2.items()}:
             raise SystemExit('packages not reproducible')
         manifest['packages'] = p1

@@ -1,0 +1,2 @@
+﻿G:\SteamLibrary\steamapps\common\The Witcher 3\Mods\modRefinedTracing\content\gameplay\gui_new\swf\mainmenu\panel_ingamemenu.redswf bytes=34857227 sha256=e02ce45ddf2b283361be85b490cb5e1a4196a64bd436c74d6173802c2e7a0a3c definesSeparator=True
+G:\SteamLibrary\steamapps\common\The Witcher 3 REDkit\r4data\gameplay\gui_new\swf\mainmenu\panel_ingamemenu.redswf bytes=34343246 sha256=f8fff9b32469552f7c48158f8f3080164e5543adc411aa19f2da3fcebd7e1438 definesSeparator=False

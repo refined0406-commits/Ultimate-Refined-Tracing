@@ -1,0 +1,24 @@
+﻿Ultimate Refined Tracing V5.0.0 PRIVATE HOTFIX (difficulty-menu option routing) WCC receipt, kit rev2
+This is NOT an installable mod, not a public release, and not gameplay validated.
+UTC=2026-10-21T19:10:00.2372727Z
+CandidateSourceSHA256=90509bc1b8d4f49db1badb31fb3b82db2edaf2c4c84a0d8fdd9705d93e1707f1
+BaselineV500SourceSHA256=07f8b823ee944916ca8074f487b75a063abfa8f88f7e6df0f69ce079d9907a7a
+V500MenuXMLSHA256=2aa6bd1a32a0215ee08f3658f7cf72d288c08d26b289a5ebab6da3fb3c8af8ff
+V500ProtectedBlobSHA256=3332ffc9dbe51676d41599177528344b97b77f54110b48869670104f47fcb97a
+StagedSourceOriginalSHA256=c32de181ec45b488f4986834f5d68206bdc700147e1f4e5f10705733ec4e1fad
+WindowsWCCExecutable=G:\SteamLibrary\steamapps\common\The Witcher 3 REDkit\bin\x64_RedKit\wcc_lite.exe
+WindowsWCCSHA256=9f448e0c8b9ea1ea803d0ae543f2fcd6e905088b8b71f54da2bff22c6cf318fc
+CompilerMatchesV430Build=True
+BaseWorkspace=C:\RT_BLOB\base
+PatchWorkspace=C:\RT_BLOB\patch
+BackupFolder=C:\URT_BK
+BaseFiles=1577
+LongestBackupPath=123
+WccExitCode=0
+BlobBytes=21007
+BlobSHA256=fc9508afed449c27705cec45effded8726b46977c9723f6bf6e7cea3f7781040
+WorkspaceFilesRestoredOrRemoved=1
+WorkspaceMatchesPreRunManifest=True
+CompiledStaticChecksPassed=True
+NoGameInstallationPerformed=True
+Error=(none)
