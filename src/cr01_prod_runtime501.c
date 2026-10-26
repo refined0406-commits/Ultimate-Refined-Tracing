@@ -16,6 +16,8 @@
 #include "cr01_dx12_safety.h"
 #include "urt_cvar_index.h"
 #include "urt_rtperf501.h"
+#include "urt_gfx501.h"
+#include "urt_ptperf501.h"
 #include "urt_exe_identity.h"
 #include "urt_runtime.h"
 #include "urt_environment.h"
@@ -74,6 +76,7 @@ IMP DWORD WIN SetFilePointer(HANDLE,long,long*,DWORD);
 IMP DWORD WIN GetFileAttributesW(const WCHAR*);
 IMP BOOL WIN GetFileAttributesExW(const WCHAR*,int,void*);
 IMP DWORD WIN GetPrivateProfileStringW(const WCHAR*,const WCHAR*,const WCHAR*,WCHAR*,DWORD,const WCHAR*);
+IMP unsigned long long WIN GetTickCount64(void);
 extern int cr01_gate_verify_exe_file(void);
 extern int cr01_shader_slots_active(void);
 extern int cr01_gate_win_publish_settings(const CR01Settings*,uint32_t,uint32_t);
@@ -162,6 +165,11 @@ static const WCHAR kSection[]={ 'R','e','f','i','n','e','d','T','r','a','c','i',
  * finds ANY difference from GetPrivateProfileStringW (V4.3.1 path retained). */
 #include "urt_ini.h"
 static UrtIniSection g_snap;
+/* V5.2 selected URT controls live in their own hidden config group [URTExtended]
+ * (written by the game's menu only); parsed from the SAME file read as the core group. */
+static UrtIniSection g_snapx;
+static int g_snapx_ok;
+static const WCHAR kSectionX[]={'U','R','T','E','x','t','e','n','d','e','d',0};
 static int g_snap_mode=1, g_snap_ok, g_snap_checked, g_snap_trusted;
 static uint8_t *g_snap_buf;
 #define URT_SNAP_CAP (1024u*1024u)
@@ -180,6 +188,7 @@ static int snapshot_refresh(void){
  }
  CloseHandle(h);
  g_snap_ok=urt_ini_parse(g_snap_buf,total,"RefinedTracingCR01",&g_snap);
+ g_snapx_ok=g_snap_ok&&urt_ini_parse(g_snap_buf,total,"URTExtended",&g_snapx);
  return g_snap_ok;
 }
 __declspec(noinline) DWORD urt_cfg_get(const WCHAR*key,WCHAR*out,DWORD cap){
@@ -196,17 +205,32 @@ __declspec(noinline) DWORD urt_cfg_get(const WCHAR*key,WCHAR*out,DWORD cap){
 api:
  return GetPrivateProfileStringW(kSection,key,(const WCHAR*)0,out,cap,g_userfile);
 }
+/* Same contract for the [URTExtended] section (Advanced controls). */
+__declspec(noinline) DWORD urt_cfg_get_ext(const WCHAR*key,WCHAR*out,DWORD cap){
+ char k[96],v[128];unsigned i=0;
+ if(!key||!out||!cap)return 0;
+ if(g_snap_mode&&g_snap_trusted&&g_snap_ok&&g_snapx_ok&&cap<=128u){
+  while(key[i]&&i<95){if(key[i]>127)goto api;k[i]=(char)key[i];i++;}
+  if(key[i])goto api;
+  k[i]=0;
+  unsigned n=urt_ini_get(&g_snapx,k,v,(unsigned)cap);
+  for(unsigned j=0;j<=n;j++)out[j]=(WCHAR)(unsigned char)v[j];
+  return n;
+ }
+api:
+ return GetPrivateProfileStringW(kSectionX,key,(const WCHAR*)0,out,cap,g_userfile);
+}
 static const char*const kSelfCheckKeys[]={"MasterEnabled","QuickPresetSelect","PTShadows","PTBillboards",
  "GeometryBounces","HairBounces","IndirectLight","SunImpact","SkyImpact","AmbientOcclusion","AOStrength",
- "AORadius","AOContrast","GrassDay","GrassNight","SpecularScreenSpace","SpecularCheckerboard","PTRTAOEnabled",
- "PTRTAORayCount","PTRTAORadius","PTRTAOStrength","CPUFastBoneReads","CPUDistantTrees","CPUPhysicsLOD",
+ "AORadius","AOContrast","GrassDay","GrassNight","SpecularScreenSpace","SpecularCheckerboard","CPUFastBoneReads","CPUDistantTrees","CPUPhysicsLOD",
  "RayTracedOptimizations","RTPerfClassificationPrimary","RTPerfClassificationSecondary","RTPerfMaxProbes",
- "RTPerfAOQuality","RTPerfShadingBudget","RTPerfGlobalShadingLimit",
+ "RTPerfAOQuality","RTPerfGlobalShadingLimit",
  "RTPerfGrid1ShadingLimit","RTQualityClassificationPrimary","RTQualityClassificationSecondary",
- "RTQualityMaxProbes","RTQualityAOQuality","RTQualityShadingBudget",
- "RTQualityGlobalShadingLimit","RTQualityGrid1ShadingLimit"};
+ "RTQualityMaxProbes","RTQualityAOQuality",
+ "RTQualityGlobalShadingLimit","RTQualityGrid1ShadingLimit","PTSceneRange"};
 /* Startup: snapshot must agree with the Windows API for every key URT reads.
- * V5.1.0-rc3: the removed RTGI Shading Rays Per Probe keys are never read. */
+ * V5.1.0-rc3: the removed RTGI Shading Rays Per Probe keys are never read.
+ * V5.2.0 RC6: the removed RTGI Shading Frame Budget keys are never read either. */
 static __declspec(noinline) void snapshot_self_check(void){
  if(g_snap_checked||!g_snap_mode)return;
  if(!snapshot_refresh())return;      /* retry at the next refresh */
@@ -304,8 +328,7 @@ static void cpu_physics_refresh(void){
 }
 static const char*const kNames[]={"MasterEnabled","PTShadows","PTBillboards","GeometryBounces","HairBounces",
  "IndirectLight","SunImpact","SkyImpact","AmbientOcclusion","AOStrength","AORadius","AOContrast",
- "GrassDay","GrassNight","SpecularScreenSpace","SpecularCheckerboard",
- "PTRTAOEnabled","PTRTAORayCount","PTRTAORadius","PTRTAOStrength"};
+ "GrassDay","GrassNight","SpecularScreenSpace","SpecularCheckerboard"};
 /* Read-only three-state menu import. Missing keys legitimately occur because
  * Witcher omits default-valued CR01 options. A malformed PRESENT value is an
  * error, not permission to overwrite game-owned configuration at startup. */
@@ -546,7 +569,7 @@ static DWORD WIN worker(void*unused){
  cr01_release_log_event(g_tier==URT_TIER_FULL?"URT: runtime tier FULL (known Patch 5.01 code, early start)":
    g_tier==URT_TIER_LATE?"URT: runtime tier LATE (known code, late start: CVar/CPU features only)":
    "URT: runtime tier ADAPTIVE (unknown executable: name-resolved CVar features only; code patches and PT shader off)");
- cr01_release_log_event("URT: camera-light settings are never changed (compatible with camera-light mods such as NAPL)");
+ cr01_release_log_event("URT: camera-light settings remain native (no camera-light overrides)");
  uint8_t*base=(uint8_t*)GetModuleHandleW(0);
  if(!base||u32(base+0x3c)>0x1000)return 0;
  uint32_t image=u32(base+u32(base+0x3c)+24+56);
@@ -599,6 +622,17 @@ static DWORD WIN worker(void*unused){
   }
   if(waiting)cr01_release_log_event("URT: valid dx12user.settings detected; startup synchronization completed (recovered)\r\n");
  }
+ /* V5.2 r2 Selected graphics controls: bind + read as early as possible, then the startup-only
+  * acceleration-structure step (must happen before the game prepares ray tracing). */
+ /* V5.3: when W3LoadFix is installed and enabled, read (only) its [Override] section so that a variable it
+  * sets stays W3LoadFix's; then apply the startup-read RT memory rows before ray tracing initialises. */
+ {
+  static char w3lf[8192];
+  unsigned n=urt_w3lf_override_section(w3lf,(unsigned)sizeof w3lf);
+  urt_gfx501_set_external_overrides(n?w3lf:0,n);
+ }
+ if(urt_gfx501_init(base,image))(void)urt_gfx501_reload();
+ urt_gfx501_boot(g_menu.controller.saved.master,(uint32_t)GetTickCount64());
  /* Seed exact-file metadata after startup repair/import so broad directory
   * activity cannot masquerade as a CR01 settings event. */
  (void)settings_stamp_sample(0);
@@ -624,6 +658,8 @@ static DWORD WIN worker(void*unused){
  }
  /* V5.1: Normal RT performance controls (all Native by default: no writes). */
  if(urt_rtperf501_init(base,image))(void)urt_rtperf501_reload();
+ /* V5.2: Path Tracing performance control PT: Scene Range (Native by default: no writes). */
+ if(urt_ptperf501_init(base,image))(void)urt_ptperf501_reload();
  cpu_bone_refresh();
  /* Pin exact native backing and registered default for this single EXE.
   * This intentionally rejects a different game binary/layout. */
@@ -674,6 +710,8 @@ static DWORD WIN worker(void*unused){
    if(consume_exact_settings_edge()){publish=1u;shadow=1u;}
    (void)cr01_rt_legacy501_reload(g_userfile);
    (void)urt_rtperf501_reload();
+   (void)urt_ptperf501_reload();
+   (void)urt_gfx501_reload();
    cpu_bone_refresh();
    physics_pref=cpu_physics_preference();
    cpu_physics_refresh();
@@ -713,6 +751,10 @@ static DWORD WIN worker(void*unused){
   else cr01_rt_legacy501_tick(0u,0u);
   if(detect_mode(&mode))urt_rtperf501_tick((unsigned)mode,g_menu.controller.saved.master);
   else urt_rtperf501_tick(0u,0u);
+  if(detect_mode(&mode))urt_ptperf501_tick((unsigned)mode,g_menu.controller.saved.master);
+  else urt_ptperf501_tick(0u,0u);
+  {int mv=detect_mode(&mode);
+   urt_gfx501_tick(mv?1u:0u,mv?(unsigned)mode:0u,g_menu.controller.saved.master,(uint32_t)GetTickCount64());}
   if(__atomic_load_n(&g_running,__ATOMIC_ACQUIRE)!=1u)break;
  }
  (void)cr01_physics501_shutdown();
@@ -720,6 +762,8 @@ static DWORD WIN worker(void*unused){
  (void)cr01_bone501_shutdown();
  (void)cr01_rt_legacy501_shutdown();
  urt_rtperf501_shutdown();
+ urt_ptperf501_shutdown();
+ urt_gfx501_shutdown();
  (void)FindCloseChangeNotification(watch);
  (void)cr01_shadow501_update(&g_menu.controller.saved,0u);
  (void)cr01_release_owner(&g_indirect_owner);

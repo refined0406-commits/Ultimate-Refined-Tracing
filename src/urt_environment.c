@@ -16,6 +16,7 @@ IMP HANDLE WIN CreateMutexW(void*,BOOL,const WCHAR*);
 IMP DWORD WIN GetLastError(void);
 IMP DWORD WIN GetCurrentProcessId(void);
 IMP DWORD WIN GetPrivateProfileStringW(const WCHAR*,const WCHAR*,const WCHAR*,WCHAR*,DWORD,const WCHAR*);
+IMP DWORD WIN GetPrivateProfileSectionW(const WCHAR*,WCHAR*,DWORD,const WCHAR*);
 #define ERROR_ALREADY_EXISTS 183ul
 #define INVALID_ATTR 0xFFFFFFFFul
 
@@ -99,6 +100,30 @@ static __declspec(noinline) int obsolete_selector_present(void){
   v[0]=0;return GetPrivateProfileStringW(section,key,0,v,8,file)>0;
 }
 
+/* ---- V5.3: optional W3LoadFix (Nexus 13881) coexistence, read-only ----
+ * Installed = w3loadfix.dll (its own dsound.dll loader) or w3loadfix.asi (loaded by an ASI loader) next to
+ * witcher3.exe. Disabled = the "w3loadfix_disabled" file, or Enabled=false in [W3LoadFix] (w3loadfix.ini). */
+static int w3lf_installed(void){return exe_file_exists("w3loadfix.dll")||exe_file_exists("w3loadfix.asi");}
+static int w3lf_ini_path(WCHAR*p,unsigned cap){return exe_dir(p,cap)&&acat(p,cap,"w3loadfix.ini");}
+static int w3lf_enabled(void){
+  WCHAR ini[1100],v[16];
+  static const WCHAR sec[]={'W','3','L','o','a','d','F','i','x',0},key[]={'E','n','a','b','l','e','d',0};
+  if(!w3lf_installed()||exe_file_exists("w3loadfix_disabled"))return 0;
+  if(!w3lf_ini_path(ini,1100))return 1;
+  v[0]=0;(void)GetPrivateProfileStringW(sec,key,0,v,16,ini);
+  return !((v[0]=='f'||v[0]=='F')&&(v[1]=='a'||v[1]=='A'))&&!(v[0]=='0'&&!v[1]);
+}
+unsigned urt_w3lf_override_section(char*out,unsigned cap){
+  static const WCHAR sec[]={'O','v','e','r','r','i','d','e',0};
+  static WCHAR buf[8192];
+  WCHAR ini[1100];
+  if(!out||cap<2||!w3lf_enabled()||!w3lf_ini_path(ini,1100))return 0;
+  DWORD n=GetPrivateProfileSectionW(sec,buf,8192,ini);
+  if(!n||n>=8190u)return 0;                       /* empty, absent, or truncated: treat as none */
+  unsigned k=0;
+  for(DWORD i=0;i<n&&k+2<cap;i++){WCHAR c=buf[i];out[k++]=(char)(c<128u?c:'?');}
+  out[k++]=0;out[k]=0;return k;
+}
 static void line(const char*a){cr01_release_log_event(a);}
 void urt_environment_report(void){
   static volatile DWORD once;
@@ -125,8 +150,16 @@ void urt_environment_report(void){
     else line("URT: a local d3d12.dll is installed (ReShade or proxy); URT does not hook D3D12");
   }
   if(exe_file_exists("dxgi.dll")||exe_file_exists("ReShade.ini"))line("URT: ReShade-style dxgi/ini detected; URT does not hook DXGI/D3D12");
-  if(exe_file_exists("..\\config\\platform\\pc\\dx12_vram_relief.ini"))line("URT: detected DX12 VRAM Relief ini (streaming/GC keys); URT never writes those CVars, no overlap");
-  if(exe_file_exists("..\\config\\platform\\pc\\w3_dx12_rt_memory_stabilizer.ini"))line("URT: detected DX12 RT Memory Stabilizer ini; URT never writes its keys, no overlap");
+  if(exe_file_exists("..\\config\\platform\\pc\\dx12_vram_relief.ini"))line("URT: detected DX12 VRAM Relief ini: its values are the game's starting values; URT's Memory & Streaming rows override them only when set away from Native / Auto - use one or the other");
+  if(exe_file_exists("..\\config\\platform\\pc\\w3_dx12_rt_memory_stabilizer.ini"))line("URT: detected DX12 RT Memory Stabilizer ini: URT's RT Memory Management rows override it only when set away from Native / Auto - use one or the other");
+  if(w3lf_installed()){
+    HMODULE ds=loaded("dsound.dll");
+    if(exe_file_exists("w3loadfix.asi"))line("URT: detected W3LoadFix as an ASI plugin (loaded once by the ASI loader); independent mod, no shared hooks or code sites with URT");
+    else if(ds&&!GetProcAddress(ds,"IsUltimateASILoader"))line("URT: detected W3LoadFix with its own dsound.dll loader; it coexists with URT's winmm.dll loader; independent mod, no shared hooks or code sites with URT");
+    else line("URT: detected W3LoadFix files; independent mod, no shared hooks or code sites with URT");
+    if(!w3lf_enabled())line("URT: W3LoadFix is installed but switched off (w3loadfix_disabled or Enabled=false)");
+    if(exe_file_exists("w3loadfix.asi")&&exe_file_exists("w3loadfix.dll"))line("URT: both w3loadfix.asi and w3loadfix.dll are present; W3LoadFix runs only one copy (see its README)");
+  }
   if(obsolete_selector_present())
     line("URT: an old PT Shader Compatibility value (removed) is still saved in dx12user.settings; it is ignored");
   line("URT: compatibility scan complete");

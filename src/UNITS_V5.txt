@@ -5,3 +5,10 @@ urt_environment
 urt_ini
 urt_rtperf_core
 urt_rtperf501
+urt_gfx_table
+urt_gfx_core
+urt_fg501
+urt_gfx501
+urt_ptperf_core
+urt_ptperf501
+urt_compat53
