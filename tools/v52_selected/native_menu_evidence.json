@@ -1,0 +1,24 @@
+{
+  "_doc": "RC6: rows in spec.NATIVE_MENU_HOLD stay out of the menu (page and storage) until the game's own graphics XML from the player's installation proves their engine variable is not set by a native graphics-menu option. 'held' = not shipped; 'released' = shipped (requires the evidence sha256).",
+  "URTX_TerrainPreload": {
+    "status": "released",
+    "variable": "TerrainReadAheadDistance",
+    "evidence": {
+      "source": "WCC kit rev11 read-only scan of the player's ...\\bin\\config\\r4game\\user_config_matrix\\pc (21 XML files)",
+      "index_sha256": "c261311fe3fb0f0b6f1e809ea68055978d2677f4441952f2a039fc27f21d5bac",
+      "graphics_xml_sha256": "8f4319e4e58f7617525dd8ae9866a4c538218626a6cba9a2ce062cb443e10558",
+      "finding": "No game or mod menu XML references TerrainReadAheadDistance; it is not part of any native graphics option. Saved by the game (0x102): applied session-only (save bit detached while owned)."
+    }
+  },
+  "URTX_TreeDistance": {
+    "status": "retired",
+    "variable": "FoliageDistanceScale",
+    "evidence": {
+      "index_sha256": "c261311fe3fb0f0b6f1e809ea68055978d2677f4441952f2a039fc27f21d5bac",
+      "graphics_xml_sha256": "8f4319e4e58f7617525dd8ae9866a4c538218626a6cba9a2ce062cb443e10558",
+      "finding": "graphics.xml option Virtual_FoliageVisibility (\"Foliage Visibility Range\", refreshEngine;customPresetIfChanged) sets FoliageDistanceScale for every level (1 / 1.2 / 1.5 / 1.8 / 1.8). A URT override would change what that native option shows and could turn the graphics preset to Custom. Not shipped.",
+      "rc7_decision": "Released at the player's request with the RC7 protections: FoliageDistanceScale is saved by the game (0x102) -> session-only ownership (save bit detached while owned; value restored first, bit second); the native option Virtual_FoliageVisibility keeps its own stored selection (player observed no change of the native menu); any write by the game or another mod releases the row and URT waits for the next game save before taking it again, so a native Foliage Visibility Range change is saved first. Gameplay confirmation required.",
+      "rc8_decision": "RC7 gameplay test: changing it changed the native Foliage Visibility Range setting. Permanently removed in RC8; FoliageDistanceScale is never bound, read or written by URT."
+    }
+  }
+}

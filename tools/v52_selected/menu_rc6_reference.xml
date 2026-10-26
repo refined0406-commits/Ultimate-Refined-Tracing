@@ -1,0 +1,1342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserConfig>
+    <Group id="RefinedTracingCR01" displayName="Mods.refinedtracing">
+        <VisibleVars>
+            <Var id="MasterEnabled" displayName="cr01_masterenabled" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_cr01_master_off">
+                        <Entry varId="MasterEnabled" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_cr01_master_on">
+                        <Entry varId="MasterEnabled" value="1" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="QuickPresetSelect" displayName="cr01_quick_preset_select" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_cr01_quick_off">
+                        <Entry varId="QuickPresetSelect" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_cr01_quick_performance">
+                        <Entry varId="QuickPresetSelect" value="1" />
+                        <Entry varId="RTQualityClassificationPrimary" value="32" />
+                        <Entry varId="RTQualityClassificationSecondary" value="12" />
+                        <Entry varId="RTQualityMaxProbes" value="8192" />
+                        <Entry varId="RTQualityAOQuality" value="1" />
+                        <Entry varId="RTQualityGlobalShadingLimit" value="4096" />
+                        <Entry varId="RTQualityGrid1ShadingLimit" value="16384" />
+                        <Entry varId="RTPerfClassificationPrimary" value="32" />
+                        <Entry varId="RTPerfClassificationSecondary" value="12" />
+                        <Entry varId="RTPerfMaxProbes" value="8192" />
+                        <Entry varId="RTPerfAOQuality" value="1" />
+                        <Entry varId="RTPerfGlobalShadingLimit" value="4096" />
+                        <Entry varId="RTPerfGrid1ShadingLimit" value="16384" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_cr01_quick_balanced">
+                        <Entry varId="QuickPresetSelect" value="2" />
+                        <Entry varId="RTQualityClassificationPrimary" value="64" />
+                        <Entry varId="RTQualityClassificationSecondary" value="16" />
+                        <Entry varId="RTQualityMaxProbes" value="65536" />
+                        <Entry varId="RTQualityAOQuality" value="2" />
+                        <Entry varId="RTQualityGlobalShadingLimit" value="12288" />
+                        <Entry varId="RTQualityGrid1ShadingLimit" value="49152" />
+                        <Entry varId="RTPerfClassificationPrimary" value="64" />
+                        <Entry varId="RTPerfClassificationSecondary" value="16" />
+                        <Entry varId="RTPerfMaxProbes" value="65536" />
+                        <Entry varId="RTPerfAOQuality" value="2" />
+                        <Entry varId="RTPerfGlobalShadingLimit" value="12288" />
+                        <Entry varId="RTPerfGrid1ShadingLimit" value="49152" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_cr01_quick_extreme">
+                        <Entry varId="QuickPresetSelect" value="3" />
+                        <Entry varId="RTQualityClassificationPrimary" value="128" />
+                        <Entry varId="RTQualityClassificationSecondary" value="32" />
+                        <Entry varId="RTQualityMaxProbes" value="262144" />
+                        <Entry varId="RTQualityAOQuality" value="4" />
+                        <Entry varId="RTQualityGlobalShadingLimit" value="32768" />
+                        <Entry varId="RTQualityGrid1ShadingLimit" value="262144" />
+                        <Entry varId="RTPerfClassificationPrimary" value="128" />
+                        <Entry varId="RTPerfClassificationSecondary" value="32" />
+                        <Entry varId="RTPerfMaxProbes" value="262144" />
+                        <Entry varId="RTPerfAOQuality" value="4" />
+                        <Entry varId="RTPerfGlobalShadingLimit" value="32768" />
+                        <Entry varId="RTPerfGrid1ShadingLimit" value="262144" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URT52SEP_CPU" displayName="urt52_sep_cpu" displayType="SEPARATOR" tags="" />
+            <Var id="CPUDistantTrees" displayName="cr01_cpu_distant_trees" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_cr01_master_off">
+                        <Entry varId="CPUDistantTrees" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_cr01_master_on">
+                        <Entry varId="CPUDistantTrees" value="1" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="CPUFastBoneReads" displayName="cr01_cpu_fast_bone_reads" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_cr01_master_off">
+                        <Entry varId="CPUFastBoneReads" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_cr01_master_on">
+                        <Entry varId="CPUFastBoneReads" value="1" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="CPUPhysicsLOD" displayName="cr01_cpu_physics_lod" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_cr01_master_off">
+                        <Entry varId="CPUPhysicsLOD" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_cr01_master_on">
+                        <Entry varId="CPUPhysicsLOD" value="1" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URT52SEP_PT" displayName="urt52_sep_pt" displayType="SEPARATOR" tags="" />
+            <Var id="GeometryBounces" displayName="refinedtracing_geometry_bounces" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry varId="GeometryBounces" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_refinedtracing_bounce_1">
+                        <Entry varId="GeometryBounces" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_refinedtracing_bounce_2">
+                        <Entry varId="GeometryBounces" value="2" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_refinedtracing_bounce_3">
+                        <Entry varId="GeometryBounces" value="3" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_refinedtracing_bounce_4">
+                        <Entry varId="GeometryBounces" value="4" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_refinedtracing_bounce_5">
+                        <Entry varId="GeometryBounces" value="5" />
+                    </Option>
+                    <Option id="6" displayName="preset_value_refinedtracing_bounce_6">
+                        <Entry varId="GeometryBounces" value="6" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="HairBounces" displayName="refinedtracing_hair_bounces" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry varId="HairBounces" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_refinedtracing_bounce_1">
+                        <Entry varId="HairBounces" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_refinedtracing_bounce_2">
+                        <Entry varId="HairBounces" value="2" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_refinedtracing_bounce_3">
+                        <Entry varId="HairBounces" value="3" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_refinedtracing_bounce_4">
+                        <Entry varId="HairBounces" value="4" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_refinedtracing_bounce_5">
+                        <Entry varId="HairBounces" value="5" />
+                    </Option>
+                    <Option id="6" displayName="preset_value_refinedtracing_bounce_6">
+                        <Entry varId="HairBounces" value="6" />
+                    </Option>
+                    <Option id="7" displayName="preset_value_refinedtracing_bounce_7">
+                        <Entry varId="HairBounces" value="7" />
+                    </Option>
+                    <Option id="8" displayName="preset_value_refinedtracing_bounce_8">
+                        <Entry varId="HairBounces" value="8" />
+                    </Option>
+                    <Option id="9" displayName="preset_value_refinedtracing_bounce_9">
+                        <Entry varId="HairBounces" value="9" />
+                    </Option>
+                    <Option id="10" displayName="preset_value_refinedtracing_bounce_10">
+                        <Entry varId="HairBounces" value="10" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="IndirectLight" displayName="cr01_indirectlight" displayType="OPTIONS" value="1.00" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="cr01_indirect_exact_100">
+                        <Entry varId="IndirectLight" value="1.00" />
+                    </Option>
+                    <Option id="1" displayName="cr01_indirect_exact_105">
+                        <Entry varId="IndirectLight" value="1.05" />
+                    </Option>
+                    <Option id="2" displayName="cr01_indirect_exact_110">
+                        <Entry varId="IndirectLight" value="1.10" />
+                    </Option>
+                    <Option id="3" displayName="cr01_indirect_exact_115">
+                        <Entry varId="IndirectLight" value="1.15" />
+                    </Option>
+                    <Option id="4" displayName="cr01_indirect_exact_120">
+                        <Entry varId="IndirectLight" value="1.20" />
+                    </Option>
+                    <Option id="5" displayName="cr01_indirect_exact_125">
+                        <Entry varId="IndirectLight" value="1.25" />
+                    </Option>
+                    <Option id="6" displayName="cr01_indirect_exact_130">
+                        <Entry varId="IndirectLight" value="1.30" />
+                    </Option>
+                    <Option id="7" displayName="cr01_indirect_exact_135">
+                        <Entry varId="IndirectLight" value="1.35" />
+                    </Option>
+                    <Option id="8" displayName="cr01_indirect_exact_140">
+                        <Entry varId="IndirectLight" value="1.40" />
+                    </Option>
+                    <Option id="9" displayName="cr01_indirect_exact_145">
+                        <Entry varId="IndirectLight" value="1.45" />
+                    </Option>
+                    <Option id="10" displayName="cr01_indirect_exact_150">
+                        <Entry varId="IndirectLight" value="1.50" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="PTBillboards" displayName="cr01_ptbillboards" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry varId="PTBillboards" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_cr01_manual_on">
+                        <Entry varId="PTBillboards" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_cr01_manual_off">
+                        <Entry varId="PTBillboards" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="PTShadows" displayName="cr01_ptshadows" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry varId="PTShadows" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_cr01_manual_on">
+                        <Entry varId="PTShadows" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_cr01_manual_off">
+                        <Entry varId="PTShadows" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="PTSceneRange" displayName="cr01_pt_scene_range" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry varId="PTSceneRange" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_urt_m300">
+                        <Entry varId="PTSceneRange" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_urt_m250">
+                        <Entry varId="PTSceneRange" value="2" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_urt_m200">
+                        <Entry varId="PTSceneRange" value="3" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_urt_m150">
+                        <Entry varId="PTSceneRange" value="4" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="AmbientOcclusion" displayName="refinedtracing_ao" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry varId="AmbientOcclusion" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_cr01_manual_on">
+                        <Entry varId="AmbientOcclusion" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_cr01_manual_off">
+                        <Entry varId="AmbientOcclusion" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var overrideGroup="URTExtended" id="URTX_PTAOQuality" displayName="urtx_ptaoquality" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTAOQuality" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_n_0">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTAOQuality" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_n_1">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTAOQuality" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_n_2">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTAOQuality" value="3" />
+                    </Option>
+                    <Option id="4" displayName="urtx_n_3">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTAOQuality" value="4" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="AOStrength" displayName="refinedtracing_ao_strength" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry varId="AOStrength" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_refinedtracing_num_0_00">
+                        <Entry varId="AOStrength" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_refinedtracing_num_0_50">
+                        <Entry varId="AOStrength" value="2" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_refinedtracing_num_1_00">
+                        <Entry varId="AOStrength" value="3" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_refinedtracing_num_1_50">
+                        <Entry varId="AOStrength" value="4" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_refinedtracing_num_2_00">
+                        <Entry varId="AOStrength" value="5" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="AORadius" displayName="refinedtracing_ao_radius" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry varId="AORadius" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_refinedtracing_num_0_10">
+                        <Entry varId="AORadius" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_refinedtracing_num_0_25">
+                        <Entry varId="AORadius" value="2" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_refinedtracing_num_0_50">
+                        <Entry varId="AORadius" value="3" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_refinedtracing_num_1_00">
+                        <Entry varId="AORadius" value="4" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_refinedtracing_num_2_00">
+                        <Entry varId="AORadius" value="5" />
+                    </Option>
+                    <Option id="6" displayName="preset_value_refinedtracing_num_4_00">
+                        <Entry varId="AORadius" value="6" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="AOContrast" displayName="refinedtracing_ao_contrast" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry varId="AOContrast" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_refinedtracing_num_0_50">
+                        <Entry varId="AOContrast" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_refinedtracing_num_0_75">
+                        <Entry varId="AOContrast" value="2" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_refinedtracing_num_1_00">
+                        <Entry varId="AOContrast" value="3" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_refinedtracing_num_1_50">
+                        <Entry varId="AOContrast" value="4" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_refinedtracing_num_2_00">
+                        <Entry varId="AOContrast" value="5" />
+                    </Option>
+                    <Option id="6" displayName="preset_value_refinedtracing_num_3_00">
+                        <Entry varId="AOContrast" value="6" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="SunImpact" displayName="refinedtracing_sun_impact" displayType="SLIDER;0;3;60" value="1.00" tags="" />
+            <Var id="SkyImpact" displayName="refinedtracing_sky_impact" displayType="SLIDER;0;3;60" value="1.00" tags="" />
+            <Var overrideGroup="URTExtended" id="URTX_PTSkinBounceDesat" displayName="urtx_ptskinbouncedesat" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTSkinBounceDesat" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_n_0">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTSkinBounceDesat" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_n_0p25">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTSkinBounceDesat" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_n_0p75">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTSkinBounceDesat" value="3" />
+                    </Option>
+                    <Option id="4" displayName="urtx_n_1">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTSkinBounceDesat" value="4" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="GrassDay" displayName="refinedtracing_grass_day" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry varId="GrassDay" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_refinedtracing_num_0_50">
+                        <Entry varId="GrassDay" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_refinedtracing_num_0_75">
+                        <Entry varId="GrassDay" value="2" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_refinedtracing_num_1_00">
+                        <Entry varId="GrassDay" value="3" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_refinedtracing_num_1_50">
+                        <Entry varId="GrassDay" value="4" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_refinedtracing_num_2_00">
+                        <Entry varId="GrassDay" value="5" />
+                    </Option>
+                    <Option id="6" displayName="preset_value_refinedtracing_num_3_00">
+                        <Entry varId="GrassDay" value="6" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="GrassNight" displayName="refinedtracing_grass_night" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry varId="GrassNight" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_refinedtracing_num_0_50">
+                        <Entry varId="GrassNight" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_refinedtracing_num_0_75">
+                        <Entry varId="GrassNight" value="2" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_refinedtracing_num_1_00">
+                        <Entry varId="GrassNight" value="3" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_refinedtracing_num_1_50">
+                        <Entry varId="GrassNight" value="4" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_refinedtracing_num_2_00">
+                        <Entry varId="GrassNight" value="5" />
+                    </Option>
+                    <Option id="6" displayName="preset_value_refinedtracing_num_3_00">
+                        <Entry varId="GrassNight" value="6" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="SpecularScreenSpace" displayName="refinedtracing_screen_specular" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry varId="SpecularScreenSpace" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_cr01_manual_on">
+                        <Entry varId="SpecularScreenSpace" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_cr01_manual_off">
+                        <Entry varId="SpecularScreenSpace" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="SpecularCheckerboard" displayName="refinedtracing_checkerboard" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry varId="SpecularCheckerboard" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_cr01_manual_on">
+                        <Entry varId="SpecularCheckerboard" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_cr01_manual_off">
+                        <Entry varId="SpecularCheckerboard" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URT52SEP_PTCAUS" displayName="urt52_sep_ptcaus" displayType="SEPARATOR" tags="" />
+            <Var overrideGroup="URTExtended" id="URTX_PTCaustics" displayName="urtx_ptcaustics" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCaustics" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_on">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCaustics" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_w_off">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCaustics" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var overrideGroup="URTExtended" id="URTX_PTCausticsInPT" displayName="urtx_ptcausticsinpt" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsInPT" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_on">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsInPT" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_w_off">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsInPT" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var overrideGroup="URTExtended" id="URTX_PTCausticsTypes" displayName="urtx_ptcausticstypes" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsTypes" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_cau_water">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsTypes" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_w_cau_surface">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsTypes" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_w_cau_reflect">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsTypes" value="3" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var overrideGroup="URTExtended" id="URTX_PTCausticsRes" displayName="urtx_ptcausticsres" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsRes" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_n_512">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsRes" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_n_1024">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsRes" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_n_4096">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsRes" value="3" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var overrideGroup="URTExtended" id="URTX_PTCausticsBlur" displayName="urtx_ptcausticsblur" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsBlur" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_n_0">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsBlur" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_n_1">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsBlur" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_n_4">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsBlur" value="3" />
+                    </Option>
+                    <Option id="4" displayName="urtx_n_8">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsBlur" value="4" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var overrideGroup="URTExtended" id="URTX_PTCausticsArea" displayName="urtx_ptcausticsarea" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsArea" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_n_20_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsArea" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_n_40_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsArea" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_n_100_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsArea" value="3" />
+                    </Option>
+                    <Option id="4" displayName="urtx_n_150_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsArea" value="4" />
+                    </Option>
+                    <Option id="5" displayName="urtx_n_200_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsArea" value="5" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URT52SEP_RT" displayName="urt52_sep_rt" displayType="SEPARATOR" tags="" />
+            <Var id="RayTracedOptimizations" displayName="cr01_rt_opt_title" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_raytracedoptimizations_0">
+                        <Entry varId="RayTracedOptimizations" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_raytracedoptimizations_1">
+                        <Entry varId="RayTracedOptimizations" value="1" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="RTReflLocalLights" displayName="cr01_rt_refl_local_lights" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry varId="RTReflLocalLights" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_cr01_master_off">
+                        <Entry varId="RTReflLocalLights" value="1" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="RTShadowLocalLights" displayName="cr01_rt_shadow_local_lights" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry varId="RTShadowLocalLights" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_urt_n6">
+                        <Entry varId="RTShadowLocalLights" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_urt_n4">
+                        <Entry varId="RTShadowLocalLights" value="2" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_urt_n2">
+                        <Entry varId="RTShadowLocalLights" value="3" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_cr01_master_off">
+                        <Entry varId="RTShadowLocalLights" value="4" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="RTShadowFoliageDetail" displayName="cr01_rt_shadow_foliage_detail" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry varId="RTShadowFoliageDetail" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_urt_reduced">
+                        <Entry varId="RTShadowFoliageDetail" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_urt_low">
+                        <Entry varId="RTShadowFoliageDetail" value="2" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_urt_verylow">
+                        <Entry varId="RTShadowFoliageDetail" value="3" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var overrideGroup="URTExtended" id="URTX_RTAOScreenSpace" displayName="urtx_rtaoscreenspace" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTAOScreenSpace" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_on">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTAOScreenSpace" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_w_off">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTAOScreenSpace" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var overrideGroup="URTExtended" id="URTX_RTHBIL" displayName="urtx_rthbil" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTHBIL" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_on">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTHBIL" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_w_off">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTHBIL" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var overrideGroup="URTExtended" id="URTX_RTAOPretrace" displayName="urtx_rtaopretrace" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTAOPretrace" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_on">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTAOPretrace" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_w_off">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTAOPretrace" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var overrideGroup="URTExtended" id="URTX_RTReflScreenSpace" displayName="urtx_rtreflscreenspace" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTReflScreenSpace" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_on">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTReflScreenSpace" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_w_off">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTReflScreenSpace" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URT52SEP_RTGIQ" displayName="urt52_sep_rtgiq" displayType="SEPARATOR" tags="" />
+            <Var id="RTQualityClassificationPrimary" displayName="cr01_rt_quality_primary" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_rtqualityclassificationprimary_0">
+                        <Entry varId="RTQualityClassificationPrimary" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_rtqualityclassificationprimary_32">
+                        <Entry varId="RTQualityClassificationPrimary" value="32" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_rtqualityclassificationprimary_48">
+                        <Entry varId="RTQualityClassificationPrimary" value="48" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_rtqualityclassificationprimary_64">
+                        <Entry varId="RTQualityClassificationPrimary" value="64" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_rtqualityclassificationprimary_96">
+                        <Entry varId="RTQualityClassificationPrimary" value="96" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_rtqualityclassificationprimary_128">
+                        <Entry varId="RTQualityClassificationPrimary" value="128" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="Virtual_RTQualityClassificationSecondary" displayName="cr01_rt_quality_secondary" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_rtqualityclassificationsecondary_0">
+                        <Entry varId="RTQualityClassificationSecondary" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_rtqualityclassificationsecondary_4">
+                        <Entry varId="RTQualityClassificationSecondary" value="4" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_rtqualityclassificationsecondary_6">
+                        <Entry varId="RTQualityClassificationSecondary" value="6" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_rtqualityclassificationsecondary_8">
+                        <Entry varId="RTQualityClassificationSecondary" value="8" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_rtqualityclassificationsecondary_12">
+                        <Entry varId="RTQualityClassificationSecondary" value="12" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_rtqualityclassificationsecondary_16">
+                        <Entry varId="RTQualityClassificationSecondary" value="16" />
+                    </Option>
+                    <Option id="6" displayName="preset_value_rtqualityclassificationsecondary_24">
+                        <Entry varId="RTQualityClassificationSecondary" value="24" />
+                    </Option>
+                    <Option id="7" displayName="preset_value_rtqualityclassificationsecondary_32">
+                        <Entry varId="RTQualityClassificationSecondary" value="32" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="RTQualityMaxProbes" displayName="cr01_rt_quality_cap" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_rtqualitymaxprobes_0">
+                        <Entry varId="RTQualityMaxProbes" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_rtqualitymaxprobes_8192">
+                        <Entry varId="RTQualityMaxProbes" value="8192" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_rtqualitymaxprobes_32768">
+                        <Entry varId="RTQualityMaxProbes" value="32768" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_rtqualitymaxprobes_65536">
+                        <Entry varId="RTQualityMaxProbes" value="65536" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_rtqualitymaxprobes_131072">
+                        <Entry varId="RTQualityMaxProbes" value="131072" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_rtqualitymaxprobes_262144">
+                        <Entry varId="RTQualityMaxProbes" value="262144" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="RTQualityAOQuality" displayName="cr01_rt_quality_ao" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_rtqualityaoquality_0">
+                        <Entry varId="RTQualityAOQuality" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_rtqualityaoquality_1">
+                        <Entry varId="RTQualityAOQuality" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_rtqualityaoquality_2">
+                        <Entry varId="RTQualityAOQuality" value="2" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_rtqualityaoquality_3">
+                        <Entry varId="RTQualityAOQuality" value="3" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_rtqualityaoquality_4">
+                        <Entry varId="RTQualityAOQuality" value="4" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="RTQualityGlobalShadingLimit" displayName="cr01_rt_quality_global_shading_limit" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_rtqualityaoquality_0">
+                        <Entry varId="RTQualityGlobalShadingLimit" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_rtqualityglobalshadinglimit_4096">
+                        <Entry varId="RTQualityGlobalShadingLimit" value="4096" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_rtqualityglobalshadinglimit_8192">
+                        <Entry varId="RTQualityGlobalShadingLimit" value="8192" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_rtqualityglobalshadinglimit_12288">
+                        <Entry varId="RTQualityGlobalShadingLimit" value="12288" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_rtqualityglobalshadinglimit_16384">
+                        <Entry varId="RTQualityGlobalShadingLimit" value="16384" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_rtqualityglobalshadinglimit_24576">
+                        <Entry varId="RTQualityGlobalShadingLimit" value="24576" />
+                    </Option>
+                    <Option id="6" displayName="preset_value_rtqualityglobalshadinglimit_32768">
+                        <Entry varId="RTQualityGlobalShadingLimit" value="32768" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="RTQualityGrid1ShadingLimit" displayName="cr01_rt_quality_grid1_shading_limit" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_rtqualityaoquality_0">
+                        <Entry varId="RTQualityGrid1ShadingLimit" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_rtqualitygrid1shadinglimit_16384">
+                        <Entry varId="RTQualityGrid1ShadingLimit" value="16384" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_rtqualitygrid1shadinglimit_32768">
+                        <Entry varId="RTQualityGrid1ShadingLimit" value="32768" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_rtqualitygrid1shadinglimit_49152">
+                        <Entry varId="RTQualityGrid1ShadingLimit" value="49152" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_rtqualitygrid1shadinglimit_65536">
+                        <Entry varId="RTQualityGrid1ShadingLimit" value="65536" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_rtqualitygrid1shadinglimit_131072">
+                        <Entry varId="RTQualityGrid1ShadingLimit" value="131072" />
+                    </Option>
+                    <Option id="6" displayName="preset_value_rtqualitygrid1shadinglimit_262144">
+                        <Entry varId="RTQualityGrid1ShadingLimit" value="262144" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URT52SEP_RTGIP" displayName="urt52_sep_rtgip" displayType="SEPARATOR" tags="" />
+            <Var id="RTPerfClassificationPrimary" displayName="cr01_rt_perf_primary" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_rtperfclassificationprimary_0">
+                        <Entry varId="RTPerfClassificationPrimary" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_rtperfclassificationprimary_32">
+                        <Entry varId="RTPerfClassificationPrimary" value="32" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_rtperfclassificationprimary_48">
+                        <Entry varId="RTPerfClassificationPrimary" value="48" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_rtperfclassificationprimary_64">
+                        <Entry varId="RTPerfClassificationPrimary" value="64" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_rtperfclassificationprimary_96">
+                        <Entry varId="RTPerfClassificationPrimary" value="96" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_rtperfclassificationprimary_128">
+                        <Entry varId="RTPerfClassificationPrimary" value="128" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="Virtual_RTPerfClassificationSecondary" displayName="cr01_rt_perf_secondary" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_rtperfclassificationsecondary_0">
+                        <Entry varId="RTPerfClassificationSecondary" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_rtperfclassificationsecondary_4">
+                        <Entry varId="RTPerfClassificationSecondary" value="4" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_rtperfclassificationsecondary_6">
+                        <Entry varId="RTPerfClassificationSecondary" value="6" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_rtperfclassificationsecondary_8">
+                        <Entry varId="RTPerfClassificationSecondary" value="8" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_rtperfclassificationsecondary_12">
+                        <Entry varId="RTPerfClassificationSecondary" value="12" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_rtperfclassificationsecondary_16">
+                        <Entry varId="RTPerfClassificationSecondary" value="16" />
+                    </Option>
+                    <Option id="6" displayName="preset_value_rtperfclassificationsecondary_24">
+                        <Entry varId="RTPerfClassificationSecondary" value="24" />
+                    </Option>
+                    <Option id="7" displayName="preset_value_rtperfclassificationsecondary_32">
+                        <Entry varId="RTPerfClassificationSecondary" value="32" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="RTPerfMaxProbes" displayName="cr01_rt_perf_cap" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_rtperfmaxprobes_0">
+                        <Entry varId="RTPerfMaxProbes" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_rtperfmaxprobes_8192">
+                        <Entry varId="RTPerfMaxProbes" value="8192" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_rtperfmaxprobes_32768">
+                        <Entry varId="RTPerfMaxProbes" value="32768" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_rtperfmaxprobes_65536">
+                        <Entry varId="RTPerfMaxProbes" value="65536" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_rtperfmaxprobes_131072">
+                        <Entry varId="RTPerfMaxProbes" value="131072" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_rtperfmaxprobes_262144">
+                        <Entry varId="RTPerfMaxProbes" value="262144" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="RTPerfAOQuality" displayName="cr01_rt_perf_ao" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_rtperfaoquality_0">
+                        <Entry varId="RTPerfAOQuality" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_rtperfaoquality_1">
+                        <Entry varId="RTPerfAOQuality" value="1" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_rtperfaoquality_2">
+                        <Entry varId="RTPerfAOQuality" value="2" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_rtperfaoquality_3">
+                        <Entry varId="RTPerfAOQuality" value="3" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_rtperfaoquality_4">
+                        <Entry varId="RTPerfAOQuality" value="4" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="RTPerfGlobalShadingLimit" displayName="cr01_rt_perf_global_shading_limit" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_rtperfaoquality_0">
+                        <Entry varId="RTPerfGlobalShadingLimit" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_rtperfglobalshadinglimit_4096">
+                        <Entry varId="RTPerfGlobalShadingLimit" value="4096" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_rtperfglobalshadinglimit_8192">
+                        <Entry varId="RTPerfGlobalShadingLimit" value="8192" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_rtperfglobalshadinglimit_12288">
+                        <Entry varId="RTPerfGlobalShadingLimit" value="12288" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_rtperfglobalshadinglimit_16384">
+                        <Entry varId="RTPerfGlobalShadingLimit" value="16384" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_rtperfglobalshadinglimit_24576">
+                        <Entry varId="RTPerfGlobalShadingLimit" value="24576" />
+                    </Option>
+                    <Option id="6" displayName="preset_value_rtperfglobalshadinglimit_32768">
+                        <Entry varId="RTPerfGlobalShadingLimit" value="32768" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="RTPerfGrid1ShadingLimit" displayName="cr01_rt_perf_grid1_shading_limit" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_rtperfaoquality_0">
+                        <Entry varId="RTPerfGrid1ShadingLimit" value="0" />
+                    </Option>
+                    <Option id="1" displayName="preset_value_rtperfgrid1shadinglimit_16384">
+                        <Entry varId="RTPerfGrid1ShadingLimit" value="16384" />
+                    </Option>
+                    <Option id="2" displayName="preset_value_rtperfgrid1shadinglimit_32768">
+                        <Entry varId="RTPerfGrid1ShadingLimit" value="32768" />
+                    </Option>
+                    <Option id="3" displayName="preset_value_rtperfgrid1shadinglimit_49152">
+                        <Entry varId="RTPerfGrid1ShadingLimit" value="49152" />
+                    </Option>
+                    <Option id="4" displayName="preset_value_rtperfgrid1shadinglimit_65536">
+                        <Entry varId="RTPerfGrid1ShadingLimit" value="65536" />
+                    </Option>
+                    <Option id="5" displayName="preset_value_rtperfgrid1shadinglimit_131072">
+                        <Entry varId="RTPerfGrid1ShadingLimit" value="131072" />
+                    </Option>
+                    <Option id="6" displayName="preset_value_rtperfgrid1shadinglimit_262144">
+                        <Entry varId="RTPerfGrid1ShadingLimit" value="262144" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URT52SEP_RTPT" displayName="urt52_sep_rtpt" displayType="SEPARATOR" tags="" />
+            <Var overrideGroup="URTExtended" id="URTX_RTReflFog" displayName="urtx_rtreflfog" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTReflFog" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_on">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTReflFog" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_w_off">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTReflFog" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URT52SEP_TEX" displayName="urt52_sep_tex" displayType="SEPARATOR" tags="" />
+            <Var overrideGroup="URTExtended" id="URTX_TextureStreams" displayName="urtx_texturestreams" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TextureStreams" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_n_8">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TextureStreams" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_n_16">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TextureStreams" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_n_24">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TextureStreams" value="3" />
+                    </Option>
+                    <Option id="4" displayName="urtx_n_32">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TextureStreams" value="4" />
+                    </Option>
+                    <Option id="5" displayName="urtx_n_48">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TextureStreams" value="5" />
+                    </Option>
+                    <Option id="6" displayName="urtx_n_64">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TextureStreams" value="6" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var overrideGroup="URTExtended" id="URTX_TerrainPreload" displayName="urtx_terrainpreload" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TerrainPreload" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_n_10_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TerrainPreload" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_n_40_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TerrainPreload" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_n_100_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TerrainPreload" value="3" />
+                    </Option>
+                    <Option id="4" displayName="urtx_n_200_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TerrainPreload" value="4" />
+                    </Option>
+                    <Option id="5" displayName="urtx_n_400_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TerrainPreload" value="5" />
+                    </Option>
+                    <Option id="6" displayName="urtx_n_600_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TerrainPreload" value="6" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var overrideGroup="URTExtended" id="URTX_TreeDistance" displayName="urtx_treedistance" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_n_0p75">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_n_1">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_n_1p5">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="3" />
+                    </Option>
+                    <Option id="4" displayName="urtx_n_2">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="4" />
+                    </Option>
+                    <Option id="5" displayName="urtx_n_2p6">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="5" />
+                    </Option>
+                    <Option id="6" displayName="urtx_n_3">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="6" />
+                    </Option>
+                    <Option id="7" displayName="urtx_n_4">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="7" />
+                    </Option>
+                    <Option id="8" displayName="urtx_n_5">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="8" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URT52SEP_FG" displayName="urt52_sep_fg" displayType="SEPARATOR" tags="" />
+            <Var overrideGroup="URTExtended" id="URTX_FGMenuResources" displayName="urtx_fgmenuresources" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_FGMenuResources" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_keep">
+                        <Entry overrideGroup="URTExtended" varId="URTX_FGMenuResources" value="1" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+        </VisibleVars>
+    </Group>
+    <Group id="URTExtended" displayName="urtextended" visibilityCondition="hideAlways">
+        <VisibleVars>
+            <Var id="URTX_PTAOQuality" displayName="urtx_ptaoquality" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTAOQuality" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_n_0">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTAOQuality" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_n_1">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTAOQuality" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_n_2">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTAOQuality" value="3" />
+                    </Option>
+                    <Option id="4" displayName="urtx_n_3">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTAOQuality" value="4" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URTX_RTAOScreenSpace" displayName="urtx_rtaoscreenspace" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTAOScreenSpace" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_on">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTAOScreenSpace" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_w_off">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTAOScreenSpace" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URTX_RTHBIL" displayName="urtx_rthbil" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTHBIL" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_on">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTHBIL" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_w_off">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTHBIL" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URTX_RTAOPretrace" displayName="urtx_rtaopretrace" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTAOPretrace" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_on">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTAOPretrace" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_w_off">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTAOPretrace" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URTX_RTReflScreenSpace" displayName="urtx_rtreflscreenspace" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTReflScreenSpace" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_on">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTReflScreenSpace" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_w_off">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTReflScreenSpace" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URTX_TextureStreams" displayName="urtx_texturestreams" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TextureStreams" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_n_8">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TextureStreams" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_n_16">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TextureStreams" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_n_24">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TextureStreams" value="3" />
+                    </Option>
+                    <Option id="4" displayName="urtx_n_32">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TextureStreams" value="4" />
+                    </Option>
+                    <Option id="5" displayName="urtx_n_48">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TextureStreams" value="5" />
+                    </Option>
+                    <Option id="6" displayName="urtx_n_64">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TextureStreams" value="6" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URTX_PTCaustics" displayName="urtx_ptcaustics" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCaustics" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_on">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCaustics" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_w_off">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCaustics" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URTX_PTCausticsInPT" displayName="urtx_ptcausticsinpt" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsInPT" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_on">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsInPT" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_w_off">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsInPT" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URTX_PTCausticsTypes" displayName="urtx_ptcausticstypes" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsTypes" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_cau_water">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsTypes" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_w_cau_surface">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsTypes" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_w_cau_reflect">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsTypes" value="3" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URTX_PTCausticsRes" displayName="urtx_ptcausticsres" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsRes" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_n_512">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsRes" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_n_1024">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsRes" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_n_4096">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsRes" value="3" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URTX_PTCausticsBlur" displayName="urtx_ptcausticsblur" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsBlur" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_n_0">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsBlur" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_n_1">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsBlur" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_n_4">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsBlur" value="3" />
+                    </Option>
+                    <Option id="4" displayName="urtx_n_8">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsBlur" value="4" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URTX_PTCausticsArea" displayName="urtx_ptcausticsarea" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsArea" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_n_20_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsArea" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_n_40_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsArea" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_n_100_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsArea" value="3" />
+                    </Option>
+                    <Option id="4" displayName="urtx_n_150_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsArea" value="4" />
+                    </Option>
+                    <Option id="5" displayName="urtx_n_200_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTCausticsArea" value="5" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URTX_PTSkinBounceDesat" displayName="urtx_ptskinbouncedesat" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTSkinBounceDesat" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_n_0">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTSkinBounceDesat" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_n_0p25">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTSkinBounceDesat" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_n_0p75">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTSkinBounceDesat" value="3" />
+                    </Option>
+                    <Option id="4" displayName="urtx_n_1">
+                        <Entry overrideGroup="URTExtended" varId="URTX_PTSkinBounceDesat" value="4" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URTX_RTReflFog" displayName="urtx_rtreflfog" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTReflFog" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_on">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTReflFog" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_w_off">
+                        <Entry overrideGroup="URTExtended" varId="URTX_RTReflFog" value="2" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URTX_TerrainPreload" displayName="urtx_terrainpreload" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TerrainPreload" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_n_10_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TerrainPreload" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_n_40_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TerrainPreload" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_n_100_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TerrainPreload" value="3" />
+                    </Option>
+                    <Option id="4" displayName="urtx_n_200_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TerrainPreload" value="4" />
+                    </Option>
+                    <Option id="5" displayName="urtx_n_400_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TerrainPreload" value="5" />
+                    </Option>
+                    <Option id="6" displayName="urtx_n_600_m">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TerrainPreload" value="6" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URTX_TreeDistance" displayName="urtx_treedistance" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_n_0p75">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="1" />
+                    </Option>
+                    <Option id="2" displayName="urtx_n_1">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="2" />
+                    </Option>
+                    <Option id="3" displayName="urtx_n_1p5">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="3" />
+                    </Option>
+                    <Option id="4" displayName="urtx_n_2">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="4" />
+                    </Option>
+                    <Option id="5" displayName="urtx_n_2p6">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="5" />
+                    </Option>
+                    <Option id="6" displayName="urtx_n_3">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="6" />
+                    </Option>
+                    <Option id="7" displayName="urtx_n_4">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="7" />
+                    </Option>
+                    <Option id="8" displayName="urtx_n_5">
+                        <Entry overrideGroup="URTExtended" varId="URTX_TreeDistance" value="8" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+            <Var id="URTX_FGMenuResources" displayName="urtx_fgmenuresources" displayType="OPTIONS" value="0" tags="customNames">
+                <OptionsArray>
+                    <Option id="0" displayName="preset_value_refinedtracing_native_auto">
+                        <Entry overrideGroup="URTExtended" varId="URTX_FGMenuResources" value="0" />
+                    </Option>
+                    <Option id="1" displayName="urtx_w_keep">
+                        <Entry overrideGroup="URTExtended" varId="URTX_FGMenuResources" value="1" />
+                    </Option>
+                </OptionsArray>
+            </Var>
+        </VisibleVars>
+    </Group>
+</UserConfig>
