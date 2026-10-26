@@ -1,4 +1,4 @@
-﻿// C15 FIX2 private Shared Utilities 4.1 script replacement. Compile from matched game+REDkit source; NEVER install loose.
+// C15 FIX2 private Shared Utilities 4.1 script replacement. Compile from matched game+REDkit source; NEVER install loose.
 // CR01 LIFECYCLE01 integrated event transport + native disabled-row lifecycle.
 // Patch 5.01 + Shared Utilities 4.1. Compile ONLY via the proven wcc_lite patch
 // workflow into precompiled.rsblob. Never install this source loosely.
@@ -22,6 +22,7 @@ class RefinedTracingCR01_Descriptor extends SU_MenuDescriptor {
     this.onHover('CPUDistantTrees', "", "tooltip_cr01_cpu_distant_trees");
     this.onHover('CPUPhysicsLOD', "", "tooltip_cr01_cpu_physics_lod");
     this.onHover('PTShadows', "", "tooltip_cr01_ptshadows");
+    this.onHover('PTSceneRange', "", "tooltip_cr01_pt_scene_range");
     this.onHover('PTBillboards', "", "tooltip_cr01_ptbillboards");
     this.onHover('GeometryBounces', "", "tooltip_cr01_geometrybounces");
     this.onHover('HairBounces', "", "tooltip_cr01_hairbounces");
@@ -32,10 +33,6 @@ class RefinedTracingCR01_Descriptor extends SU_MenuDescriptor {
     this.onHover('AOStrength', "", "tooltip_cr01_aostrength");
     this.onHover('AORadius', "", "tooltip_cr01_aoradius");
     this.onHover('AOContrast', "", "tooltip_cr01_aocontrast");
-    this.onHover('PTRTAOEnabled', "", "tooltip_cr01_rtao_enabled");
-    this.onHover('PTRTAORayCount', "", "tooltip_cr01_rtao_count");
-    this.onHover('PTRTAORadius', "", "tooltip_cr01_rtao_radius");
-    this.onHover('PTRTAOStrength', "", "tooltip_cr01_rtao_strength");
     this.onHover('GrassDay', "", "tooltip_cr01_grassday");
     this.onHover('GrassNight', "", "tooltip_cr01_grassnight");
     this.onHover('SpecularScreenSpace', "", "tooltip_cr01_specularscreenspace");
@@ -45,20 +42,45 @@ class RefinedTracingCR01_Descriptor extends SU_MenuDescriptor {
     this.onHover('Virtual_RTPerfClassificationSecondary', "", "tooltip_cr01_rt_perf_secondary");
     this.onHover('RTPerfMaxProbes', "", "tooltip_cr01_rt_perf_cap");
     this.onHover('RTPerfAOQuality', "", "tooltip_cr01_rt_perf_ao");
-    this.onHover('RTPerfShadingBudget', "", "tooltip_cr01_rt_perf_budget");
     this.onHover('RTPerfGlobalShadingLimit', "", "tooltip_cr01_rt_perf_global_shading_limit");
     this.onHover('RTPerfGrid1ShadingLimit', "", "tooltip_cr01_rt_perf_grid1_shading_limit");
     this.onHover('RTQualityClassificationPrimary', "", "tooltip_cr01_rt_quality_primary");
     this.onHover('Virtual_RTQualityClassificationSecondary', "", "tooltip_cr01_rt_quality_secondary");
     this.onHover('RTQualityMaxProbes', "", "tooltip_cr01_rt_quality_cap");
     this.onHover('RTQualityAOQuality', "", "tooltip_cr01_rt_quality_ao");
-    this.onHover('RTQualityShadingBudget', "", "tooltip_cr01_rt_quality_budget");
     this.onHover('RTQualityGlobalShadingLimit', "", "tooltip_cr01_rt_quality_global_shading_limit");
     this.onHover('RTQualityGrid1ShadingLimit', "", "tooltip_cr01_rt_quality_grid1_shading_limit");
     // V5.1 Normal RT performance controls
     this.onHover('RTReflLocalLights', "", "tooltip_cr01_rt_refl_local_lights");
     this.onHover('RTShadowLocalLights', "", "tooltip_cr01_rt_shadow_local_lights");
     this.onHover('RTShadowFoliageDetail', "", "tooltip_cr01_rt_shadow_foliage_detail");
+    this.onHover('URTX_PTAOQuality', "", "tooltip_urtx_ptaoquality");
+    this.onHover('URTX_RTAOScreenSpace', "", "tooltip_urtx_rtaoscreenspace");
+    this.onHover('URTX_RTHBIL', "", "tooltip_urtx_rthbil");
+    this.onHover('URTX_RTAOPretrace', "", "tooltip_urtx_rtaopretrace");
+    this.onHover('URTX_RTReflScreenSpace', "", "tooltip_urtx_rtreflscreenspace");
+    this.onHover('URTX_TextureStreams', "", "tooltip_urtx_texturestreams");
+    this.onHover('URTX_PTCaustics', "", "tooltip_urtx_ptcaustics");
+    this.onHover('URTX_PTCausticsInPT', "", "tooltip_urtx_ptcausticsinpt");
+    this.onHover('URTX_PTCausticsTypes', "", "tooltip_urtx_ptcausticstypes");
+    this.onHover('URTX_PTCausticsRes', "", "tooltip_urtx_ptcausticsres");
+    this.onHover('URTX_PTCausticsBlur', "", "tooltip_urtx_ptcausticsblur");
+    this.onHover('URTX_PTCausticsArea', "", "tooltip_urtx_ptcausticsarea");
+    this.onHover('URTX_PTSkinBounceDesat', "", "tooltip_urtx_ptskinbouncedesat");
+    this.onHover('URTX_RTReflFog', "", "tooltip_urtx_rtreflfog");
+    this.onHover('URTX_TerrainPreload', "", "tooltip_urtx_terrainpreload");
+    this.onHover('URTX_TreeDistance', "", "tooltip_urtx_treedistance");
+    this.onHover('URTX_FGMenuResources', "", "tooltip_urtx_fgmenuresources");
+    // V5.2.0 expanded rows (Native / Auto by default; eight are assigned by the Quick Presets, not No Blue Glow)
+    this.onHover('URTX_TexUnloadSpeed', "", "tooltip_urtx_texunloadspeed");
+    this.onHover('URTX_MeshStreamLead', "", "tooltip_urtx_meshstreamlead");
+    this.onHover('URTX_GenericStreamLead', "", "tooltip_urtx_genericstreamlead");
+    this.onHover('URTX_GCDiscardThreshold', "", "tooltip_urtx_gcdiscardthreshold");
+    this.onHover('URTX_GCIdleFrames', "", "tooltip_urtx_gcidleframes");
+    this.onHover('URTX_RTASDefrag', "", "tooltip_urtx_rtasdefrag");
+    this.onHover('URTX_RTASBatch', "", "tooltip_urtx_rtasbatch");
+    this.onHover('URTX_RTGIAlphaTest', "", "tooltip_urtx_rtgialphatest");
+    this.onHover('URTX_PTNoBlueGlow', "", "tooltip_urtx_ptnoblueglow");
     this.withFallbackMessage("", "tooltip_cr01_fallback");
   }
 
@@ -99,16 +121,16 @@ function RT_CR01_DisableDependents(masterDisabled: bool, rtMode: string, rtaoDis
   var tags: array<name>;
   var rtPerfTags: array<name>;
   var rtQualityTags: array<name>;
-  var rtaoTags: array<name>;
   var changes: CScriptedFlashArray;
   var change: CScriptedFlashObject;
   var i: int;
 
   // Editable preset policy: a preset fills the 39 values but never locks them.
-  // Master, RTGI Off/Auto and PT RTAO applicability still own their dependencies.
+  // Master and RTGI Off/Auto retain their established dependency rules.
   // quickPreset remains in the signature to preserve the existing caller contract.
 
   tags.PushBack('PTShadows');
+  tags.PushBack('PTSceneRange');
   tags.PushBack('CPUFastBoneReads');
   tags.PushBack('CPUDistantTrees');
   tags.PushBack('CPUPhysicsLOD');
@@ -122,7 +144,6 @@ function RT_CR01_DisableDependents(masterDisabled: bool, rtMode: string, rtaoDis
   tags.PushBack('AOStrength');
   tags.PushBack('AORadius');
   tags.PushBack('AOContrast');
-  tags.PushBack('PTRTAOEnabled');
   tags.PushBack('GrassDay');
   tags.PushBack('GrassNight');
   tags.PushBack('SpecularScreenSpace');
@@ -130,24 +151,45 @@ function RT_CR01_DisableDependents(masterDisabled: bool, rtMode: string, rtaoDis
   tags.PushBack('RTReflLocalLights');
   tags.PushBack('RTShadowLocalLights');
   tags.PushBack('RTShadowFoliageDetail');
+  tags.PushBack('URTX_PTAOQuality');
+  tags.PushBack('URTX_RTAOScreenSpace');
+  tags.PushBack('URTX_RTHBIL');
+  tags.PushBack('URTX_RTAOPretrace');
+  tags.PushBack('URTX_RTReflScreenSpace');
+  tags.PushBack('URTX_TextureStreams');
+  tags.PushBack('URTX_PTCaustics');
+  tags.PushBack('URTX_PTCausticsInPT');
+  tags.PushBack('URTX_PTCausticsTypes');
+  tags.PushBack('URTX_PTCausticsRes');
+  tags.PushBack('URTX_PTCausticsBlur');
+  tags.PushBack('URTX_PTCausticsArea');
+  tags.PushBack('URTX_PTSkinBounceDesat');
+  tags.PushBack('URTX_RTReflFog');
+  tags.PushBack('URTX_TerrainPreload');
+  tags.PushBack('URTX_TreeDistance');
+  tags.PushBack('URTX_FGMenuResources');
+  tags.PushBack('URTX_TexUnloadSpeed');
+  tags.PushBack('URTX_MeshStreamLead');
+  tags.PushBack('URTX_GenericStreamLead');
+  tags.PushBack('URTX_GCDiscardThreshold');
+  tags.PushBack('URTX_GCIdleFrames');
+  tags.PushBack('URTX_RTASDefrag');
+  tags.PushBack('URTX_RTASBatch');
+  tags.PushBack('URTX_RTGIAlphaTest');
+  tags.PushBack('URTX_PTNoBlueGlow');
   rtPerfTags.PushBack('RTPerfClassificationPrimary');
   rtPerfTags.PushBack('Virtual_RTPerfClassificationSecondary');
   rtPerfTags.PushBack('RTPerfMaxProbes');
   rtPerfTags.PushBack('RTPerfAOQuality');
-  rtPerfTags.PushBack('RTPerfShadingBudget');
   rtPerfTags.PushBack('RTPerfGlobalShadingLimit');
   rtPerfTags.PushBack('RTPerfGrid1ShadingLimit');
   rtQualityTags.PushBack('RTQualityClassificationPrimary');
   rtQualityTags.PushBack('Virtual_RTQualityClassificationSecondary');
   rtQualityTags.PushBack('RTQualityMaxProbes');
   rtQualityTags.PushBack('RTQualityAOQuality');
-  rtQualityTags.PushBack('RTQualityShadingBudget');
   rtQualityTags.PushBack('RTQualityGlobalShadingLimit');
   rtQualityTags.PushBack('RTQualityGrid1ShadingLimit');
 
-  rtaoTags.PushBack('PTRTAORayCount');
-  rtaoTags.PushBack('PTRTAORadius');
-  rtaoTags.PushBack('PTRTAOStrength');
   changes = m_flashValueStorage.CreateTempFlashArray();
   // Master-only dependency for existing PT and CPU controls.
   for (i = 0; i < tags.Size(); i += 1) {
@@ -175,12 +217,6 @@ function RT_CR01_DisableDependents(masterDisabled: bool, rtMode: string, rtaoDis
     change = m_flashValueStorage.CreateTempFlashObject();
     change.SetMemberFlashUInt("tag", NameToFlashUInt(rtQualityTags[i]));
     change.SetMemberFlashBool("disabled", masterDisabled || rtMode != "1");
-    changes.PushBackFlashObject(change);
-  }
-  for (i = 0; i < rtaoTags.Size(); i += 1) {
-    change = m_flashValueStorage.CreateTempFlashObject();
-    change.SetMemberFlashUInt("tag", NameToFlashUInt(rtaoTags[i]));
-    change.SetMemberFlashBool("disabled", masterDisabled || rtaoDisabled);
     changes.PushBackFlashObject(change);
   }
   // Master stays accessible. Quick Preset is selectable whenever Master is On.
@@ -262,73 +298,25 @@ function RT_CR01_ApplyQuickPreset(selected: string): bool {
   update.SetMemberFlashUInt("tag", NameToFlashUInt('PTShadows'));
   update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'PTShadows'));
   values.PushBackFlashObject(update);
-  // PTRTAOEnabled
-  if (selected == "1") {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'PTRTAOEnabled', "0");
-  } else if (selected == "2") {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'PTRTAOEnabled', "0");
-  } else {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'PTRTAOEnabled', "1");
-  }
-  update = m_flashValueStorage.CreateTempFlashObject();
-  update.SetMemberFlashUInt("tag", NameToFlashUInt('PTRTAOEnabled'));
-  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'PTRTAOEnabled'));
-  values.PushBackFlashObject(update);
-  // PTRTAORayCount
-  if (selected == "1") {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'PTRTAORayCount', "0");
-  } else if (selected == "2") {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'PTRTAORayCount', "1");
-  } else {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'PTRTAORayCount', "3");
-  }
-  update = m_flashValueStorage.CreateTempFlashObject();
-  update.SetMemberFlashUInt("tag", NameToFlashUInt('PTRTAORayCount'));
-  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'PTRTAORayCount'));
-  values.PushBackFlashObject(update);
-  // PTRTAORadius
-  if (selected == "1") {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'PTRTAORadius', "0");
-  } else if (selected == "2") {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'PTRTAORadius', "4");
-  } else {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'PTRTAORadius', "6");
-  }
-  update = m_flashValueStorage.CreateTempFlashObject();
-  update.SetMemberFlashUInt("tag", NameToFlashUInt('PTRTAORadius'));
-  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'PTRTAORadius'));
-  values.PushBackFlashObject(update);
-  // PTRTAOStrength
-  if (selected == "1") {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'PTRTAOStrength', "0");
-  } else if (selected == "2") {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'PTRTAOStrength', "2");
-  } else {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'PTRTAOStrength', "5");
-  }
-  update = m_flashValueStorage.CreateTempFlashObject();
-  update.SetMemberFlashUInt("tag", NameToFlashUInt('PTRTAOStrength'));
-  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'PTRTAOStrength'));
-  values.PushBackFlashObject(update);
-  // GeometryBounces
+  // GeometryBounces (V5.2.0 final: Extreme = 4)
   if (selected == "1") {
     mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'GeometryBounces', "1");
   } else if (selected == "2") {
     mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'GeometryBounces', "1");
   } else {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'GeometryBounces', "6");
+    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'GeometryBounces', "4");
   }
   update = m_flashValueStorage.CreateTempFlashObject();
   update.SetMemberFlashUInt("tag", NameToFlashUInt('GeometryBounces'));
   update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'GeometryBounces'));
   values.PushBackFlashObject(update);
-  // HairBounces
+  // HairBounces (V5.2.0 final: Extreme = 10)
   if (selected == "1") {
     mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'HairBounces', "1");
   } else if (selected == "2") {
     mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'HairBounces', "4");
   } else {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'HairBounces', "6");
+    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'HairBounces', "10");
   }
   update = m_flashValueStorage.CreateTempFlashObject();
   update.SetMemberFlashUInt("tag", NameToFlashUInt('HairBounces'));
@@ -377,9 +365,9 @@ function RT_CR01_ApplyQuickPreset(selected: string): bool {
   update.SetMemberFlashUInt("tag", NameToFlashUInt('SkyImpact'));
   update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'SkyImpact'));
   values.PushBackFlashObject(update);
-  // AmbientOcclusion
+  // AmbientOcclusion (V5.2.0 final presets: Performance = Off)
   if (selected == "1") {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'AmbientOcclusion', "0");
+    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'AmbientOcclusion', "2");
   } else if (selected == "2") {
     mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'AmbientOcclusion', "0");
   } else {
@@ -561,25 +549,6 @@ function RT_CR01_ApplyQuickPreset(selected: string): bool {
     update.SetMemberFlashString("current", "4");
   }
   values.PushBackFlashObject(update);
-  // RTQualityShadingBudget
-  if (selected == "1") {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'RTQualityShadingBudget', "65536");
-  } else if (selected == "2") {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'RTQualityShadingBudget', "262144");
-  } else {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'RTQualityShadingBudget', "524288");
-  }
-  // Flash OPTIONS current uses XML Option IDs, never stored Entry values.
-  update = m_flashValueStorage.CreateTempFlashObject();
-  update.SetMemberFlashUInt("tag", NameToFlashUInt('RTQualityShadingBudget'));
-  if (selected == "1") {
-    update.SetMemberFlashString("current", "1");
-  } else if (selected == "2") {
-    update.SetMemberFlashString("current", "4");
-  } else {
-    update.SetMemberFlashString("current", "6");
-  }
-  values.PushBackFlashObject(update);
   // RTQualityGlobalShadingLimit
   if (selected == "1") {
     mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'RTQualityGlobalShadingLimit', "4096");
@@ -694,25 +663,6 @@ function RT_CR01_ApplyQuickPreset(selected: string): bool {
     update.SetMemberFlashString("current", "4");
   }
   values.PushBackFlashObject(update);
-  // RTPerfShadingBudget
-  if (selected == "1") {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'RTPerfShadingBudget', "65536");
-  } else if (selected == "2") {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'RTPerfShadingBudget', "262144");
-  } else {
-    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'RTPerfShadingBudget', "524288");
-  }
-  // Flash OPTIONS current uses XML Option IDs, never stored Entry values.
-  update = m_flashValueStorage.CreateTempFlashObject();
-  update.SetMemberFlashUInt("tag", NameToFlashUInt('RTPerfShadingBudget'));
-  if (selected == "1") {
-    update.SetMemberFlashString("current", "1");
-  } else if (selected == "2") {
-    update.SetMemberFlashString("current", "4");
-  } else {
-    update.SetMemberFlashString("current", "6");
-  }
-  values.PushBackFlashObject(update);
   // RTPerfGlobalShadingLimit
   if (selected == "1") {
     mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'RTPerfGlobalShadingLimit', "4096");
@@ -787,7 +737,223 @@ function RT_CR01_ApplyQuickPreset(selected: string): bool {
   update.SetMemberFlashUInt("tag", NameToFlashUInt('RTShadowFoliageDetail'));
   update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'RTShadowFoliageDetail'));
   values.PushBackFlashObject(update);
-  // Single refresh of the complete 39-control transaction. All OPTIONS rows
+  // PTSceneRange (V5.2.0 final presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'PTSceneRange', "4");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'PTSceneRange', "0");
+  } else {
+    mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'PTSceneRange', "0");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('PTSceneRange'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'PTSceneRange'));
+  values.PushBackFlashObject(update);
+  // URTX_PTAOQuality (V5.2.0 final presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_PTAOQuality', "1");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_PTAOQuality', "1");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_PTAOQuality', "4");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_PTAOQuality'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_PTAOQuality'));
+  values.PushBackFlashObject(update);
+  // URTX_RTAOScreenSpace (V5.2.0 final presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTAOScreenSpace', "2");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTAOScreenSpace', "2");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTAOScreenSpace', "0");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_RTAOScreenSpace'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_RTAOScreenSpace'));
+  values.PushBackFlashObject(update);
+  // URTX_RTHBIL (V5.2.0 final presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTHBIL', "2");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTHBIL', "2");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTHBIL', "0");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_RTHBIL'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_RTHBIL'));
+  values.PushBackFlashObject(update);
+  // URTX_RTAOPretrace (V5.2.0 final presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTAOPretrace', "2");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTAOPretrace', "2");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTAOPretrace', "0");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_RTAOPretrace'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_RTAOPretrace'));
+  values.PushBackFlashObject(update);
+  // URTX_RTReflScreenSpace (V5.2.0 final presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTReflScreenSpace', "1");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTReflScreenSpace', "1");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTReflScreenSpace', "0");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_RTReflScreenSpace'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_RTReflScreenSpace'));
+  values.PushBackFlashObject(update);
+  // URTX_RTReflFog (V5.2.0 final presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTReflFog', "2");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTReflFog', "0");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTReflFog', "0");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_RTReflFog'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_RTReflFog'));
+  values.PushBackFlashObject(update);
+  // URTX_TextureStreams (V5.2.0 final presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_TextureStreams', "1");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_TextureStreams', "1");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_TextureStreams', "2");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_TextureStreams'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_TextureStreams'));
+  values.PushBackFlashObject(update);
+  // URTX_TerrainPreload (V5.2.0 final presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_TerrainPreload', "1");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_TerrainPreload', "1");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_TerrainPreload', "0");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_TerrainPreload'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_TerrainPreload'));
+  values.PushBackFlashObject(update);
+  // URTX_FGMenuResources (V5.2.0 final presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_FGMenuResources', "1");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_FGMenuResources', "1");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_FGMenuResources', "1");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_FGMenuResources'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_FGMenuResources'));
+  values.PushBackFlashObject(update);
+  // URTX_RTGIAlphaTest (V5.2.0 expanded presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTGIAlphaTest', "4");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTGIAlphaTest', "2");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTGIAlphaTest', "1");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_RTGIAlphaTest'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_RTGIAlphaTest'));
+  values.PushBackFlashObject(update);
+  // URTX_TexUnloadSpeed (V5.2.0 expanded presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_TexUnloadSpeed', "3");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_TexUnloadSpeed', "2");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_TexUnloadSpeed', "0");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_TexUnloadSpeed'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_TexUnloadSpeed'));
+  values.PushBackFlashObject(update);
+  // URTX_MeshStreamLead (V5.2.0 expanded presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_MeshStreamLead', "0");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_MeshStreamLead', "0");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_MeshStreamLead', "0");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_MeshStreamLead'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_MeshStreamLead'));
+  values.PushBackFlashObject(update);
+  // URTX_GenericStreamLead (V5.2.0 expanded presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_GenericStreamLead', "0");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_GenericStreamLead', "0");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_GenericStreamLead', "0");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_GenericStreamLead'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_GenericStreamLead'));
+  values.PushBackFlashObject(update);
+  // URTX_GCDiscardThreshold (V5.2.0 expanded presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_GCDiscardThreshold', "0");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_GCDiscardThreshold', "0");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_GCDiscardThreshold', "0");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_GCDiscardThreshold'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_GCDiscardThreshold'));
+  values.PushBackFlashObject(update);
+  // URTX_GCIdleFrames (V5.2.0 expanded presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_GCIdleFrames', "0");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_GCIdleFrames', "0");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_GCIdleFrames', "0");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_GCIdleFrames'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_GCIdleFrames'));
+  values.PushBackFlashObject(update);
+  // URTX_RTASDefrag (V5.2.0 expanded presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTASDefrag', "0");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTASDefrag', "0");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTASDefrag', "0");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_RTASDefrag'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_RTASDefrag'));
+  values.PushBackFlashObject(update);
+  // URTX_RTASBatch (V5.2.0 expanded presets)
+  if (selected == "1") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTASBatch', "0");
+  } else if (selected == "2") {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTASBatch', "0");
+  } else {
+    mInGameConfigWrapper.SetVarValue('URTExtended', 'URTX_RTASBatch', "0");
+  }
+  update = m_flashValueStorage.CreateTempFlashObject();
+  update.SetMemberFlashUInt("tag", NameToFlashUInt('URTX_RTASBatch'));
+  update.SetMemberFlashString("current", mInGameConfigWrapper.GetVarValue('URTExtended', 'URTX_RTASBatch'));
+  values.PushBackFlashObject(update);
+  // Single refresh of the complete preset transaction. All OPTIONS rows
   // use their existing XML Option IDs, with stored configuration values intact.
   // The existing callback restores preset locks after this refresh.
   m_flashValueStorage.SetFlashArray("options.force_update_values", values);
@@ -895,7 +1061,7 @@ function OnShowOptionSubmenu(actionType: int, menuTag: int, id: string) {
 
     rawMaster = mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'MasterEnabled');
     rawRT = mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'RayTracedOptimizations');
-    rawRTAO = mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'PTRTAOEnabled');
+    rawRTAO = "0";
     rawPreset = mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'QuickPresetSelect');
     this.RT_CR01_DisableDependents(rawMaster != "true" && rawMaster != "1", rawRT, rawRTAO != "true" && rawRTAO != "1", rawPreset);
 
@@ -910,6 +1076,28 @@ function OnShowOptionSubmenu(actionType: int, menuTag: int, id: string) {
 // Options > Gameplay > difficulty). Ownership is therefore decided
 // by URT's own option names (the RefinedTracingCR01 Var ids of RefinedTracing.xml)
 // BEFORE any group lookup, and every other option goes straight to wrappedMethod.
+// V5.2.0: hidden-storage (URTExtended) rows assigned by the Quick Presets.
+@addMethod(CR4IngameMenu)
+function RT_CR01_IsPresetURTX(optionName: name): bool {
+  return optionName == 'URTX_PTAOQuality'
+      || optionName == 'URTX_RTAOScreenSpace'
+      || optionName == 'URTX_RTHBIL'
+      || optionName == 'URTX_RTAOPretrace'
+      || optionName == 'URTX_RTReflScreenSpace'
+      || optionName == 'URTX_RTReflFog'
+      || optionName == 'URTX_TextureStreams'
+      || optionName == 'URTX_TerrainPreload'
+      || optionName == 'URTX_FGMenuResources'
+      || optionName == 'URTX_RTGIAlphaTest'
+      || optionName == 'URTX_TexUnloadSpeed'
+      || optionName == 'URTX_MeshStreamLead'
+      || optionName == 'URTX_GenericStreamLead'
+      || optionName == 'URTX_GCDiscardThreshold'
+      || optionName == 'URTX_GCIdleFrames'
+      || optionName == 'URTX_RTASDefrag'
+      || optionName == 'URTX_RTASBatch';
+}
+
 @addMethod(CR4IngameMenu)
 function RT_CR01_IsOwnedOption(optionName: name): bool {
   if (optionName == 'MasterEnabled'
@@ -919,10 +1107,7 @@ function RT_CR01_IsOwnedOption(optionName: name): bool {
       || optionName == 'CPUPhysicsLOD'
       || optionName == 'PTBillboards'
       || optionName == 'PTShadows'
-      || optionName == 'PTRTAOEnabled'
-      || optionName == 'PTRTAORayCount'
-      || optionName == 'PTRTAORadius'
-      || optionName == 'PTRTAOStrength'
+      || optionName == 'PTSceneRange'
       || optionName == 'GeometryBounces'
       || optionName == 'HairBounces'
       || optionName == 'IndirectLight'
@@ -941,14 +1126,12 @@ function RT_CR01_IsOwnedOption(optionName: name): bool {
       || optionName == 'Virtual_RTQualityClassificationSecondary'
       || optionName == 'RTQualityMaxProbes'
       || optionName == 'RTQualityAOQuality'
-      || optionName == 'RTQualityShadingBudget'
       || optionName == 'RTQualityGlobalShadingLimit'
       || optionName == 'RTQualityGrid1ShadingLimit'
       || optionName == 'RTPerfClassificationPrimary'
       || optionName == 'Virtual_RTPerfClassificationSecondary'
       || optionName == 'RTPerfMaxProbes'
       || optionName == 'RTPerfAOQuality'
-      || optionName == 'RTPerfShadingBudget'
       || optionName == 'RTPerfGlobalShadingLimit'
       || optionName == 'RTPerfGrid1ShadingLimit'
       || optionName == 'RTReflLocalLights'
@@ -1017,11 +1200,11 @@ function OnOptionValueChanged(groupId: int, optionName: name, optionValue: strin
 
   if (groupName == 'RefinedTracingCR01') {
     if (optionName == 'MasterEnabled' || optionName == 'QuickPresetSelect'
-        || optionName == 'RayTracedOptimizations' || optionName == 'PTRTAOEnabled') {
+        || optionName == 'RayTracedOptimizations') {
       // The wrapped handler has already written the latest config values.
       rawMaster = mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'MasterEnabled');
       rawRT = mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'RayTracedOptimizations');
-      rawRTAO = mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'PTRTAOEnabled');
+      rawRTAO = "0";
       rawPreset = mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'QuickPresetSelect');
       this.RT_CR01_DisableDependents(rawMaster != "true" && rawMaster != "1", rawRT, rawRTAO != "true" && rawRTAO != "1", rawPreset);
     }
@@ -1031,6 +1214,27 @@ function OnOptionValueChanged(groupId: int, optionName: name, optionValue: strin
           || optionName == 'EnableRtRadiance' || optionName == 'Virtual_RTShadows') {
     // Renderer-eligibility/native-shadow changes use the same event path.
     // The ASI still verifies live CVars and never trusts this text as renderer truth.
+    theGame.SaveUserSettings();
+  }
+
+  // The selected 7 new controls use hidden URTExtended storage; native save once
+  // after the user's menu change, without changing a Quick Preset or vanilla key.
+  if (StrLeft(NameToString(optionName), 5) == "URTX_") {
+    // V5.2.0: a manual edit of a preset-controlled row makes the configuration custom (Quick Preset Off),
+    // exactly like the RefinedTracingCR01 rows above; every other value is kept.
+    if (this.RT_CR01_IsPresetURTX(optionName)) {
+      rawPreset = mInGameConfigWrapper.GetVarValue('RefinedTracingCR01', 'QuickPresetSelect');
+      if (rawPreset == "1" || rawPreset == "2" || rawPreset == "3") {
+        mInGameConfigWrapper.SetVarValue('RefinedTracingCR01', 'QuickPresetSelect', "0");
+        presetUiValues = m_flashValueStorage.CreateTempFlashArray();
+        presetUiUpdate = m_flashValueStorage.CreateTempFlashObject();
+        presetUiUpdate.SetMemberFlashUInt("tag", NameToFlashUInt('QuickPresetSelect'));
+        presetUiUpdate.SetMemberFlashString("current", "0");
+        presetUiValues.PushBackFlashObject(presetUiUpdate);
+        m_flashValueStorage.SetFlashArray("options.force_update_values", presetUiValues);
+        theGame.GetGuiManager().ForceProcessFlashStorage();
+      }
+    }
     theGame.SaveUserSettings();
   }
 

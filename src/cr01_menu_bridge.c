@@ -44,12 +44,8 @@ static int apply_value(CR01Settings*draft,const char*key,const char*value){
   if(parsed>1)return 0;
   draft->master=parsed;
  }else{
-  for(unsigned i=0;i<4;i++)if(same(key,rtao_names[i])){
-   if(!numeric(value,&parsed,0))return 0;
-   if(i==0)draft->rtao.mode=parsed;else if(i==1)draft->rtao.rays=parsed;
-   else if(i==2)draft->rtao.radius=parsed;else draft->rtao.strength=parsed;
-   return cr01_rtao_valid(&draft->rtao);
-  }
+  for(unsigned i=0;i<4;i++)if(same(key,rtao_names[i]))
+   return 0; /* retired from V5.2; stale UI events must be harmless */
   for(unsigned i=0;i<CR01_FEATURE_COUNT;i++)if(same(key,names[i])){feature=(int)i;break;}
   if(feature<0)return 0;
   fixed=(feature==F_INDIRECT||feature==F_SUN||feature==F_SKY);
@@ -65,6 +61,7 @@ static int apply_value(CR01Settings*draft,const char*key,const char*value){
 static int draft_for_value(const CR01MenuBridge*b,const char*key,const char*value,CR01Settings*draft){
  if(!b||!b->controller.initialized||!draft)return 0;
  *draft=b->controller.saved;
+ cr01_rtao_defaults(&draft->rtao);
  return apply_value(draft,key,value)&&cr01_native_validate(draft);
 }
 int cr01_menu_bridge_valid_input(const CR01MenuBridge*b,const char*key,const char*value){
@@ -140,6 +137,7 @@ static int cr01_menu_bridge_commit_snapshot(CR01MenuBridge*b,const char*const*ke
   if(present&&!present[i])continue;
   if(!values[i]||!apply_value(&draft,keys[i],values[i]))return 0;
  }
+ cr01_rtao_defaults(&draft.rtao); /* retired RTAO controls never act on legacy values */
  if(!cr01_native_validate(&draft))return 0;
  if(draft.master==b->controller.saved.master){
   unsigned unchanged=1;
@@ -168,6 +166,7 @@ int cr01_menu_bridge_mode(CR01MenuBridge*b,CR01RenderMode mode){
 int cr01_menu_bridge_load(CR01MenuBridge*b,const char*s,size_t n){
  CR01Settings parsed;
  if(!b||!b->controller.initialized||!cr01_settings_parse(s,n,&parsed))return 0;
+ cr01_rtao_defaults(&parsed.rtao); /* fail closed on stale RTAO settings */
  if(!cr01_native_set_saved(&b->controller,&parsed))return 0;
  b->dirty_generation++;return cr01_native_event(&b->controller,b->controller.mode)?1:
   (b->controller.pending_mask?2:0);

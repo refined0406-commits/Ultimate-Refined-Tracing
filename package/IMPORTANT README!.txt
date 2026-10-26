@@ -1,4 +1,5 @@
-IMPORTANT README! - ULTIMATE REFINED TRACING V5.1.0
+IMPORTANT README! - ULTIMATE REFINED TRACING V5.2.0
+
 Ray and Path Tracing Performance Overhaul - Witcher 3 Remastered DX12 Patch 5.01
 
 REQUIREMENTS
@@ -42,13 +43,69 @@ UPDATING FROM V4.x (READ CAREFULLY)
    The old RefinedTracing.settings is never changed (rollback keeps working).
    Optional leftovers you may delete: bin\x64_dx12\RefinedTracing.log.
 
-UPDATING FROM V5.0.0
-Exit the game and install V5.1.0 over V5.0.0 (same files and folders). Every
-setting is kept; the new V5.1 rows start on Native / Auto.
+UPDATING FROM V5.0.0 OR V5.1.0 (or a private test build)
+Exit the game. Back up Documents\The Witcher 3\dx12user.settings and keep your
+old archive for rollback. Install V5.2.0 over it (same paths). Your settings are
+kept; values of removed controls are ignored.
 
-UPDATING FROM A V5 TEST BUILD (RC1-RC9)
-Install over it. If bin\x64_dx12\UltimateRefinedTracing.addon64 exists (from
-RC6-RC8), delete it; it is not part of V5.0.0 (a leftover copy stays idle).
+UPDATING FROM A V5 TEST BUILD
+Install over it. If bin\x64_dx12\UltimateRefinedTracing.addon64 exists, delete it
+(a leftover from old test builds; it stays idle).
+
+WHAT IS NEW IN V5.2.0
+One page, Options > Mods > Ultimate Refined Tracing, with named white headings:
+CPU, Path Tracing, Ray Tracing, RTGI: Quality, RTGI: Performance, RT/PT: Shared,
+Textures / Rendering, Memory & Streaming, RT Memory Management, Frame Generation.
+Every new control defaults to Native / Auto (= the game's own value).
+- Path Tracing: Scene Range, Ambient Occlusion Quality, Skin Bounce Light
+  Desaturation, No Blue Glow on Armour.
+- Ray Tracing: Ambient Occlusion Screen-Space Sampling, Screen-Space Indirect
+  Lighting (HBIL), Ambient Occlusion Pre-Trace, Screen-Space Reflection Assist,
+  GI Alpha-Test Texture Detail.
+- RT/PT: Fog in Ray-Traced Reflections.
+- Textures / Rendering: Textures Streamed at Once, Terrain Preload Distance.
+- Memory & Streaming: Texture Unloading Speed, Mesh Streaming Distance, General
+  Streaming Distance, Memory Cleanup Threshold, Memory Cleanup Interval.
+- RT Memory Management: RT Acceleration Structure Defragmentation and Build
+  Batch Size. The game reads these once, when ray tracing starts: a change
+  takes effect after a game restart.
+- Frame Generation: Keep Resources in Menus.
+- Every setting has a description: what it does, its Native / Auto value, what
+  it affects (FPS, loading/stutter, memory or only visuals), which way to
+  adjust it, the trade-off and when it applies.
+- PT: Ray-Traced Shadows = Off also skips the CPU wait for the ray-traced scene.
+Quick Presets (Performance / Balanced / Extreme) also set the new rows:
+  PT: Scene Range 150 m / Native / Native; PT: Ambient Occlusion Off / Native /
+  Native; PT: AO Quality 0 / 0 / 3; RT Reflections: Local Lights Off / Off /
+  Native; RT Shadows: Local Light Shadows Off / 4 / Native; RT Shadows: Foliage
+  Detail Very Low / Low / Native; RT AO Screen-Space Sampling, HBIL and AO
+  Pre-Trace Off / Off / Native; RT Screen-Space Reflection Assist On / On /
+  Native; RT/PT Fog Off / Native / Native; Textures Streamed at Once 8 / 8 / 16;
+  Terrain Preload Distance 10 m / 10 m / Native; Keep Resources in Menus on.
+  PT: Geometry Bounces 1 / 1 / 4; PT: Hair Bounces 1 / 4 / 10.
+  RT: GI Alpha-Test Texture Detail 8 / 6 / 4; Texture Unloading Speed 4x / 2x /
+  Native. Mesh / General Streaming Distance, Memory Cleanup Threshold /
+  Interval and RT AS Defragmentation / Build Batch Size: Native in all three
+  (selecting a preset releases a manual value; each stays adjustable).
+  PT: No Blue Glow on Armour is never set by a preset. Changing any preset row
+  switches Quick Preset to Off and keeps every value.
+Removed: PT Ray-Traced Ambient Occlusion and its Ray Count / Radius / Strength;
+RTGI Quality and Performance Shading Frame Budget (always the game's value now).
+Settings protection: URT never writes dx12user.settings. Engine values the game
+saves itself are applied for the session only, so URT's choices never become
+your graphics settings. Native / Auto and Master Off give every value back to
+the game. Texture Quality and Foliage Visibility Range are never touched.
+Menu: the white lines of the named headings are laid out again whenever a row
+is resized or redrawn, and a title that cannot be measured yet is retried on the
+next frame (fix in URT's copy of the game's menu file).
+Optional W3LoadFix (Nexus 13881): not needed and not included. If you use it,
+URT leaves every variable set in w3loadfix.ini [Override] to W3LoadFix.
+  With Orange Hair Fix RT+PT: OHF's dsound.dll is OHF's own loader. Do NOT copy
+  W3LoadFix's dsound.dll. Copy only w3loadfix.dll (renamed to w3loadfix.asi),
+  w3loadfix.ini and its menu XML; URT's ASI loader (winmm.dll) then loads it.
+DX12 VRAM Relief / RT Memory Stabilizer: no longer needed (URT's Memory &
+Streaming and RT Memory Management rows cover them). If you keep them, leave
+the matching URT rows on Native / Auto.
 
 WHAT IS NEW IN V5.1
 Three new Normal RT performance controls at the end of the URT menu (Normal RT
@@ -85,11 +142,11 @@ WHAT IS NEW IN V5
   logs exactly which ones stay native and why.
 - Settings safety: one consistent read per menu change, recovery from a
   missing/empty dx12user.settings at launch, and a last-known-good backup of
-  URT's own settings file. URT never writes dx12user.settings.
+  URT's own settings file. URT native ASI does not directly write dx12user.settings; game-owned SaveUserSettings may rewrite it on menu edits.
 - Compatibility report in the log (loaders and known mods).
 - All V4.3.1 controls, presets, translations, renderer isolation and fixes
   are kept, including Geometry Bounces, Hair Bounces, Indirect-Light
-  Compensation, PT RTAO, PT Shadows/Billboards, the CPU optimizations and the
+  Compensation, PT Shadows/Billboards, the CPU optimizations and the
   Normal RT/RTGI controls.
 
 COMPATIBILITY
@@ -102,8 +159,11 @@ COMPATIBILITY
   not apply. URT never touches its files. Use one or the other.
 - HourLines' PT Optimization (xinput9_1_0.dll): edits the same shader and code
   as URT. Use one of the two; URT refuses anything already changed.
-- DX12 VRAM Relief / RT Memory Stabilizer / LessStutter shader cache:
-  no overlap detected; URT does not change their settings or hook D3D12.
+- DX12 VRAM Relief / RT Memory Stabilizer: they set the same engine variables
+  as URT's Memory & Streaming / RT Memory Management rows. Not needed with URT;
+  if you keep them, leave those URT rows on Native / Auto.
+- LessStutter shader cache: no overlap; URT does not hook D3D12.
+- W3LoadFix (optional): see "What is new in V5.2.0".
 - Camera-light mods (NAPL): URT never changes camera-light settings.
 
 TROUBLESHOOTING
@@ -120,7 +180,7 @@ TROUBLESHOOTING
 - Log says "runtime tier LATE" or "ADAPTIVE": the loader started URT too late,
   or the game version is not 5.01. The engine-setting and CPU controls still
   work; the PT shader controls (Geometry/Hair Bounces, Indirect-Light
-  Compensation, PT RTAO) and PT Ray-Traced Shadows stay native. Use the MAIN
+  Compensation) and PT Ray-Traced Shadows stay native. Use the MAIN
   file's winmm.dll loader.
 - "Cannot find global function 'BFC_...'" (Immersive World): reinstall Witcher
   Native Bridge, Immersive World, then URT; never delete Witcher Native
@@ -133,8 +193,13 @@ TROUBLESHOOTING
 - Settings problems: URT keeps UltimateRefinedTracing.settings.bak and repairs
   itself; a damaged file is kept as .corrupt for inspection.
 
+ROLLBACK TO PROTECTED V5.1.0
+Exit the game and reinstall your preserved COMPLETE V5.1.0 MAIN or ASI-ONLY
+archive. V5.2-only menu settings no longer display or apply. Do not delete
+SharedUtils or another mod's ASI loader. Preserve dx12user.settings backups.
+
 ROLLBACK TO V5.0.0
-Install the complete V5.0.0 archive over V5.1.0. The three V5.1 rows simply
+Install the complete V5.0.0 archive over V5.2.0. The three V5.1 rows simply
 disappear from the menu; all other values are kept.
 
 ROLLBACK TO V4.3.1

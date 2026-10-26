@@ -1,0 +1,15 @@
+{
+  "kit": "URT_V5.2.0_RELEASE_WCC_KIT_v520rel-rev3",
+  "receipt_label": "Ultimate Refined Tracing V5.2.0 RELEASE WCC receipt, kit v520rel-rev3",
+  "user_results_zip": "300b0a3d-URT_RUN_20261026_154503.zip",
+  "user_results_zip_sha256": "ba7340661ea168b19378c782386deb2c797180ff5d84636065a957de95423625",
+  "candidate_source_sha256": "89c09a568d23970121adcd294b113c8dccd0e0c8f37d924ab2135e6466933ea0",
+  "menu_sha256": "d22b37420bdf0c097735b3a9e432deb95281837af51a6fc183e58163f3436c17",
+  "blob_sha256": "f13fdbb68b748541dc73cffc1ff86a7d813661cbc6cf6e7ee54a9fac0972d308",
+  "blob_bytes": 26217,
+  "wcc_exit_code": 0,
+  "workspace_restored": true,
+  "static_checks_passed": true,
+  "no_game_installation_performed": true,
+  "gameplay_validated": false
+}
