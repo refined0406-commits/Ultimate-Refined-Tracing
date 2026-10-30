@@ -3,7 +3,7 @@
 The Witcher 3 Remastered DX12 Ray/Path Tracing performance mod (Nexus 13075), for game version 5.01 and Steam build 1090142. This tree builds the public V5.3.0.
 
 * `src/`: native runtime (`cr01_*` = V4 lineage modules, `urt_*` = V5 modules, `urt_gfx_table.c` generated from `tools/v52_selected/spec.py`)
-* `game/wcc/`: the WitcherScript source, the compiled script and its WCC receipt (`V52_VERIFIED_WCC.json`), and the original menu movie
+* `game/wcc/`: WitcherScript source, compiled script and WCC compilation receipt. Original Witcher 3 game assets are not redistributed.
 * `tools/`:
   * menu and locale generators (`build_v5*_*.py`);
   * V5.2.0 descriptions (`tools/v53_dev/tooltips_dev2.py` and the `tip_*` files);
