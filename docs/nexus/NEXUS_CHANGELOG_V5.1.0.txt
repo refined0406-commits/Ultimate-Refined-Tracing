@@ -1,0 +1,9 @@
+Version 5.1.0
+- New Normal RT control: RT Reflections: Local Lights (Off removes lamps/torches from RT reflections).
+- New Normal RT control: RT Shadows: Local Light Shadows (game default 8; 6 / 4 / 2 / Off).
+- New Normal RT control: RT Shadows: Foliage Detail (Reduced / Low / Very Low).
+- New controls default to Native / Auto (V5.0.0 behaviour) and never affect Path Tracing or raster.
+- Quick Presets include the new controls: Performance = Off / Off / Very Low; Balanced = Off / 4 / Low; Extreme = Native / Auto.
+- RTGI Quick Presets (Quality and Performance): Performance Secondary Classification Rays 12; Balanced Secondary Classification Rays 16 and Shading Frame Budget 262144.
+- Removed RTGI Shading Rays Per Probe (Performance and Quality); always the game's own value now, old saved values are ignored.
+- Everything else from V5.0.0 is unchanged, including the Game/Gwent Difficulty crash fix.

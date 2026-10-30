@@ -1,0 +1,514 @@
+category	variable	type	default	value_rva	readers (real code)	disposition	evidence / reason
+Rendering/RT	HiResEntityCustomShadowmapSize	0x201	nan	0x40670d0	1c1a66c	UNSAFE	shadow-map allocation size
+Rendering/Async/RT	RTViewYawOffset	0x202	0	0x4067108	-	NOREAD	no code reads it (registration only)
+Rendering/Async/RT	UseAsyncDataUpdates	0x200	1.4013e-45	0x4067140	1c21f10 1c222a0 1c222b4 1c224a0 1c2a860 1c3ac70 1c3acc0 1c3ad00 1c3ad50 1c3ad80 1d5eba0 1d5efc0 1d610a0 1d61179	NOT_APPLIC	already on
+Rendering/Async/RT	UseAsyncTLASUpdates	0x200	1.4013e-45	0x4067178	1c21f10 1c222b4 1c224a0 1c2a860 1c3ac70 1c3acc0 1c3ad00 1d5eba0 1d610a0 1d61179	NOT_APPLIC	already on
+Rendering/Async/RT	EarlyAsyncTLASUpdates	0x200	1.4013e-45	0x40671b0	1c21f10 1c2a860 1d5eba0 1d610a0	NOT_APPLIC	already on
+Rendering/Async/RT	UseAsyncRTAO	0x200	0	0x40671e8	1c1dc91 1c37e09	OWNED	V5.3.0 row
+Rendering/Async/RT	EarlyAsyncGIUpdates	0x200	1.4013e-45	0x4067220	1c21f10 1c3ac70 1c3acc0 1d610f8	NOT_APPLIC	already on
+Rendering/Async/RT	EarlyAsyncGIPrepareToShade	0x200	1.4013e-45	0x4067258	1c21f10 1c3ac70 1d610f8	NOT_APPLIC	already on
+Rendering/Async/RT	UseAsyncCompact	0x200	0	0x4067290	1c22250 1c224a0 1c267f0	UNSAFE	R5: crashed the game in the owner test (0xc0000005 at 0x1cfa664); removed, never written
+Rendering/Async/RT	UseHighPriorityAsyncRT	0x200	1.4013e-45	0x40672c8	1c1dc91 1c21d30 1c22250 1c222b4 1c224a0 1c267f0 1d61179	NOT_APPLIC	already on
+Rendering/RT/HBIL	DumpGpuMemoryPoolUsages	0x201	nan	0x4067370	-	NOREAD	no code reads it (registration only)
+Rendering/RT/HBIL	UseHBIL	0x100	0	0x40673a8	1c20f90 1c2c850 1c2cef0 1c2d3b0 1c34500 1c3ab60	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT/HBIL	HBILDirectionsCount	0x201	5.60519e-45	0x40673e0	1c2d4c1	IMPLEMENTED	R7 RT: HBIL Directions
+Rendering/RT/HBIL	HBILSamplesCount	0x201	2.24208e-44	0x4067418	1c2d4c1	IMPLEMENTED	R6 RT: HBIL Samples
+Rendering/RT/HBIL	HBILRadius	0x202	2	0x4067450	1c2d4c1	VISUAL	search radius (same sample count)
+Rendering/RT/HBIL	HBILImpact	0x102	1	0x4067488	1c2d4c1	VISUAL	strength
+Rendering/RT/HBIL	HBILDrawOnly	0x200	0	0x40674c0	1c2cff0 1c2d4c1	NOT_APPLIC	debug
+Rendering/RT/HBIL	HBILInterleaved	0x200	1.4013e-45	0x40674f8	1c2d4c1	NOT_APPLIC	already on (interleaved HBIL)
+Rendering/RT/HBIL	HBILInterleavedGroupDiv	0x201	2.8026e-45	0x4067530	1c2d4c1	UNSAFE	must match the interleave pattern of the HBIL shader
+Rendering/RT/HBIL	HBILDistanceMin	0x202	20	0x4067568	1c2d4c1	VISUAL	fade
+Rendering/RT/HBIL	HBILDistanceMax	0x202	40	0x40675a0	1c2d4c1	VISUAL	fade
+Rendering/RT/HBIL	HBILAlbedoUseMode	0x201	0	0x40675d8	1c2d110 1c2d4c1	VISUAL	albedo mode
+Rendering/RT/HBIL	HBILIntencityHack	0x200	0	0x4067610	1c2d4c1	VISUAL	intensity
+Rendering/RT/HBIL	HBILSpatialDenoise	0x200	1.4013e-45	0x4067648	1c2d4c1	VISUAL	small denoise pass
+Rendering/RT/HBIL	HBILUseReprojection	0x200	1.4013e-45	0x4067680	1c2d4c1	VISUAL	temporal reuse
+Rendering/RT/HBIL	HBILOnlyReproj	0x200	0	0x40676b8	1c2d4c1	VISUAL	reprojection-only mode (stale lighting)
+Rendering/RT/HBIL	HBILAfterFog	0x200	1.4013e-45	0x40676f0	1c2d110 1c37e09 1c3a750	VISUAL	composite order
+Rendering/NRD/Specular	HBILUseAONRD	0x200	0	0x4067728	1c20f90 1c2c850 1c2cff0 1c2d4c1 1c34500 1c3ab60	VISUAL	HBIL AO denoise
+Rendering/NRD	UseCharactersLightingBoost	0x200	1.4013e-45	0x4067798	1c2d110	VISUAL	character lighting
+Rendering/NRD	NrdEnableDiffuse	0x200	1.4013e-45	0x40677d0	1c20f90 1c2c850 1c2cff0 1c2d4c1 1c34500 1c3ab60	UNSAFE	native denoiser path switch
+Rendering/NRD	NrdEnableAo	0x200	1.4013e-45	0x4067808	1c2a860 1c32030 1c34500	UNSAFE	native denoiser path switch
+Rendering/NRD	NrdWorldSpaceMotion	0x200	1.4013e-45	0x4067840	1c2fcd0 1c31550	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD	NrdForceReferenceAccumulation	0x200	0	0x4067878	-	NOREAD	no code reads it (registration only)
+Rendering/NRD	NrdSplitScreen	0x202	0	0x40678b0	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD	NrdMvScaleX	0x202	1	0x40678e8	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD	NrdMvScaleY	0x202	1	0x4067920	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdEnableValidation	0x200	0	0x4067958	1c2fcd0 1c32d80	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdNormHitDistParamsA	0x202	3	0x4067990	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdNormHitDistParamsB	0x202	0.1	0x40679c8	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdNormHitDistParamsC	0x202	20	0x4067a00	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdAntiLagLuminanceSigmaScale	0x202	2	0x4067a38	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdAntiLagLuminanceSensivity	0x202	3	0x4067a70	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdMaxAccumulatedFrameNum	0x201	4.2039e-44	0x4067aa8	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdMaxFastAccumulatedFrameNum	0x201	8.40779e-45	0x4067ae0	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdMaxStabilizedFrameNum	0x201	8.82818e-44	0x4067b18	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdHistoryFixFrameNum	0x201	4.2039e-45	0x4067b50	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdHistoryFixBasePixelStride	0x201	1.96182e-44	0x4067b88	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdDiffusePrepassBlurRadius	0x202	30	0x4067bc0	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdSpecularPrepassBlurRadius	0x202	50	0x4067bf8	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdMinHitDistanceWeight	0x202	0.1	0x4067c30	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdMinBlurRadius	0x202	1	0x4067c68	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdMaxBlurRadius	0x202	30	0x4067ca0	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdLobeAngleFraction	0x202	0.15	0x4067cd8	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdRoughnessFraction	0x202	0.15	0x4067d10	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdResponsiveAccumulationRoughnessThreshold	0x202	0.3	0x4067d48	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdResponsiveAccumulationMinAccumulatedFrameNum	0x201	1.4013e-45	0x4067d80	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdPlaneDistanceSensitivity	0x202	0.02	0x4067db8	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdSpecularProbabilityThresholdsForMvModificationX	0x202	0.5	0x4067df0	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdSpecularProbabilityThresholdsForMvModificationY	0x202	0.9	0x4067e28	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdFireflySuppressorMinRelativeScale	0x202	2	0x4067e60	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Specular	NrdEnableAntiFirefly	0x200	1.4013e-45	0x4067e98	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdUsePrepassOnlyForSpecularMotionEstimation	0x200	0	0x4067ed0	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdNormHitDistParamsA	0x202	3	0x4067f08	1c2d4c1 1c2fcd0 1c31550	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdNormHitDistParamsB	0x202	0.1	0x4067f40	1c2d4c1 1c2fcd0 1c31550	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdNormHitDistParamsC	0x202	20	0x4067f78	1c2d4c1 1c2fcd0 1c31550	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdAntiLagLuminanceSigmaScale	0x202	2	0x4067fb0	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdAntiLagLuminanceSensivity	0x202	3	0x4067fe8	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdMaxAccumulatedFrameNum	0x201	4.2039e-44	0x4068020	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdMaxFastAccumulatedFrameNum	0x201	8.40779e-45	0x4068058	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdMaxStabilizedFrameNum	0x201	8.82818e-44	0x4068090	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdHistoryFixFrameNum	0x201	4.2039e-45	0x40680c8	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdHistoryFixBasePixelStride	0x201	1.96182e-44	0x4068100	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdDiffusePrepassBlurRadius	0x202	30	0x4068138	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdSpecularPrepassBlurRadius	0x202	50	0x4068170	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdMinHitDistanceWeight	0x202	0.1	0x40681a8	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdMinBlurRadius	0x202	1	0x40681e0	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdMaxBlurRadius	0x202	30	0x4068218	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdLobeAngleFraction	0x202	0.15	0x4068250	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdRoughnessFraction	0x202	0.15	0x4068288	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdResponsiveAccumulationRoughnessThreshold	0x202	0	0x40682c0	-	NOREAD	no code reads it (registration only)
+Rendering/NRD/Diffuse	NrdPlaneDistanceSensitivity	0x202	0.02	0x40682f8	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdSpecularProbabilityThresholdsForMvModificationX	0x202	0.5	0x4068330	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdSpecularProbabilityThresholdsForMvModificationY	0x202	0.9	0x4068368	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdFireflySuppressorMinRelativeScale	0x202	2	0x40683a0	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Diffuse	NrdEnableAntiFirefly	0x200	1.4013e-45	0x40683d8	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Shadows	NrdUsePrepassOnlyForSpecularMotionEstimation	0x200	0	0x4068410	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/NRD/Shadows	DLSSRRPreDenoiseShadows	0x200	1.4013e-45	0x4068448	1c37e09	VISUAL	RR shadow pre-denoise
+Rendering/NRD/Shadows	NrdPlaneDistanceSensitivity	0x202	0.02	0x4068480	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/RT	NrdMaxStabilizedFrameNum	0x201	7.00649e-45	0x40684b8	1c2fcd0	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/RT	EnableAOSSSampling	0x100	1.4013e-45	0x40684f0	1c32030	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT	AOPretraceQualityLevel	0x101	0	0x4068528	1c32154	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT	NrdSSDistanceCutOff	0x202	100	0x4068560	1c32154	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/RT	AOSSSampingOcclusionThreshold	0x202	0.8	0x4068598	1c32154	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/RT	NrdAmbientOcclusionPower	0x202	-1	0x40685d0	1c2fcd0 1c37e09	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/RayTracing	NrdAmbientOcclusionHBILPower	0x202	2	0x4068608	1c2d110 1c2d4c1	VISUAL	AO power
+Rendering/RayTracing	RTAOOvGrassPower	0x202	-1	0x4068640	1c2fcd0 1c37e09	VISUAL	RTAO radius/power override
+Rendering/RayTracing	RTAOOvTreesPower	0x202	-1	0x4068678	1c2fcd0 1c37e09	VISUAL	RTAO radius/power override
+Rendering/RayTracing	RTAOOvCharsPower	0x202	-1	0x40686b0	1c2fcd0 1c37e09	VISUAL	RTAO radius/power override
+Rendering/RayTracing	RTAOOvTerrainPower	0x202	-1	0x40686e8	1c2fcd0 1c37e09	VISUAL	RTAO radius/power override
+Rendering/RayTracing	RTAOOvSkinPower	0x202	-1	0x4068720	1c2fcd0 1c37e09	VISUAL	RTAO radius/power override
+Rendering/NRD/Specular	RTAOOvHairPower	0x202	-1	0x4068758	1c2fcd0 1c37e09	NOT_APPLIC	NRD denoiser constants (0x1c2fcd0): replaced by DLSS Ray Reconstruction in the owner configuration; in PT the NRD dispatch is skipped while RR is active (0x1c1eac9); denoise quality, not ray work
+Rendering/RT	RTShadowDayPoint	0x201	2.24208e-44	0x4068800	1c224a0	VISUAL	time-of-day point for RT shadow switching (0x1c2277d)
+Rendering/RT	RtRadianceEnableLowQ	0x200	1.4013e-45	0x4068838	1c20260	NOT_APPLIC	already on (low-quality reflection shading path)
+Rendering/NRD	RtRadianceScreenTraceZThreshold	0x202	0.01	0x4068870	1c1a66c	VISUAL	screen-trace threshold
+Rendering/RT	EnableFakeDaycycleOverrider	0x200	0	0x4068ad0	-	NOREAD	no code reads it (registration only)
+Rendering/RT	Timelapse	0x200	0	0x4068b08	-	NOREAD	no code reads it (registration only)
+RTXGI	TimelapseSpeed	0x202	1	0x4068b40	-	NOREAD	no code reads it (registration only)
+RTXGI	TurnOffInvalidation	0x200	0	0x4068b78	1c5bdff	UNSAFE	RTXGI block invalidation (stale GI)
+RTXGI	ClearBlockList	0x200	0	0x4068bb0	1c599c0	NOT_APPLIC	maintenance
+RTXGI	FramesPerRegularClearBlockListCycle	0x201	4.2039e-43	0x4068be8	1c599c0	VISUAL	maintenance period
+RTXGI	StopClassify	0x200	0	0x4068c20	-	NOREAD	no code reads it (registration only)
+Rendering/RT	GridIdForDebugOutput	0x201	1.4013e-45	0x4068c58	1c5ab30 1c6d720 28af330	NOT_APPLIC	debug
+Rendering/RT	TimelapseBegin	0x202	0	0x4068c90	-	NOREAD	no code reads it (registration only)
+RTXGI	TimelapseEnd	0x202	24	0x4068cc8	-	NOREAD	no code reads it (registration only)
+RTXGI	ProbeBounceImpact	0x202	1	0x4068d00	1c61f50	VISUAL	RTXGI lighting multiplier (0x1c61f50)
+RTXGI	DirectLightImpact	0x202	-1	0x4068d38	1c61f50	VISUAL	RTXGI lighting multiplier (0x1c61f50)
+RTXGI	GlobalLightImpact	0x202	-1	0x4068d70	1c61f50	VISUAL	RTXGI lighting multiplier (0x1c61f50)
+RTXGI	SkyImpact	0x202	-1	0x4068da8	1c61f50	OWNED	URT control
+RTXGI	WaterReflectionSkyMultiplier	0x202	-1	0x4068de0	1c61f50	VISUAL	RTXGI lighting multiplier (0x1c61f50)
+RTXGI	AdditiveLighting	0x202	0.02	0x4068e18	1c61f50	VISUAL	RTXGI lighting multiplier (0x1c61f50)
+RTXGI	VanilaSkyWaterImpactMultiplier	0x202	-1	0x4068e50	1c61f50	VISUAL	RTXGI lighting multiplier (0x1c61f50)
+RTXGI	LightCullingDistanceTweakCoef	0x202	1	0x4068e88	1c60f20 1c61f50	VISUAL	RTXGI lighting multiplier (0x1c61f50)
+RTXGI	GroundBrightnessScale	0x202	-1	0x4068ec0	1c61f50	VISUAL	RTXGI lighting multiplier (0x1c61f50)
+RTXGI	GroundBrightnessScaleInterior	0x202	-1	0x4068ef8	1c61f50	VISUAL	RTXGI lighting multiplier (0x1c61f50)
+RTXGI	SkyLightSaturation	0x202	-1	0x4068f30	1c61f50	VISUAL	RTXGI lighting multiplier (0x1c61f50)
+RTXGI	SkyMaxBrightness	0x202	-1	0x4068f68	1c61f50	VISUAL	RTXGI lighting multiplier (0x1c61f50)
+RTXGI	MemoryLoss	0x202	0	0x4068fa0	-	NOREAD	no code reads it (registration only)
+RTXGI	MemoryBlocksAllocated	0x201	0	0x4068fd8	-	NOREAD	no code reads it (registration only)
+RTXGI	MemoryBlocksAllocateCoef	0x202	0	0x4069010	-	NOREAD	no code reads it (registration only)
+RTXGI	FreeIndexTileLeft	0x201	0	0x4069048	-	NOREAD	no code reads it (registration only)
+RTXGI	FreeProbesSpaceLeft	0x201	0	0x4069080	-	NOREAD	no code reads it (registration only)
+RTXGI	FreeProbesSpaceLeftPercent	0x202	100	0x40690b8	1d32480	NOT_APPLIC	statistic
+RTXGI	MinFreeProbesSpaceLeft	0x202	100	0x40690f0	1c5660e 1d3251c	NOT_APPLIC	statistic
+RTXGI	ActiveSubBlocksRatio	0x202	100	0x4069128	1d3251c	NOT_APPLIC	statistic the game writes
+RTXGI	UpperBoundOfActiveProbesNum	0x201	3.67342e-40	0x4069160	1c5a870 1c5e350	UNSAFE	probe pool size (allocation)
+RTXGI	UpperBoundOfUsedTiles	0x202	0.2	0x4069198	-	NOREAD	no code reads it (registration only)
+RTXGI	RelocationCoef	0x202	0.5	0x40691d0	1c5bad0 1c5bce0	VISUAL	probe relocation
+RTXGI	CalculateCastadeShadowFactor	0x0	1.4013e-45	0x4069208	1c5b5c9	VISUAL	probe shading term
+RTXGI	CalculateProbeSkyShadowFactor	0x0	1.4013e-45	0x4069240	1c5b5c9	VISUAL	probe shading term
+RTXGI	VisualizeImpactZone	0x200	0	0x4069278	1c59ff0	NOT_APPLIC	debug
+RTXGI	ForceBlockReclassification	0x200	0	0x40692b0	1c59ac3	NOT_APPLIC	debug
+RTXGI	UndergroundProbeDotProd	0x202	0.75	0x40692e8	1c59ff0 1c5c140	VISUAL	probe test
+RTXGI	UndergroundProbeRayDist	0x202	2048	0x4069320	1c5c140	VISUAL	probe test
+RTXGI/GlobalGrid	ClassifyProbesAsync	0x200	0	0x4069358	1c21d30 1c21f10 1c60220 1c62f00 1c62f60	OWNED	V5.3.0 row
+RTXGI/GlobalGrid	GridCoverageX	0x202	616	0x4069390	1c5a190	UNSAFE	RTXGI grid dimensions / probe texel counts: texture and buffer sizes fixed when the grid is created
+RTXGI/GlobalGrid	GridCoverageY	0x202	616	0x40693c8	1c5a190	UNSAFE	RTXGI grid dimensions / probe texel counts: texture and buffer sizes fixed when the grid is created
+RTXGI/GlobalGrid	GridCoverageZ	0x202	256	0x4069400	1c5a190	UNSAFE	RTXGI grid dimensions / probe texel counts: texture and buffer sizes fixed when the grid is created
+RTXGI/GlobalGrid	ProbeGridSpacingX	0x202	3.5	0x4069438	1c5a190	UNSAFE	RTXGI grid dimensions / probe texel counts: texture and buffer sizes fixed when the grid is created
+RTXGI/GlobalGrid	ProbeGridSpacingY	0x202	3.5	0x4069470	1c5a190	UNSAFE	RTXGI grid dimensions / probe texel counts: texture and buffer sizes fixed when the grid is created
+RTXGI/GlobalGrid	ProbeGridSpacingZ	0x202	2	0x40694a8	1c5a190	UNSAFE	RTXGI grid dimensions / probe texel counts: texture and buffer sizes fixed when the grid is created
+RTXGI/GlobalGrid	GridScrollOffsetZ	0x202	0	0x40694e0	1c5bd3c	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/GlobalGrid	ProbeNumIrradianceTexels	0x201	8.40779e-45	0x4069518	1c5a190	UNSAFE	RTXGI grid dimensions / probe texel counts: texture and buffer sizes fixed when the grid is created
+RTXGI/GlobalGrid	ProbeNumDistanceTexels	0x201	1.96182e-44	0x4069550	1c5a190	UNSAFE	RTXGI grid dimensions / probe texel counts: texture and buffer sizes fixed when the grid is created
+RTXGI/GlobalGrid	ProbeMaxRayDist	0x102	128	0x4069588	1c59ff0 1c5a190	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/GlobalGrid	ProbeDistanceExponent	0x202	2	0x40695c0	1c59ff0 1c5a190	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/GlobalGrid	ProbeHysteresis	0x202	0.96	0x40695f8	1c59ff0 1c5a190	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/GlobalGrid	ProbeChangeTrashhold	0x202	0.8	0x4069630	1c59ff0 1c5a190	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/GlobalGrid	ProbeChangeHysteresisReduction	0x202	0.15	0x4069668	1c59ff0 1c5a190	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/GlobalGrid	ProbeBrightnessThreshold	0x202	0.1	0x40696a0	1c59ff0 1c5a190	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/GlobalGrid	ProbeBrightnessClampFactor	0x202	0.25	0x40696d8	1c59ff0 1c5a190	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/GlobalGrid	ProbeIrradianceEncodingGamma	0x202	1	0x4069710	1c5a190	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/GlobalGrid	IndirectProbeEffectivenessPenalty	0x202	0.5	0x4069748	1c59ff0 1c5a190	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/GlobalGrid	ViewBias	0x202	0	0x4069780	1c59ff0 1c5a190	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/GlobalGrid	NormalBias	0x202	0.05	0x40697b8	1c59ff0 1c5a190	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/GlobalGrid	BackfaceThreshold	0x202	0.1	0x40697f0	1c59ff0 1c5a190	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/GlobalGrid	MinFrontfaceDistance	0x202	0.2	0x4069828	1c59ff0 1c5a190	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/GlobalGrid	GridBlendingStartLine	0x202	0.9	0x4069860	1c59ff0 1c5a190	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/GlobalGrid	ShadeVisibleBlocksRatio	0x202	0.6	0x4069b70	1c59260	COVERED	RTXGI shading budget (URT RTGI presets: probes shaded per frame)
+RTXGI/GlobalGrid	NumClassificationRaysPerProbe	0x201	1.79366e-43	0x4069ba8	1c59ff0 1c5a190	OWNED	URT control (V5.2.0 / V5.3.0 module)
+RTXGI/GlobalGrid	NumShadingRaysPerProbe	0x201	4.48416e-44	0x4069be0	1c59ff0 1c5a190	OWNED	URT control (V5.2.0 / V5.3.0 module)
+RTXGI/GlobalGrid	FramesNumPerClassificationCycle	0x201	5.60519e-45	0x4069c18	1c59ff0 1c5a190	COVERED	RTXGI cycle budget; URT RTGI presets set rays/probes per frame
+RTXGI/GlobalGrid	FramesNumPerShadingCycle	0x201	4.2039e-45	0x4069c50	1c59ff0 1c5a190	COVERED	RTXGI cycle budget; URT RTGI presets set rays/probes per frame
+RTXGI/GlobalGrid	MaxProbesShadedPerFrame	0x201	2.29589e-41	0x4069c88	1c5a870	OWNED	URT control (V5.2.0 / V5.3.0 module)
+RTXGI/GlobalGrid	MaxProbesClassificatedPerFrameAfterFirstPass	0x201	9.18355e-41	0x4069cc0	1c5a870	COVERED	URT RTGI presets (probes classified per frame)
+RTXGI/GlobalGrid	EnableVarianceTracking	0x200	0	0x4069cf8	1c5b318	VISUAL	probe variance
+RTXGI/GlobalGrid	ClassificationFrameInd	0x201	0	0x4069d30	1c599c0	NOT_APPLIC	frame index the game writes
+RTXGI/GlobalGrid	ShadingFrameInd	0x201	0	0x4069d68	1c59260	NOT_APPLIC	frame index
+RTXGI/Grid1	StagingFrameInd	0x201	1.4013e-45	0x4069da0	1c5a5c0 1c5ac90 1c60220	NOT_APPLIC	frame index
+RTXGI/Grid1	ProbeGridSpacingX	0x202	1.2	0x4069dd8	1c5c140 1c5c700 1c5ca20	UNSAFE	RTXGI grid dimensions / probe texel counts: texture and buffer sizes fixed when the grid is created
+RTXGI/Grid1	ProbeGridSpacingY	0x202	1.2	0x4069e10	1c5c140 1c5c700 1c5ca20	UNSAFE	RTXGI grid dimensions / probe texel counts: texture and buffer sizes fixed when the grid is created
+RTXGI/Grid1	ProbeGridSpacingZ	0x202	1.2	0x4069e48	1c5c140 1c5c700 1c5ca20	UNSAFE	RTXGI grid dimensions / probe texel counts: texture and buffer sizes fixed when the grid is created
+RTXGI/Grid1	ProbeGridCountsX	0x201	8.96831e-44	0x4069e80	1c5c700 1c5ca20	UNSAFE	RTXGI grid dimensions / probe texel counts: texture and buffer sizes fixed when the grid is created
+RTXGI/Grid1	ProbeGridCountsY	0x201	8.96831e-44	0x4069eb8	1c5c700 1c5ca20	UNSAFE	RTXGI grid dimensions / probe texel counts: texture and buffer sizes fixed when the grid is created
+RTXGI/Grid1	ProbeGridCountsZ	0x201	2.24208e-44	0x4069ef0	1c5c700 1c5ca20	UNSAFE	RTXGI grid dimensions / probe texel counts: texture and buffer sizes fixed when the grid is created
+RTXGI/Grid1	GridScrollOffsetZ	0x202	0	0x4069f28	1c5bd3c	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/Grid1	UseOldRayDistribution	0x200	0	0x4069f60	1c5c140 1c5c3df	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/Grid1	ShadingRaysPerFrameBudget	0x201	7.34684e-40	0x4069f98	1c5c140 1c5c700 1c5ca20	OWNED	URT control (V5.2.0 / V5.3.0 module)
+RTXGI/Grid1	NumClassificationRaysPerProbe	0x201	4.48416e-44	0x4069fd0	1c5c140 1c5c700 1c5ca20	OWNED	URT control (V5.2.0 / V5.3.0 module)
+RTXGI/Grid1	FramesNumPerClassificationCycle	0x201	8.96831e-44	0x406a008	1c5c140 1c5c700 1c5ca20	COVERED	RTXGI cycle budget; URT RTGI presets set rays/probes per frame
+RTXGI/Grid1	FramesNumPerShadingCycle	0x201	4.48416e-44	0x406a040	1c5c140 1c5c700 1c5ca20	COVERED	RTXGI cycle budget; URT RTGI presets set rays/probes per frame
+RTXGI/Grid1	NumShadingDirectionPerCycle	0x201	9.18355e-41	0x406a078	1c5c140 1c5c700 1c5ca20	COVERED	RTXGI cycle budget; URT RTGI presets set rays/probes per frame
+RTXGI/Grid1	MaxProbesShadedPerFrame	0x201	3.67342e-40	0x406a0b0	-	OWNED	URT control (V5.2.0 / V5.3.0 module)
+RTXGI/Grid1	MaxProbesClassificatedPerFrame	0x201	3.67342e-40	0x406a0e8	1c5ca20	OWNED	URT control (V5.2.0 / V5.3.0 module)
+RTXGI/Grid1	ProbeNumIrradianceTexels	0x201	8.40779e-45	0x406a120	1c5c700 1c5ca20	UNSAFE	RTXGI grid dimensions / probe texel counts: texture and buffer sizes fixed when the grid is created
+RTXGI/Grid1	ProbeNumDistanceTexels	0x201	1.96182e-44	0x406a158	1c5c700 1c5ca20	UNSAFE	RTXGI grid dimensions / probe texel counts: texture and buffer sizes fixed when the grid is created
+RTXGI/Grid1	ProbeMaxRayDist	0x102	128	0x406a190	1c5c140 1c5c700 1c5ca20	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/Grid1	ProbeDistanceExponent	0x202	8	0x406a1c8	1c5c140 1c5c700 1c5ca20	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/Grid1	ProbeHysteresis	0x202	0.96	0x406a200	1c5c140 1c5c700 1c5ca20	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/Grid1	ProbeChangeTrashhold	0x202	0.8	0x406a238	1c5c140 1c5c700 1c5ca20	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/Grid1	ProbeChangeHysteresisReduction	0x202	0.15	0x406a270	1c5c140 1c5c700 1c5ca20	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/Grid1	ProbeBrightnessThreshold	0x202	0.1	0x406a2a8	1c5c140 1c5c700 1c5ca20	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/Grid1	ProbeBrightnessClampFactor	0x202	0.25	0x406a2e0	1c5c140 1c5c700 1c5ca20	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/Grid1	ProbeIrradianceEncodingGamma	0x202	1	0x406a318	1c5c140 1c5c700 1c5ca20	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/Grid1	IndirectProbeEffectivenessPenalty	0x202	0.5	0x406a350	1c5c140 1c5c700 1c5ca20	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/Grid1	ViewBias	0x202	0	0x406a388	1c5c140 1c5c700 1c5ca20	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/Grid1	NormalBias	0x202	0.05	0x406a3c0	1c5c140 1c5c700 1c5ca20	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/Grid1	BackfaceThreshold	0x202	0.1	0x406a3f8	1c5c140 1c5c700 1c5ca20	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/Grid1	MinFrontfaceDistance	0x202	0.1	0x406a430	1c5c140 1c5c700 1c5ca20	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/Grid1	GridBlendingStartLine	0x202	0.8	0x406a468	1c5c140 1c5c700 1c5ca20	VISUAL	RTXGI probe update constant (hysteresis/bias/thresholds): GI quality, same rays
+RTXGI/Grid1	EnableVarianceTracking	0x200	1.4013e-45	0x406a4a0	1c5b318	VISUAL	probe variance
+RTXGI/Grid1	ActiveProbesNum	0x201	0	0x406a9a8	1d325d9	NOT_APPLIC	statistic
+RTXGI	ProcessProbesGridCheckerboard	0x200	1.4013e-45	0x406a9e0	1c5bad0 1c5c140 1c5c6b0 1c5c700 1c5ca20 1c61410	NOT_APPLIC	already on (RTXGI checkerboard probe processing)
+RTXGI	SkyLightIntensity	0x202	-1	0x406aa18	1c2be90 1c61f50	VISUAL	RTXGI lighting multiplier (0x1c61f50)
+RTXGI	VanilaSkyImpactMultiplier	0x202	-1	0x406aa50	1c2be90 1c61f50	VISUAL	RTXGI lighting multiplier (0x1c61f50)
+Rendering/RT	UseShadeCulling	0x0	1.4013e-45	0x406aa88	1c20260 1c5b5c9 1c5ffc0	NOT_APPLIC	already on
+RTXGI	RTGIPreset	0x100	0	0x406aac0	1c61410 1c617e0	OWNED	URT control
+RTXGI	EnableDeferredLightsStencil	0x0	1.4013e-45	0x406ab48	1c6d720 1d1fc00	NOT_APPLIC	already on
+RTXGI	SunLightColorMultiplier	0x2	1	0x406ab80	1c6ff10	VISUAL	RTXGI lighting multiplier (0x1c61f50)
+RTXGI	SunLightSideMultiplier	0x2	1	0x406abb8	1c6ff10	VISUAL	RTXGI lighting multiplier (0x1c61f50)
+RTXGI	SunLightOppositeSideMultiplier	0x2	1	0x406abf0	1c6ff10	VISUAL	RTXGI lighting multiplier (0x1c61f50)
+Rendering/RT	UseTiledDeferred	0x200	1.4013e-45	0x406ad08	1c6d720	UNSAFE	deferred lighting path (pipeline)
+Rendering/Particles	MergedShadowMeshTwoSided	0x200	0	0x406b328	1c81a20	VISUAL	two-sided particle shadow mesh
+Rendering/Particles	MaxOffscreenSimTime	0x2	2	0x406b360	-	NOREAD	no code reads it (registration only)
+Rendering/RT/State	RTStateMeshMask	0x201	2.10195e-44	0x406bd30	033dfb0 037e2a6 0384250 038459f 1c08100 1c224a0 1c267f0 1caef71 1caf054 1caf260 1cd69c0 1cd6a00 1cdd720 1cde16d 1ce18e0 1cecf9d 1d2b2fa 1d44840 1d65bb0	UNSAFE	instance ray masks used by every RT/PT pass; changing excludes geometry classes from all passes (and the hair masks Orange Hair Fix relies on)
+Rendering/RT/State	RTStateApexMask	0x201	2.10195e-44	0x406bd68	033dfb0 037e270 0384250 038459f 1c08100 1c224a0 1c267f0 1caef40 1caf020 1caf210 1cd69c0 1cd6a00 1cdd720 1cde16d 1ce18e0 1cecf9d 1d2b200 1d4463c 1d44840 1d65bb0	UNSAFE	as RTStateMeshMask
+Rendering/RT/State	RTStateTerrainMask	0x201	2.10195e-44	0x406bda0	033dfb0 037e270 0384250 038459f 1c08100 1c224a0 1c267f0 1caef40 1caf020 1caf210 1cd69c0 1cd6a00 1cdd720 1cde16d 1ce18e0 1cecf9d 1d2b200 1d4463c 1d44840 1d65bb0	UNSAFE	as RTStateMeshMask
+Rendering/RT/SpeedTree	GrassDensityLodScale	0x202	1	0x406c858	1ce23e0	IMPLEMENTED	R6 EXPERIMENTAL
+Rendering/RT/SpeedTree	RTSTConfigUpdates	0x200	1.4013e-45	0x406c890	1bf4867 1c224a0 1cea580 1cedba0	COVERED	master of the vegetation updates; the R6 rows control each class
+Rendering/RT/SpeedTree	RTSTConfigCloneRTMeshComponents	0x200	0	0x406c8c8	1cea580	UNSAFE	component cloning at creation
+Rendering/RT/SpeedTree	RTSTConfigInstancingDistance	0x202	20	0x406c900	1cea580	UNSAFE	instancing layout
+Rendering/RT/SpeedTree	RTSTConfigSkinnedTimeout	0x201	2.24208e-44	0x406c938	1cea580	VISUAL	timeout of skinned tree updates
+Rendering/RT/SpeedTree	RTSTTrees	0x200	1.4013e-45	0x406c970	1ce3a90 1cea470	UNSAFE	removes trees from the RT scene; URT design rule (cr01_distant_trees501.c): never modify RTSTTrees (owned distant-tree/billboard logic); also removes every PT tree shadow
+Rendering/RT/SpeedTree	RTSTTreesProximity	0x200	1.4013e-45	0x406c9a8	1ce3a90 1cea470	UNSAFE	as RTSTTrees (near trees)
+Rendering/RT/SpeedTree	RTSTTreesUpdates	0x200	1.4013e-45	0x406c9e0	1ce3a90 1cea470	COVERED	RT/PT: Static Ray-Traced Trees (R6) stops the same tree refits
+Rendering/RT/SpeedTree	RTSTTreesInstancing	0x200	1.4013e-45	0x406ca18	1ce3a90 1cea470	UNSAFE	tree BLAS instancing (memory/build layout at component creation)
+Rendering/RT/SpeedTree	RTSTTreesUpdateOnlyOnce	0x200	0	0x406ca50	1ce3a90 1cea470	IMPLEMENTED	R6 EXPERIMENTAL
+Rendering/RT/SpeedTree	RTSTTreesUpdateOnlyNear	0x200	1.4013e-45	0x406ca88	1ce3a90 1cea470	COVERED	RT: Tree Wind Distance (V5.3.0) sets the near range
+Rendering/RT/SpeedTree	RTSTTreesInstancingOnlyDistant	0x200	1.4013e-45	0x406cac0	1ce3a90 1cea470	UNSAFE	as RTSTTreesInstancing
+Rendering/RT/SpeedTree	RTSTTreesForceNonInstancedShader	0x200	1.4013e-45	0x406caf8	1ce7136	UNSAFE	hit-shader selection for trees (state object)
+Rendering/RT/SpeedTree	RTSTTreesBillboardShadowsTowardViewer	0x200	0	0x406cb30	1cec581	VISUAL	billboard orientation
+Rendering/RT/SpeedTree	RTSTGrassProximity	0x200	1.4013e-45	0x406cb68	1ce16f0 1ce18e0 1ce7136 1cea3d0	CANDIDATE	removes near grass from the RT scene entirely; covered in effect by RT/PT: Ray-Traced Grass Density 0.25 (R6), kept native
+Rendering/RT/SpeedTree	RTSTGrassUpdates	0x200	1.4013e-45	0x406cba0	1ce16f0 1ce7136 1cea3d0	IMPLEMENTED	R6 EXPERIMENTAL
+Rendering/RT/SpeedTree	RTSTGrassUpdateOnlyOnce	0x200	1.4013e-45	0x406cbd8	1ce16f0 1ce7136 1cea3d0	COVERED	RT/PT: Ray-Traced Grass Wind Off (R6) is the stronger form
+Rendering/RT/SpeedTree	RTSTBillboards	0x200	1.4013e-45	0x406cc10	1ce3a90 1ce7136 1cea2b0 1cea470	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT/SpeedTree	RTSTBillboardsProximity	0x200	1.4013e-45	0x406cc48	1ce3a90 1ce7136 1cea2b0 1cea470	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT/SpeedTree	RTSTBillboardsUpdates	0x200	1.4013e-45	0x406cc80	1ce3a90 1ce7136 1cea2b0	IMPLEMENTED	R6 EXPERIMENTAL
+Rendering/RT/SpeedTree	RTSTBillboardsInstancing	0x200	1.4013e-45	0x406ccb8	1ce3a90 1ce7136 1cea2b0	UNSAFE	as RTSTTreesInstancing
+Rendering/RT/SpeedTree	FoliageShadowDistanceScale	0x102	10	0x406cda0	1ce5910	TESTED_NO	V5.1 RT foliage-shadow detail row, removed (no material gain)
+Rendering/RT/Data	RTDataUseDefaultMaterial	0x200	0	0x406d168	1c7fba0 1ca1e10 1d0da97 1d0dd90 1d10820 1d10e31 1d11030 1d114d0	UNSAFE	replaces every RT material at data creation (0x1d0da97): whole-scene visual change, not live
+Rendering/RT/Data	RTDataUseSharedVertexData	0x200	1.4013e-45	0x406d1a0	1caf0d7 1d10c12 1d10ef0 1d120c0 1d121fa 1d122ab	UNSAFE	RT vertex-data layout at creation
+Rendering/RT/Data	RTDataAlignVerticesBy64	0x200	0	0x406d1d8	1d10bf3	UNSAFE	RT vertex-data layout
+Rendering/RT/Data	RTDataDisableInternalUAVSyncs	0x200	0	0x406d210	-	NOREAD	no code reads it (registration only)
+Rendering/RT	FakeMeshesNotReady	0x0	0	0x406dcc8	-	NOREAD	no code reads it (registration only)
+Rendering/RT	RT_Tapu16_DiagSize	0x202	40	0x406dd00	1d2a374	UNSAFE	instance mask bits 0x40/0xc0 by size (0x1d2a3e5): pass visibility masks
+Rendering/RT	RT_Tapu4_DiagSize	0x202	20	0x406dd38	1d2a374	UNSAFE	as RT_Tapu16_DiagSize
+Rendering/RT	RT_Cull_More_Than_DiagSize	0x202	4000	0x406dd70	1d2a374	VISUAL	size filter of one RT mesh class (0x1d2a3bf): culls only objects LARGER than 4000 m
+Rendering/RayTracing	DLSSRRPreset	0x201	8.40779e-45	0x5130238	1ed95f0	UNSAFE	native DLSS setting
+Rendering/RayTracing	ProbeSamplerMipBias	0x201	0	0x5130270	1ee9977	VISUAL	sampler LOD bias
+Rendering/RT/AS/Config	RayTracingDistanceToCameraBiasFar	0x202	4	0x51302a8	1ef2340	VISUAL	PT/RT frame constant (0x1ef2340): bias, sequence, impact or material factor; no TraceRay is gated by it (PTRGS gate analysis)
+Rendering/RayTracing	RTConfigRebuildEveryFrame	0x200	0	0x51302e0	1ee97d0	TESTED_NO	debug switch: rebuilds every BLAS every frame (more work, never less)
+Rendering/RayTracing	RayTracingDistanceToCameraBiasNear	0x202	0.0078125	0x5130318	1ef2340	VISUAL	PT/RT frame constant (0x1ef2340): bias, sequence, impact or material factor; no TraceRay is gated by it (PTRGS gate analysis)
+Rendering/RT/AS/Config	RayTracingDistanceToCameraBiasSkinNear	0x202	0.0008	0x5130350	1ef2340	VISUAL	PT/RT frame constant (0x1ef2340): bias, sequence, impact or material factor; no TraceRay is gated by it (PTRGS gate analysis)
+Rendering/RT/AS/Config	RTConfigDefragThresholdPerCent	0x201	4.2039e-44	0x5130388	1ee97d0	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT/AS/Config	RTConfigDefragWithCompact	0x200	1.4013e-45	0x51303c0	1ee97d0	UNSAFE	AS-manager configuration at RT init (0x1ee97d0); memory only
+Rendering/RayTracing	RTConfigDefragMaxSizeMB	0x201	4.48416e-44	0x51303f8	-	NOREAD	no code reads it (registration only)
+Rendering/RT/AS/Config	RayTracingUseCosineWeightedSampleDistribution	0x200	1.4013e-45	0x5130430	1ef2340	VISUAL	PT/RT frame constant (0x1ef2340): bias, sequence, impact or material factor; no TraceRay is gated by it (PTRGS gate analysis)
+Rendering/RayTracing	RTConfigMaxBlasesInBatch	0x201	3.58732e-43	0x5130468	1ee97d0	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RayTracing	RayTracingAmbientOcclusionSphericalDomeRadius	0x202	1	0x51304a0	1ef2340	VISUAL	PT/RT frame constant (0x1ef2340): bias, sequence, impact or material factor; no TraceRay is gated by it (PTRGS gate analysis)
+Rendering/RT/AS/Filter	RayTracingLocalShadowsSkinNVDeltaScale	0x202	0.0001	0x51304d8	1ef2340	VISUAL	PT/RT frame constant (0x1ef2340): bias, sequence, impact or material factor; no TraceRay is gated by it (PTRGS gate analysis)
+Rendering/RT/AS/Config	RTFilterExcludeDynamic	0x200	0	0x5130510	-	NOREAD	no code reads it (registration only)
+Rendering/RT/AS/Config	RTConfigForbidRefit	0x200	0	0x5130548	1ee97d0	TESTED_NO	forces rebuilds instead of refits (more work)
+Rendering/RayTracing	RTConfigFastTraceDynamic	0x200	0	0x5130580	1ee97d0	OWNED	V5.3.0 row
+Rendering/RT	RayTracingAdditiveRecurrenceSequenceAlphaY	0x202	0.618034	0x51305b8	1ef2340	VISUAL	PT/RT frame constant (0x1ef2340): bias, sequence, impact or material factor; no TraceRay is gated by it (PTRGS gate analysis)
+Rendering/RT/AS/Config	CreateGlobalCollection	0x200	1.4013e-45	0x51305f0	-	NOREAD	no code reads it (registration only)
+Rendering/RayTracing	RTConfigEnableDefrag	0x200	1.4013e-45	0x5130628	1ee97d0	COVERED	URT RT memory: AS Defrag threshold (startup row)
+Rendering/RT/AS/Config	RayTracingDistanceToCameraBiasCalculationDistance	0x202	8192	0x5130660	1ef2340	VISUAL	PT/RT frame constant (0x1ef2340): bias, sequence, impact or material factor; no TraceRay is gated by it (PTRGS gate analysis)
+Rendering/RayTracing	RTConfigMaxShaderScratchSizeMB	0x201	4.48416e-44	0x5130698	1ee97d0	UNSAFE	scratch allocation size at RT init (memory, not ray work)
+Rendering/RayTracing	GbufferSamplerMipBias	0x201	0	0x51306d0	1ee9977	VISUAL	sampler LOD bias
+Rendering/RayTracing	RayTracingAdditiveRecurrenceSequenceIndexLimit	0x201	2.86986e-42	0x5130708	1ef2340	VISUAL	PT/RT frame constant (0x1ef2340): bias, sequence, impact or material factor; no TraceRay is gated by it (PTRGS gate analysis)
+Rendering/RayTracing	GbufferSamplerMinMagLinear	0x200	1.4013e-45	0x5130740	1ee98e0	VISUAL	sampler filter
+Rendering/RayTracing	OcclusionSamplerMipBias	0x201	2.8026e-45	0x5130778	1ee9977	VISUAL	sampler LOD bias
+Rendering/RT	RayTracingDistanceToCameraBiasSkinFar	0x202	0.0001	0x51307b0	1ef2340	VISUAL	PT/RT frame constant (0x1ef2340): bias, sequence, impact or material factor; no TraceRay is gated by it (PTRGS gate analysis)
+Rendering/RT/AS/Config	RightPrimaryHitGroup	0x201	0	0x51307e8	1ef2340	NOT_APPLIC	debug hit-group override (0 = native)
+Rendering/RayTracing	RTConfigClearAllAllocations	0x200	0	0x5130820	1ee97d0	NOT_APPLIC	debug: frees AS allocations
+Rendering/RT/AS/Filter	RayTracingLocalShadowsNVDeltaScale	0x202	0.01	0x5130858	1ef2340	VISUAL	PT/RT frame constant (0x1ef2340): bias, sequence, impact or material factor; no TraceRay is gated by it (PTRGS gate analysis)
+Rendering/RT	RTFilterExcludeStatic	0x200	0	0x5130890	-	NOREAD	no code reads it (registration only)
+Rendering/RT/AS/Config	InlineThreadGroup64	0x200	1.4013e-45	0x51308c8	1ef0970	UNSAFE	inline-RT PSO selection (0x1ef0970): pipeline topology
+Rendering/RT	RTConfigFastBuildDynamic	0x200	1.4013e-45	0x5130900	1ee97d0	DUPLICATE	pair of RTConfigFastTraceDynamic (URT RT Animated Geometry Trace Mode)
+Rendering/RayTracing	InlineRTAO	0x200	0	0x5130938	1ef0970	CANDIDATE	Normal RT AO via the inline "DXR Inline Occlusion PSO" (0x1ef0adf); needs proof the PSO exists when the game starts with it off, then a restart-guarded test
+Rendering/RT/AS/Filter	GbufferSamplerMipLinear	0x200	0	0x5130970	1ee98e0	VISUAL	sampler filter
+Rendering/RT/AS/Filter	RTDumpTlasBlasNames	0x200	0	0x51309a8	-	NOREAD	no code reads it (registration only)
+Rendering/RT/AS/Config	RTFilterByIdRangeFrom	0x201	0	0x51309e0	-	NOREAD	no code reads it (registration only)
+Rendering/RT	RTConfigCompactResult	0x200	1.4013e-45	0x5130a18	1ee97d0	UNSAFE	AS memory compaction state read at RT init (0x1ee97d0); memory only; the async compaction crash path
+Rendering/RT/AS/Config	LeftPrimaryHitGroup	0x201	0	0x5130a50	1ef2340	NOT_APPLIC	debug hit-group override
+Rendering/RT/AS/Config	RTConfigRegenerateDynamic	0x200	0	0x5130a88	1ee97d0	TESTED_NO	regenerates dynamic BLASes (more work)
+Rendering/RayTracing	RTConfigKeepDescriptorRange	0x200	1.4013e-45	0x5130ac0	1ee97d0	UNSAFE	descriptor-heap layout at RT init
+Rendering/RT/AS/Filter	RayTracingDistanceToCameraBiasSkinCalculationDistance	0x202	8192	0x5130af8	1ef2340	VISUAL	PT/RT frame constant (0x1ef2340): bias, sequence, impact or material factor; no TraceRay is gated by it (PTRGS gate analysis)
+Rendering/RayTracing	RTFilterByIdRangeTo	0x201	1.4013e-39	0x5130b30	-	NOREAD	no code reads it (registration only)
+Rendering/RT	RayTracingAdditiveRecurrenceSequenceAlphaX	0x202	0.785398	0x5130b68	1ef2340	VISUAL	PT/RT frame constant (0x1ef2340): bias, sequence, impact or material factor; no TraceRay is gated by it (PTRGS gate analysis)
+Rendering/RT	EnableSER	0x200	1.4013e-45	0x5130ba0	1ed7a80 1eec960	NOT_APPLIC	already on (shader execution reordering, 0x1eec960)
+Rendering/RayTracing	EnableAOPretrace	0x100	1.4013e-45	0x5130bd8	1c1dc91 1c325fd 1c37e09 1ef2340	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RayTracing	RayTracingAmbientOcclusionRadius	0x202	-1	0x5130c10	1c2e400 1c2fcd0 1c31550 1c32304	VISUAL	RTAO radius/power override
+Rendering/RayTracing	RTAOOvGrassRadius	0x202	-1	0x5130c48	1c2e400 1c32304	VISUAL	RTAO radius/power override
+Rendering/RayTracing	RTAOOvTreesRadius	0x202	-1	0x5130c80	1c2e400 1c32304	VISUAL	RTAO radius/power override
+Rendering/RayTracing	RTAOOvCharsRadius	0x202	-1	0x5130cb8	1c2e400 1c32304	VISUAL	RTAO radius/power override
+Rendering/RayTracing	RTAOOvTerrainRadius	0x202	-1	0x5130cf0	1c2e400 1c32304	VISUAL	RTAO radius/power override
+Rendering/RayTracing	RTAOOvSkinRadius	0x202	-1	0x5130d28	1c2e400 1c32304	VISUAL	RTAO radius/power override
+Rendering/RayTracing	RTAOOvHairRadius	0x202	-1	0x5130d60	1c2e400 1c32304	VISUAL	RTAO radius/power override
+Rendering/RayTracing	RayTracingAmbientOcclusionPower	0x202	-1	0x5130d98	1c2e400 1d1b990	VISUAL	RTAO radius/power override
+Viewport	UnlockGraphicsSettings	0x200	0	0x5148cc0	2273190	NOT_APPLIC	menu unlock
+Rendering/RT	ShowPsoStats	0x200	0	0x5149440	-	NOREAD	no code reads it (registration only)
+Rendering/RT	ForbidSSSR	0x200	0	0x5149478	227f7c0 22bbea0	UNSAFE	native screen-space reflection path
+Rendering/RT	SSREnabled	0x100	1.4013e-45	0x51494e8	227f7c0 22bbea0	UNSAFE	native graphics setting
+Rendering/RT/PathTracer	NewGradCalc	0x201	0	0x5149600	-	NOREAD	no code reads it (registration only)
+Rendering/RT/PathTracer	PTFinalShaders	0x200	1.4013e-45	0x5149638	-	NOREAD	registration only
+Rendering/RT/PathTracer	PTNumBounces	0x201	2.8026e-45	0x5149670	-	NOREAD	not read; bounces come from URT Geometry/Hair Bounces
+Rendering/RT/PathTracer	PTSamplesPerPixel	0x201	1.4013e-45	0x51496a8	-	NOREAD	not read by any code: the PT always traces one path per pixel; no sample-count lever exists
+Rendering/RT/PathTracer	PTDirectLightImpact	0x202	1	0x51496e0	1ef2340	VISUAL	PT/RT frame constant (0x1ef2340): bias, sequence, impact or material factor; no TraceRay is gated by it (PTRGS gate analysis)
+Rendering/RT/PathTracer	PTSunImpact	0x202	1	0x5149718	1c1e3f0 1ef2340	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT/PathTracer	PTMoonImpact	0x202	1	0x5149750	1ef2340	OWNED	V5.3.0 row
+Rendering/RT/PathTracer	PTSkyImpact	0x202	1	0x5149788	1ef2340	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT/PathTracer	PTUseNewSkyModel	0x200	0	0x51497c0	-	NOREAD	no code reads it (registration only)
+Rendering/RT/PathTracer	PTAnalyticSkyTurbidity	0x202	3.5	0x51497f8	1c1a66c 1c2e400	VISUAL	PT sky/light factor
+Rendering/RT/PathTracer	PTAnalyticSkyExposure	0x202	0.12	0x5149830	1c1a66c 1c2e400	VISUAL	PT sky/light factor
+Rendering/RT/PathTracer	PTDimmerEnable	0x200	0	0x5149868	1ef2340	VISUAL	interior dimmer factor in PT constants
+Rendering/RT/PathTracer	PTLocalLightMaskEnable	0x200	1.4013e-45	0x51498a0	1c1e3f0 1ef2340	UNSAFE	interior/exterior light masking inside the PT light loop; Off makes lights leak through walls
+Rendering/RT/PathTracer	PTIndirectLightMultiplier	0x202	1	0x51498d8	-	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT/PathTracer	PTSkinIndirectDesaturation	0x202	0.5	0x5149910	1c1a66c 1ef2340	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT/PathTracer	PTGameLightsScale	0x202	-1	0x5149948	22bd820	VISUAL	light intensity scale
+Rendering/RT/PathTracer	PTAllSceneFakeLightsScale	0x202	-1	0x5149980	1c1e3f0 1c7182f 22bcb00 22bd8f0	VISUAL	light intensity scale
+Rendering/RT/PathTracer	PTCameraNonCharactersScale	0x202	-1	0x51499b8	22bd990	VISUAL	light intensity scale
+Rendering/RT/PathTracer	PTUseWRS	0x200	1.4013e-45	0x51499f0	-	NOREAD	no code reads it (registration only)
+Rendering/RT/PathTracer	PTUseEONDiffuse	0x200	0	0x5149a98	-	NOREAD	no code reads it (registration only)
+Rendering/RT/PathTracer	PTUseHeightCorrelatedG	0x200	0	0x5149b08	-	NOREAD	no code reads it (registration only)
+Rendering/RT/PathTracer	PTUseSHARC	0x200	0	0x5149b40	1c1e96f 228fde0	NOT_APPLIC	radiance cache switch (code default off); R7 logs its effective state once in PT (read-only)
+Rendering/RT/PathTracer	PTSharcResetCache	0x200	0	0x5149b78	1c1e96f	NOT_APPLIC	one-shot reset
+Rendering/RT/PathTracer	PTSharcEntriesNumLog2	0x201	3.08286e-44	0x5149bb0	1c2e400 228f940	UNSAFE	SHaRC hash-table size, allocated at init
+Rendering/RT/PathTracer	PTSharcDownscaleFactor	0x201	7.00649e-45	0x5149be8	1c2e400 228f970	OWNED	V5.3.0 row
+Rendering/RT/PathTracer	PTSharcAccumulationFrameNum	0x201	4.48416e-44	0x5149c20	1c2e400	VISUAL	temporal accumulation length
+Rendering/RT/PathTracer	PTSharcStaleFrameNum	0x201	8.96831e-44	0x5149c58	1c2e400	VISUAL	cache eviction age
+Rendering/RT/PathTracer	PTSharcSceneScale	0x202	50	0x5149c90	1c2e400	VISUAL	cache voxel scale (quality/collisions; density is the URT row)
+Rendering/RT/PathTracer	PTSharcRoughnessMin	0x202	0.4	0x5149cc8	1c2e400	VISUAL	cache use threshold
+Rendering/RT/PathTracer	PTSharcRadianceScale	0x202	1000	0x5149d00	1c2e400	VISUAL	encoding scale
+Rendering/RT/Caustics	PTSharcDebugMode	0x201	0	0x5149d38	1c2e400	NOT_APPLIC	debug
+Rendering/RT/Caustics	CausticsEnable	0x200	0	0x5149d70	1c2e400 228fa50	NOT_APPLIC	caustics off natively (V5.2 caustics rows retired)
+Rendering/RT/Caustics	CausticsMode	0x201	9.80909e-45	0x5149da8	1c2e400	NOT_APPLIC	caustics off natively; V5.2 caustics rows retired
+Rendering/RT/Caustics	CausticsDebugMode	0x201	0	0x5149de0	1c1e96f 1c2e400	NOT_APPLIC	caustics off natively; V5.2 caustics rows retired
+Rendering/RT/Caustics	CausticsCasterResolution	0x201	2.86986e-42	0x5149e18	1c2e400 228fb30	NOT_APPLIC	caustics off natively; V5.2 caustics rows retired
+Rendering/RT/Caustics	CausticsStrength	0x202	1	0x5149e50	1c2e400 228fa50	NOT_APPLIC	caustics off natively; V5.2 caustics rows retired
+Rendering/RT/Caustics	CausticsRefractedIntensity	0x202	1	0x5149e88	1c2e400 228fa50	NOT_APPLIC	caustics off natively; V5.2 caustics rows retired
+Rendering/RT/Caustics	CausticsOnWaterIntensity	0x202	0.2	0x5149ec0	1c2e400 228fa50	NOT_APPLIC	caustics off natively; V5.2 caustics rows retired
+Rendering/RT/Caustics	CausticsReflectedIntensity	0x202	1	0x5149ef8	1c2e400 228fa50	NOT_APPLIC	caustics off natively; V5.2 caustics rows retired
+Rendering/RT/Caustics	CausticsHalfExtent	0x202	60	0x5149f30	1c2e400	NOT_APPLIC	caustics off natively; V5.2 caustics rows retired
+Rendering/RT/Caustics	CausticsWaterLevel	0x202	0	0x5149f68	1c2e400	NOT_APPLIC	caustics off natively; V5.2 caustics rows retired
+Rendering/RT/Caustics	CausticsDepthTolerance	0x202	0.005	0x5149fa0	1c2e400	NOT_APPLIC	caustics off natively; V5.2 caustics rows retired
+Rendering/RT/Caustics	CausticsAbsorption	0x202	0.15	0x5149fd8	1c2e400	NOT_APPLIC	caustics off natively; V5.2 caustics rows retired
+Rendering/RT/Caustics	CausticsResolveRadius	0x201	2.8026e-45	0x514a010	1c2e400 228fb60	NOT_APPLIC	caustics off natively; V5.2 caustics rows retired
+Rendering/RT/Caustics	CausticsMaxIrradiance	0x202	50	0x514a048	1c2e400	NOT_APPLIC	caustics off natively; V5.2 caustics rows retired
+Rendering/RT/Caustics	CausticsMaxFootprint	0x202	0.4	0x514a080	1c2e400	NOT_APPLIC	caustics off natively; V5.2 caustics rows retired
+Rendering/RT/Caustics	CausticsWaterIor	0x202	1.333	0x514a0b8	1c2e400	NOT_APPLIC	caustics off natively; V5.2 caustics rows retired
+Rendering/RT/Caustics	CausticsOutputToPT	0x200	0	0x514a0f0	1c1e96f 1c1ee60	NOT_APPLIC	caustics off natively
+Rendering/RT	Enable	0x100	1.4013e-45	0x514a198	1c1a66c 1c6592c 1ea5a60 1ecc550 1ecc670 2273000	UNSAFE	native RT on/off
+Rendering/RT	EnableLightingOnlyMode	0x200	0	0x514a1d0	227f7c0 22bbea0	NOT_APPLIC	debug view
+Rendering/RT	ProximityTLASBigObject	0x202	15	0x514a208	1cf2a20 1cf2bd0 228f6c0	IMPLEMENTED	Normal RT filter size; R7 PT: Small Object Culling makes PT use it too (kept at the native 15 m)
+Rendering/RT	RTGameLightsScale	0x202	-1	0x514a240	22bd820	VISUAL	light intensity scale
+Rendering/RT	RTCameraNonCharactersScale	0x202	-1	0x514a278	22bd990	VISUAL	light intensity scale
+Rendering/RT	UseUniversalOcclusionAHS	0x200	0	0x514a2b0	1d0d960 1d2552e 1d257e0	CANDIDATE	switches to the AnyHitUni* any-hit shaders (state-object topology, 0x1d2552e/0x1d257e0); restart-guarded A/B test needed; direction of the effect unknown
+Rendering/RT	UseUniversalClassificationAHS	0x200	0	0x514a2e8	1d0da97 1d2552e 1d257e0 228f640	CANDIDATE	as UseUniversalOcclusionAHS
+Rendering/RT	UseUniversalGBufferAHS	0x200	0	0x514a320	1d0da97 1d2552e 1d257e0 228f640	CANDIDATE	as UseUniversalOcclusionAHS
+Rendering/RT	UseUniversalBaryModeCHS	0x200	0	0x514a358	1d0d960 1d2552e 1d257e0	CANDIDATE	ClosestHitUniBary path; as UseUniversalOcclusionAHS
+Rendering/RayTracing	ForceNotScreenBasedGradCalc	0x200	0	0x514a3c8	1ef2340	VISUAL	gradient method
+Rendering/Async	RayTracingGradCalcTanFactor	0x202	0.4	0x514a400	1ef2340	VISUAL	gradient
+Rendering/Async	UseAsyncComputeGlobal	0x200	1.4013e-45	0x514a438	050bd10 050bf00 1efbf00 1efc250 228f060	NOT_APPLIC	already on
+Rendering/RT/PathTracer	InplaceDataPoolSize	0x1	2.86986e-42	0x514a4a8	-	NOREAD	no code reads it (registration only)
+Rendering/RT/PathTracer	PTHairBSDFMode	0x201	1.4013e-45	0x514a4e0	1ef2340	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTHairDiffuseFloor	0x202	-1	0x514a518	1ef2340	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTHairShadowOriginSpread	0x202	32	0x514a550	1ef2340	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTHairShadowOriginSpreadScope	0x201	1.4013e-45	0x514a588	1ef2340	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTHairShadowOcclusionMode	0x201	1.4013e-45	0x514a5c0	1ef2340	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTHairRoughnessExponent	0x202	0.25	0x514a5f8	1ef2340	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTHairRootRoughness	0x202	1	0x514a630	1ef2340	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTHairRootRoughnessRange	0x202	0.05	0x514a668	1ef2340	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTHairRoughness	0x202	-1	0x514a6a0	1ef2340	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTHairWetRoughness	0x202	0.03	0x514a6d8	1ef2340	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTHairRoughnessAzimuthal	0x202	-1	0x514a710	1ef2340	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTHairNumBounces	0x201	5.60519e-45	0x514a780	-	NOREAD	not read
+Rendering/RT/PathTracer	PTHairGlobalLightImpact	0x202	1	0x514a7b8	1ef2340	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTHairDirectLightImpact	0x202	1	0x514a7f0	1ef2340	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTHairIndirectLightImpact	0x202	1	0x514a828	1ef2340	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTHairInteriorExteriorDimmer	0x200	1.4013e-45	0x514a860	1c6d720 1ef2340	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTHairRootAlphaMode	0x201	1.4013e-45	0x514a898	1ef2340	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Viewport	CheckerboardDisableFrameAlternating	0x200	0	0x514aa58	-	NOREAD	no code reads it (registration only)
+Viewport	ForceVSync	0x200	0	0x514aa90	-	NOREAD	no code reads it (registration only)
+Viewport	AllowStreamline	0x100	1.4013e-45	0x514b628	-	NOREAD	no code reads it (registration only)
+Viewport	FSRUseReactiveMaskAndTC	0x201	0	0x514b778	-	NOREAD	no code reads it (registration only)
+Rendering/RT	InventoryBgColorScaleR	0x102	0.02	0x514b990	205687b	VISUAL	UI
+Rendering/RT	ForcedRendererOverlayResolution	0x400	0	0x514baa8	1b86e58 1d32210 1d36190 1d38390 1d39561 1f4c590 1f4d932 22be400	NOT_APPLIC	overlay resolution
+Rendering/RT/PathTracer	RCASAmount	0x102	0.2	0x514bd48	1d1e060	VISUAL	RCAS sharpening amount (post-process)
+Rendering/RT/PathTracer	GTAOOvHairPower	0x202	-1	0x514c218	1d1997a	UNSAFE	hair AO (Orange Hair Fix)
+Rendering/RT/PathTracer	PTAOQuality	0x201	nan	0x514c250	1d1997a	OWNED	URT control
+Rendering/RT/PathTracer	PTAODenoisePasses	0x201	nan	0x514c288	1d1997a	CANDIDATE	PT AO denoise pass count (0x1d19e15); compute-only, small; -1 = engine choice; kept native this round
+Rendering/RT/PathTracer	PTAORadiusMultiplier	0x202	-1	0x514c2c0	1d1997a	VISUAL	PT AO radius/power constant (0x1d1997a); radius/strength/power are URT rows
+Rendering/RT/PathTracer	PTAOFalloffRange	0x202	-1	0x514c2f8	1d1997a	VISUAL	PT AO radius/power constant (0x1d1997a); radius/strength/power are URT rows
+Rendering/RT/PathTracer	PTAORadius	0x202	-1	0x514c330	1d1997a	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT/PathTracer	PTAOFinalValuePower	0x202	-1	0x514c368	1d1997a	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT/PathTracer	PTAOGrassRadius	0x202	-1	0x514c3a0	1d1997a	VISUAL	PT AO radius/power constant (0x1d1997a); radius/strength/power are URT rows
+Rendering/RT/PathTracer	PTAOTreesRadius	0x202	-1	0x514c3d8	1d1997a	VISUAL	PT AO radius/power constant (0x1d1997a); radius/strength/power are URT rows
+Rendering/RT/PathTracer	PTAOSkinRadius	0x202	-1	0x514c410	1d1997a	VISUAL	PT AO radius/power constant (0x1d1997a); radius/strength/power are URT rows
+Rendering/RT/PathTracer	PTAOCharacterRadius	0x202	-1	0x514c448	1d1997a	VISUAL	PT AO radius/power constant (0x1d1997a); radius/strength/power are URT rows
+Rendering/RT/PathTracer	PTAOHairRadius	0x202	-1	0x514c480	1d1997a	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTAOTerrainRadius	0x202	-1	0x514c4b8	1d1997a	VISUAL	PT AO radius/power constant (0x1d1997a); radius/strength/power are URT rows
+Rendering/RT/PathTracer	PTAOEnvironmentRadius	0x202	-1	0x514c4f0	1d1997a	VISUAL	PT AO radius/power constant (0x1d1997a); radius/strength/power are URT rows
+Rendering/RT/PathTracer	PTAOGrassPower	0x202	-1	0x514c528	1d1997a	VISUAL	PT AO radius/power constant (0x1d1997a); radius/strength/power are URT rows
+Rendering/RT/PathTracer	PTAOTreesPower	0x202	-1	0x514c560	1d1997a	VISUAL	PT AO radius/power constant (0x1d1997a); radius/strength/power are URT rows
+Rendering/RT/PathTracer	PTAOSkinPower	0x202	-1	0x514c598	1d1997a	VISUAL	PT AO radius/power constant (0x1d1997a); radius/strength/power are URT rows
+Rendering/RT/PathTracer	PTAOCharacterPower	0x202	-1	0x514c5d0	1d1997a	VISUAL	PT AO radius/power constant (0x1d1997a); radius/strength/power are URT rows
+Rendering/RT/PathTracer	PTAOHairPower	0x202	-1	0x514c608	1d1997a	UNSAFE	PT hair shading/shadow constant (0x1ef2340): Orange Hair Fix territory
+Rendering/RT/PathTracer	PTAOTerrainPower	0x202	-1	0x514c640	1d1997a	VISUAL	PT AO radius/power constant (0x1d1997a); radius/strength/power are URT rows
+Rendering/RT/PathTracer	UseMultiThreadRenderDebug	0x200	0	0x514c758	1cfa030 1d326c0	NOT_APPLIC	debug
+Rendering/RT	PTHairSpecularTintScale	0x202	1	0x514c790	1cf7214	UNSAFE	hair shading (Orange Hair Fix)
+Rendering/RT	ProximityExtendedTLASSize	0x202	800	0x514c7c8	1cf2a20 1cf2bd0	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT/SpeedTree	ProximityTLASSize	0x202	400	0x514c800	1cf2a20 1cf2bd0	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT/SpeedTree	RTSTConfigUpdateDistance	0x202	20	0x514c838	1cea580 1ef2340	OWNED	V5.3.0 row
+Rendering/RT	RTSTConfigUpdateWindSimBlendDistance	0x202	15	0x514c870	1cea580 1ef2340	OWNED	V5.3.0 row
+Rendering/RT/SpeedTree	SpeedTreeAlwaysUseLowQualityPCF	0x200	1.4013e-45	0x514cd08	1c70f30	VISUAL	raster shadow filter (already low)
+Viewport	TerrainNormalSheenGrassSlider	0x202	1	0x514d1a0	1c6d720	VISUAL	terrain sheen
+Rendering/RT	FSRSharpnessHigh	0x102	1	0x514d248	1c66612 1c745fa 1cd4a20	VISUAL	upscaler sharpening
+Rendering/RT	BalanceModeRT	0x100	0	0x514d280	1c615e0 1c61804	UNSAFE	native graphics setting
+Rendering/RT	MeshRenderingDistanceScale	0x102	1	0x514d520	0818780 1d2b5a0 1d2ceb7 233c970 23403b0 2355d40 2356200 2425e95 2501c18 26ab02a	UNSAFE	native graphics setting (owner protection)
+Rendering/RT	EnableRtRadiance	0x100	0	0x514d558	1c20f90 1c29d82 1c2be90 1c2d8b9 1c2fcd0 1c31550 1cb7b80 1cf2a20 1cf2bd0 2273550 228fd00 22901f0	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/Async/RT	RayGenType	0x201	1.4013e-45	0x514d590	1c1a66c 1c1dc91 1c325fd 1c34500 1c37e09 1c3ad30 1d60aea	CANDIDATE	ray-generation variant selector read by 7 passes (0x1c1af12..0x1c38900); semantics of the alternatives not established
+Rendering/RT/RoughnessRemap	ForcedDebugPreviewIndex	0x201	nan	0x514d868	1c34eb6 1c6cc40 22b7090	NOT_APPLIC	debug
+Rendering/RT/RoughnessRemap	RemapDerivative0	0x102	0	0x514d8a0	1c34a10	VISUAL	roughness remap curve (0x1c34a10)
+Rendering/RT/RoughnessRemap	RemapDerivative1	0x102	2	0x514d8d8	1c34a10	VISUAL	roughness remap curve (0x1c34a10)
+Rendering/RT/RoughnessRemap	RemapDerivative2	0x102	1	0x514d910	1c34a10	VISUAL	roughness remap curve (0x1c34a10)
+Rendering/RT/RoughnessRemap	RemapDerivative3	0x102	1	0x514d948	1c34a10	VISUAL	roughness remap curve (0x1c34a10)
+Rendering/RT/RoughnessRemap	RemapPoint1X	0x202	0.4	0x514d980	1c34a10	VISUAL	roughness remap curve (0x1c34a10)
+Rendering/RT/RoughnessRemap	RemapPoint1Y	0x202	0.35	0x514d9b8	1c34a10	VISUAL	roughness remap curve (0x1c34a10)
+Rendering/RT/RoughnessRemap	RemapPoint2X	0x202	1	0x514d9f0	1c34a10	VISUAL	roughness remap curve (0x1c34a10)
+Rendering/RT/RoughnessRemap	RemapPoint2Y	0x202	1	0x514da28	1c34a10	VISUAL	roughness remap curve (0x1c34a10)
+Rendering/RT/RoughnessRemap	RemapPower	0x202	1	0x514da60	1c34a10	VISUAL	roughness remap curve (0x1c34a10)
+Rendering/RT/RoughnessRemap	RemapDrawPoints	0x200	1.4013e-45	0x514da98	1c34a10	NOT_APPLIC	debug
+Rendering/RT	RemapEnabled	0x200	1.4013e-45	0x514dad0	1c34a10	VISUAL	roughness remap curve (0x1c34a10)
+Rendering/RT	RTAOEnableCheckerboarding	0x200	1.4013e-45	0x514db08	1c1dc91 1c2d4c1 1c2fcd0 1c31550 1c322c5 1d1cb30	NOT_APPLIC	already on (RTAO checkerboard)
+Rendering/RT	SunAngularDiameter	0x202	0.2	0x514db40	1c31550 1ef2340	VISUAL	RT shadow softness/range constant
+Rendering/RT	ShadowsClampAngle	0x200	1.4013e-45	0x514db78	1c1d270 1c2e400	VISUAL	RT shadow softness/range constant
+Rendering/RT/PathTracer	ShadowTMin	0x202	0.0001	0x514dbb0	1c2e400	VISUAL	shadow-ray start offset (self-shadow acne vs. leaks)
+Rendering/RT/PathTracer	PTEnableGlobalOcean	0x200	1.4013e-45	0x514dbe8	1c2e400	CANDIDATE	ocean surface in the PT frame (0x1c2f2a9); helps only at sea; effect not established
+Rendering/RT/PathTracer	PTGrassNightScale	0x202	-1	0x514dc20	1c2e400	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT	PTGrassScale	0x202	-1	0x514dc58	1c2e400	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT	RtRadianceShadingFog	0x200	1.4013e-45	0x514dc90	1c1a66c 1c20260 1c2e400	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT	LocalShadowRadius	0x202	0.1	0x514dcc8	1c2e400 1c6d720	VISUAL	RT shadow softness/range constant
+Rendering/RT	LocalShadowsCastingStartRange	0x202	0.25	0x514dd00	1c2e400	VISUAL	RT shadow softness/range constant
+Rendering/RT	LocalShadowsAutoCastStartRange	0x202	0.3	0x514dd38	1c2e400	VISUAL	RT shadow softness/range constant
+Rendering/RT	LocalShadowsAutoCastSoftness	0x202	0.2	0x514dd70	1c2e400	VISUAL	RT shadow softness/range constant
+Rendering/RT	CameraLightShadowDistance	0x202	0.25	0x514dda8	1c2e400	VISUAL	RT shadow softness/range constant
+Rendering/RT	LocalShadowsHair	0x200	1.4013e-45	0x514dde0	1c2e400	UNSAFE	hair in local shadows (Orange Hair Fix)
+Rendering/RT	ReflectionsRadianceMipLevel	0x202	4	0x514de18	1c20260 1c2e200 1c2e400	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT	ReflectionsAlphaTestMipLevel	0x202	4	0x514de50	1c20260 1c2e200 1c2e400	TESTED_NO	any-hit alpha mip for PT and RT reflections; it is the V5.2 RC3 row "PT: Texture Detail in Reflections and Bounces", removed after the owner measured no material FPS gain
+Rendering/RT	GIRadianceMipLevel	0x202	8	0x514de88	1c21f10 1c2e200	TESTED_NO	listed with the V5.2 texture-detail rows (no material gain)
+Rendering/RT	GIAlphaTestMipLevel	0x202	5	0x514dec0	1c21f10 1c2e200	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT	ShadowsAlphaTestMipLevel	0x202	2	0x514def8	1c1d270 1c1d76d 1c2e200	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT	AOAlphaTestMipLevel	0x202	3	0x514df30	1c1dc91 1c2e200	TESTED_NO	RTAO any-hit alpha mip; V5.1 "RTAO: Foliage Detail", removed (no material gain)
+Rendering/RT	AmbientLightingOnlyMode	0x200	0	0x514df68	1c2d110	NOT_APPLIC	debug view
+Rendering/RT	GrassNightScale	0x202	-1	0x514dfa0	1c2d110	VISUAL	grass night brightness
+Rendering/RT	DynamicResolutionDance	0x200	0	0x514e048	1c2a860	NOT_APPLIC	debug
+Rendering/RT	AllowChromaticAberration	0x100	1.4013e-45	0x514e4a8	1c1c800 1c24a66	VISUAL	post effect
+Rendering/RT	ProbeRaysBaseAngleForGradient	0x202	4	0x514e4e0	1c21f10	VISUAL	ray-cone texture LOD for probes
+Rendering/RT	RadianceRaysBaseAngleForGradient	0x202	0.5	0x514e518	1c20260	VISUAL	ray-cone texture LOD
+Rendering/RT	RadianceTlas	0x201	1.4013e-45	0x514e550	1c20260	CANDIDATE	as ShadowsTlas, for RT reflections (0x1c20ba5)
+Rendering/RT	RtRadianceShadingLocalLights	0x200	1.4013e-45	0x514e588	1c1a66c 1c20260	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT	RtRadianceShadingEnvGrid	0x200	1.4013e-45	0x514e5c0	1c1a66c 1c20260	VISUAL	reflection shading term
+Rendering/RT	RtRadianceShadingGlobalLight	0x200	1.4013e-45	0x514e5f8	1c1a66c 1c20260	VISUAL	reflection shading term
+Rendering/RT	EnableRtRadianceShading	0x200	1.4013e-45	0x514e630	1c1a66c 1c20260	UNSAFE	switches reflection shading off entirely (broken reflections)
+Rendering/RT/PathTracer	RtRadiaceShadingOpts	0x200	1.4013e-45	0x514e668	1c20260 1c5b5c9 1c63110 1c63250	NOT_APPLIC	already on
+Rendering/RT/PathTracer	PTHairGameplayCameraFill	0x200	1.4013e-45	0x514e6a0	1c1fdd0	UNSAFE	hair camera fill (Orange Hair Fix)
+Rendering/RT	PTGameLightsIndirect	0x200	0	0x514e6d8	1c1e3f0 1c1fdd0 1ef2340	UNSAFE	PT indirect from game lights; gates traces but it is the light that Orange Hair Fix / IW tune (off natively)
+Rendering/RT	PTHairAlphaTestMipLevel	0x202	4	0x514e710	1c1f410	UNSAFE	PT hair any-hit alpha mip: Orange Hair Fix territory
+Rendering/RT/PathTracer	ShadowsTlas	0x201	1.4013e-45	0x514e748	1c1d270 1c1d76d 1c1f410	CANDIDATE	selects one of two TLAS descriptors for RT shadows (0x1c1d5b2 -> pipeline flag); which TLAS is smaller is not provable statically: needs a GPU capture
+Rendering/RT	PTBaseAngleForGradient	0x202	0.01	0x514e780	1c1e1a0	CANDIDATE	PT ray-cone texture LOD (0x1c1e328 into the PT frame); a bandwidth lever like the radiance mip that PT: No Blue Glow already raises to 10; not separately measurable
+Rendering/RT/PathTracer	DebugTlas	0x201	1.4013e-45	0x514e7b8	1c1e0a3 1c1e3f0	NOT_APPLIC	debug TLAS view
+Rendering/RT	PTHairGameLightIndirect	0x200	1.4013e-45	0x514e7f0	1c1e3f0 1ef2340	UNSAFE	hair light path (Orange Hair Fix)
+Rendering/RT	OcclusionRaysBaseAngleForGradient	0x202	0.2	0x514e828	1c1dc91	VISUAL	ray-cone texture LOD
+Rendering/RT	RTAOTlas	0x201	0	0x514e860	1c1e0d0	CANDIDATE	as ShadowsTlas, for RTAO (0x1c1e0e3)
+Rendering/RT	LocalShadowsSlots	0x201	1.12104e-44	0x514e898	1c1d640	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT	GrassDistanceScale	0x102	1	0x514f4a0	1cdc500 1ceca30 2352640	UNSAFE	native graphics setting (owner protection)
+Rendering/RT	EnableRT	0x100	1.4013e-45	0x514f4d8	034a1c7 1b7f880 1b87340 1be418a 1be4c00 1c0e66a 1c100c4 1c14b20 1c1a66c 1c1c800 1c1d640 1c1dc40 1c1e3f0 1c1ecf0 1c1f100 1c20f90 1c224a0 1c267f0 1c27e30 1c27f30 1c29d82 1c2a860 1c2be90 1c2d8b9 1c2de27 1c2e400 1c2fcd0 1c31550 1c34500 1c37e09 1c39a19 1c3aaff 1c61410 1c61804 1c6cbd0 1c6cc40 1c6d720 1c7182f 1cb7b80 1cd6a00 1ce18e0 1cecf9d 1cf2a20 1cf2bd0 1cf6f90 1d1fc00 1d32480 1d326c0 1d609a6 1d60ab3 1d60aea 1ef2340 22734c0 2273500 2273550 22735a0 2273600 2273be0 2273c50 227f7c0 228dcd0 228e3e0 228f1e0 228f2e0 228f680 228f6c0 228fa50 228fde0 22901a0 22901f0 22905c0 2290650 22bcb00 22bd720 22bd820 22bd8f0 22bd990 23c8a60	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT/PathTracer	RTAOEnabled	0x100	0	0x514f510	1c14b20 1d60aea 22735a0 2273600 228dcd0 228ef90 2290150 22901f0 23c8a60	UNSAFE	native graphics setting
+Rendering/RT	SSAOEnabled	0x101	4.2039e-45	0x514f580	1c14b20 1d60aea 22735a0 228dcd0 2290150 22901f0 23c8a60	UNSAFE	native graphics setting
+Rendering/RT/PathTracer	Shadows	0x101	0	0x514f5b8	1c1d640 1c2a860 1c2e400 1c34500 1c3ae10 1c6cc40 1c6d720 1d60aea 2273500 228f840 228f8e0 22901f0	UNSAFE	native graphics setting
+Rendering/RT	PTEnable	0x100	0	0x514f5f0	1b7f880 1be4c00 1c0e66a 1c14b20 1c1a66c 1c1c800 1c1d640 1c1dc40 1c1e3f0 1c1ecf0 1c1f100 1c20f90 1c27e30 1c27f30 1c29d82 1c2a860 1c2be90 1c2d8b9 1c2de27 1c2e400 1c2fcd0 1c31550 1c34500 1c37e09 1c39a19 1c3ae10 1c61410 1c61804 1c6cbd0 1c6cc40 1c6d720 1c7182f 1cb7b80 1cf2a20 1cf2bd0 1cf6f90 1d1fc00 1d32480 1d326c0 1d609a6 1d60aea 1ef2340 22734c0 2273500 2273550 22735a0 2273600 228dcd0 228ef90 228f840 228f8e0 228fa50 228fd00 2290150 22901f0 22905c0 22bcb00 22bd720 23c8a60	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT/PathTracer	ProximityTLASObjectAngleSize	0x202	0.1	0x514f628	1cf2a20 228f680	IMPLEMENTED	R7 PT: Small Object Culling (owned in PT while chosen)
+Rendering/RT	PTAOEnable	0x200	1.4013e-45	0x514f660	1c0e66a 1c1c800 1c1ecf0 1c1f100 1c2be90 1c2de27 1c39a19 22901a0	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT	RtRadianceScreenSpaceTrace	0x100	1.4013e-45	0x514f698	1c1a66c	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT/PathTracer	RtScreenTraceDebug	0x201	0	0x514f6d0	1c1a66c	NOT_APPLIC	debug
+Rendering/RT/PathTracer	PTLateSpecularCheckerboard	0x100	1.4013e-45	0x514f708	1c1a66c	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT	PTLateSpecularScreenSpaceTrace	0x100	1.4013e-45	0x514f740	1c1a66c	OWNED	URT control (V5.2.0 / V5.3.0 module)
+Rendering/RT	HairStochasticGBuffer	0x200	1.4013e-45	0x514f778	1c1a66c	UNSAFE	hair G-buffer (Orange Hair Fix)
+Viewport	XessFrameGeneration	0x100	0	0x514f8c8	1c18970 1c73d40 1c740f0 1d60d0c 2273940	UNSAFE	native graphics setting
+Rendering/RT	ForceInstantAdaptation	0x100	0	0x514fa18	1c1414b	VISUAL	exposure
+Rendering/RT/RoughnessRemap	BloomDirtTextureScale	0x202	0.01	0x514fe08	1c0bf33	VISUAL	post effect
+Rendering/RT	CharacterLodGameplayDownscale	0x101	0	0x5150070	1bf888c	UNSAFE	native setting
+Rendering/RT	AllowHBIL	0x200	1.4013e-45	0x5150118	1be96d0 1c20f90 1c2c850 1c2cff0 1c2d3b0 1c34500	COVERED	URT RT: HBIL row (UseHBIL)
+Rendering/RT	ApproximatedDiffuseCurvePower	0x202	0.3	0x51501c0	1be4c00	VISUAL	AO/GI application factor (0x1be4c00)
+Rendering/RT	RTAONonAmbientAmountGIScale	0x202	0	0x51501f8	1be4c00	VISUAL	AO/GI application factor (0x1be4c00)
+Rendering/RT	RTAONonAmbientAmountGIBias	0x202	1	0x5150230	1be4c00	VISUAL	AO/GI application factor (0x1be4c00)
+Rendering/RT	RTAOTranslucencyAmountGIScale	0x202	0	0x5150268	1be4c00	VISUAL	AO/GI application factor (0x1be4c00)
+Rendering/RT/Eyes	RTAOTranslucencyAmountGIBias	0x202	1	0x51502a0	1be4c00	VISUAL	AO/GI application factor (0x1be4c00)
+Rendering/RT/Eyes	cvTerrainDebugUVScale_6	0x202	0.003	0x5150f50	1be4c00	VISUAL	AO/GI application factor (0x1be4c00)
+Rendering/RT/Eyes	ApplyAOToDDGIAmbient	0x200	1.4013e-45	0x5150f88	1be4c00	VISUAL	AO/GI application factor (0x1be4c00)
+Rendering/RT/Eyes	ApplyAOToRTReflections	0x200	1.4013e-45	0x5150fc0	1be4c00	VISUAL	AO/GI application factor (0x1be4c00)
+Rendering/RT/Eyes	ApplyAOToAllLighting	0x200	0	0x5150ff8	1be4c00	VISUAL	AO/GI application factor (0x1be4c00)
+StartupFlow	LastGameVersion	0x101	0	0x515e5b8	24fac20	NOT_APPLIC	startup bookkeeping

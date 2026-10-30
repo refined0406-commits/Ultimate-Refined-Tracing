@@ -77,6 +77,32 @@ static uint8_t g_bounce_original[17];
 static DWORD g_bounce_site_protection=0;
 static DWORD g_bounce_trampoline_protection=0;
 static int g_bounce_installed=0;
+/* V5.3.0 R10: the game's SHaRC switch (PTUseSHARC, exact Patch 5.01 only; set at install). While it is on, URT's
+   bounce words stay native so the game dispatches its registered SHaRC ray-generation shaders (cr01_gate_core.h). */
+static volatile uint8_t *g_sharc_flag=0;
+/* V5.3.0 R11: PT: Second Bounce Coverage level of URT's variant PT library (set once, before the gate installs) */
+static volatile uint32_t g_bounce_level=0;
+/* R12: bits 0-1 second-bounce coverage, bits 2-3 first-bounce diffuse coverage, R12 FIX2: bits 4-5 sun shadow coverage;
+   each 0..2 (anything else: none) */
+void cr01_gate_set_bounce_level(unsigned level){__atomic_store_n(&g_bounce_level,cr01_gate_level_valid(level)?level:0u,__ATOMIC_RELEASE);}   /* R12 FIX3: retired levels refused */
+static volatile uint32_t g_sharc_final_frames=0,g_sharc_trips=0;
+static unsigned sharc_on(void){return g_sharc_flag&&__atomic_load_n(g_sharc_flag,__ATOMIC_ACQUIRE)!=0u;}
+/* R12 FIX2: frames whose serialized PT word carried the coverage level of URT's variant library (render thread counts) */
+static volatile uint32_t g_level_frames;
+unsigned cr01_gate_level_frames(void){return __atomic_load_n(&g_level_frames,__ATOMIC_ACQUIRE);}
+/* R12 FIX3: serialized frames that did NOT carry the requested level, by reason (render thread counts; the worker only
+   reports them while the renderer is Path Tracing): SHaRC on / custom library not live / Master+PT not staged */
+static volatile uint32_t g_miss_sharc,g_miss_live,g_miss_off;
+void cr01_gate_level_stats(unsigned*carried,unsigned*sharc,unsigned*live,unsigned*off){
+ if(carried)*carried=__atomic_load_n(&g_level_frames,__ATOMIC_ACQUIRE);
+ if(sharc)*sharc=__atomic_load_n(&g_miss_sharc,__ATOMIC_ACQUIRE);
+ if(live)*live=__atomic_load_n(&g_miss_live,__ATOMIC_ACQUIRE);
+ if(off)*off=__atomic_load_n(&g_miss_off,__ATOMIC_ACQUIRE);
+}
+void cr01_gate_sharc_stats(unsigned*final_frames,unsigned*trips){
+ if(final_frames)*final_frames=__atomic_load_n(&g_sharc_final_frames,__ATOMIC_ACQUIRE);
+ if(trips)*trips=__atomic_load_n(&g_sharc_trips,__ATOMIC_ACQUIRE);
+}
 /* V5: executable identity (exact or code-identical) is computed once and
  * cached in urt_exe_identity_win.c; cr01_gate_verify_exe_file lives there. */
 /* Do not trust only the original on-disk EXE: a second mod could already
@@ -106,14 +132,11 @@ extern int cr01_shader_slots_active(void);
 static uint32_t cr01_infunc_next_packed(int custom_live){
  uint64_t word=cr01_gate_snapshot(&g_cr01_gate);
  uint32_t bits=(uint32_t)word;
- uint32_t geom=bits&255u,indirect=(bits>>16)&255u;
- /* bits 24/25 are Master/PT. Native instruction value 2 is used whenever
-    the custom PT pair is not actually live or CR01 is not renderer-eligible. */
- if(!custom_live||((bits>>24)&3u)!=3u||geom<1u||geom>6u||indirect<100u)return 2u;
- /* R15 uses the exact 100..150 fixed-point slider. */
- uint32_t shader_indirect=indirect;
- if(shader_indirect>150u)return 2u;
- uint32_t base=geom|(shader_indirect<<8);
+ /* R12 FIX3: pure core in cr01_gate_core.c (host-tested): native 2 unless Master+PT staged, the custom pair live, SHaRC
+    off (R10) and the staged values in range (R15: exact 100..150 slider); else geometry | indirect<<8 | level<<16 */
+ uint32_t base=cr01_gate_infunc_word(word,custom_live,sharc_on(),__atomic_load_n(&g_bounce_level,__ATOMIC_ACQUIRE));
+ if(base==2u)return 2u;
+ custom_live=cr01_gate_effective_custom(custom_live,sharc_on());
  uint64_t extra=__atomic_load_n(&g_cr01_rtao_generation,__ATOMIC_ACQUIRE);
  uint32_t generation=(uint32_t)(word>>32);
  uint32_t extra_generation=(uint32_t)(extra>>32);
@@ -135,8 +158,19 @@ NOINLINE void cr01_gate_win_entry(void*dst,void*src,void*r8,void*r9){
  int custom;
  if(!g_native_writer)return; /* Never possible after successful commit. */
  g_native_writer(dst,src,r8,r9);
- custom=cr01_shader_slots_active();
- (void)cr01_gate_post_serialize(&g_cr01_gate,dst,custom);
+ {const unsigned sharc=sharc_on();
+  custom=cr01_gate_effective_custom(cr01_shader_slots_active(),sharc);
+  /* R10 safety net (render thread, no logging): with SHaRC on, the serialized words must select the registered
+     SHaRC shaders. If anything (another mod, a debug mode) makes them select the unregistered 0x11/0x12, switch the
+     game's SHaRC off before it is dispatched with them; normal Path Tracing continues. */
+  if(sharc&&dst){
+   /* the native writer stores the constants 2 and 4 here (0x1ef29e1 / 0x1ef2f6c); only URT's own bounce bridge
+      changes them, so a value it armed before SHaRC was seen on is put back to native first */
+   {const uint32_t g2=2u,h4=4u;__builtin_memcpy((uint8_t*)dst+CR01_GEOM_OFFSET,&g2,4);__builtin_memcpy((uint8_t*)dst+CR01_HAIR_OFFSET,&h4,4);}
+   if(cr01_gate_sharc_final_words((const uint8_t*)dst))(void)__atomic_add_fetch(&g_sharc_final_frames,1u,__ATOMIC_ACQ_REL);
+   else{__atomic_store_n(g_sharc_flag,(uint8_t)0,__ATOMIC_RELEASE);(void)__atomic_add_fetch(&g_sharc_trips,1u,__ATOMIC_ACQ_REL);}
+  }}
+ (void)cr01_gate_post_serialize_level(&g_cr01_gate,dst,custom,__atomic_load_n(&g_bounce_level,__ATOMIC_ACQUIRE));
  uint32_t next=cr01_infunc_next_packed(custom);
  /* Match the existing synchronous CPU-owned serializer destination; when
   * the PT-only overlay is active at neutral bounce defaults, explicitly
@@ -144,6 +178,11 @@ NOINLINE void cr01_gate_win_entry(void*dst,void*src,void*r8,void*r9){
  if(custom && dst && (next & (1u<<24))){
    __builtin_memcpy((uint8_t*)dst+CR01_GEOM_OFFSET,&next,sizeof(next));
  }
+ /* R12 FIX2: activation proof - the serialized frame word the PT shader reads carries the variant's coverage level */
+ {const uint32_t lv=__atomic_load_n(&g_bounce_level,__ATOMIC_ACQUIRE);
+  if(lv&&dst){uint32_t w;__builtin_memcpy(&w,(const uint8_t*)dst+CR01_GEOM_OFFSET,4);
+   if(custom&&((w>>16)&255u)==lv)(void)__atomic_add_fetch(&g_level_frames,1u,__ATOMIC_ACQ_REL);
+   else (void)__atomic_add_fetch(sharc_on()?&g_miss_sharc:!cr01_shader_slots_active()?&g_miss_live:&g_miss_off,1u,__ATOMIC_ACQ_REL);}}
  __atomic_store_n(&g_infunc_packed,next,__ATOMIC_RELEASE);
 }
 static void wr32le(uint8_t*p,uint32_t v){for(unsigned i=0;i<4;i++)p[i]=(uint8_t)(v>>(8u*i));}
@@ -287,6 +326,7 @@ int cr01_gate_win_install(int proven_early_before_renderer,int proven_site_quies
  if(!GetModuleHandleExW(MFLAG_PIN_FROM_ADDRESS,(const WCHAR*)(const void*)&cr01_gate_win_entry,
                         &g_pinned_module)||!g_pinned_module)goto fail;
  g_native_writer=(void(*)(void*,void*,void*,void*))(void*)(base+CR01_WRITER_RVA);
+ g_sharc_flag=base+CR01_SHARC_RVA;   /* known game build (verified above) */
  __atomic_store_n(&g_infunc_packed,2u,__ATOMIC_RELEASE);
  if(!install_bounce_bridge(geo))goto fail;
  /* JMP [RIP+0] + pointer: does not clobber volatile argument registers. */

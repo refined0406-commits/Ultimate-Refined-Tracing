@@ -31,6 +31,7 @@ typedef struct CR01Backup {uint8_t*bytes;uint32_t total;} CR01Backup;
 static CR01Slot g_a,g_b;
 static CR01Backup g_ba,g_bb;
 static volatile uint32_t g_active,g_pending,g_attempted;
+static uint32_t g_n;   /* R12 FIX3: installed size, for the read-only re-check */
 
 static uint16_t rd16(const uint8_t*p){return (uint16_t)p[0]|(uint16_t)p[1]<<8;}
 static uint32_t rd32(const uint8_t*p){return (uint32_t)p[0]|(uint32_t)p[1]<<8|(uint32_t)p[2]<<16|(uint32_t)p[3]<<24;}
@@ -98,7 +99,7 @@ int cr01_shader_slots_install(uint8_t*exe,const uint8_t*custom,size_t custom_siz
  uint32_t n=(uint32_t)custom_size;if(!locate(exe,&g_a,&g_b)||!slot_room(&g_a,n)||!slot_room(&g_b,n))return 0;
  if(!backup_one(&g_a,n,&g_ba)||!backup_one(&g_b,n,&g_bb))goto fail;
  if(!write_one(&g_a,custom,n)||!write_one(&g_b,custom,n))goto fail_restore;
- __atomic_store_n(&g_pending,1u,__ATOMIC_RELEASE);__atomic_store_n(&g_active,1u,__ATOMIC_RELEASE);return 1;
+ g_n=n;__atomic_store_n(&g_pending,1u,__ATOMIC_RELEASE);__atomic_store_n(&g_active,1u,__ATOMIC_RELEASE);return 1;
 fail_restore:
  (void)restore_one(&g_a,&g_ba);(void)restore_one(&g_b,&g_bb);
 fail:
@@ -114,3 +115,11 @@ int cr01_shader_slots_rollback(void){
  free_backup(&g_ba);free_backup(&g_bb);__atomic_store_n(&g_active,0u,__ATOMIC_RELEASE);__atomic_store_n(&g_pending,0u,__ATOMIC_RELEASE);return ok;
 }
 int cr01_shader_slots_active(void){return __atomic_load_n(&g_active,__ATOMIC_ACQUIRE)==1u;}
+/* R12 FIX3: read-only re-check (worker thread, on renderer transitions): both slots still hold exactly the library URT
+   installed (size word + container size + full identity check). The slots are in a read-only image section; nothing
+   writes them after the install, so a mismatch would mean a foreign write. Never writes. 1 = intact. */
+int cr01_shader_slots_verify(void){
+ if(!cr01_shader_slots_active()||!g_n||!g_a.p||!g_b.p)return 0;
+ return rd32(g_a.p-8)==g_n&&rd32(g_a.p+24)==g_n&&cr01_custom_shader_identity(g_a.p,g_n)&&
+        rd32(g_b.p-8)==g_n&&rd32(g_b.p+24)==g_n&&cr01_custom_shader_identity(g_b.p,g_n);
+}

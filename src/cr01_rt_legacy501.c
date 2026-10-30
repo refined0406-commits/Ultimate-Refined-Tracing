@@ -3,6 +3,7 @@
  * two independent profiles and compare/exchange ownership restoration.
  * NOTE: mode checks are asynchronous. NOT a synchronized pre-consumption gate.
  */
+#include "urt_build.h"
 #include "cr01_rt_legacy501.h"
 #include "cr01_rt_legacy_mode.h"
 #include "cr01_rt_legacy_core.h"
@@ -54,7 +55,7 @@ static uint32_t*slot_from_descriptor(uint8_t*base,uint32_t image,const struct Bi
  uint32_t*slot=urt_cvar_lookup_scoped(ix,b->name,b->category,b->kind,&desc);
  if(!slot||desc+28u>image)return 0;
  if(u32(base+desc+24u)!=b->registration_default)return 0;
- if(cr01_gate_verify_exe_file()&&desc!=b->pinned_reg)return 0; /* known code: must equal V4.x pin */
+ if(cr01_gate_verify_exe_file()&&desc!=urt_rva(b->pinned_reg))return 0; /* known code: must equal V4.x pin */
  return slot;
 }
 #define c17_slot slot_from_descriptor
@@ -122,8 +123,8 @@ invalid:
 int cr01_rt_legacy501_reload(const WCHAR*file){
  if(!g_ready||!file)return 0;
  static const char*keys[2][CR01_RT_LEGACY_FIELDS]={
- {"RTPerfClassificationPrimary","RTPerfClassificationSecondary","RTPerfMaxProbes","RTPerfAOQuality","RTPerfShadingBudget",0 /* rc3: Shading Rays removed, never read */},
- {"RTQualityClassificationPrimary","RTQualityClassificationSecondary","RTQualityMaxProbes","RTQualityAOQuality","RTQualityShadingBudget",0 /* rc3: Shading Rays removed, never read */}};
+ {"RTPerfClassificationPrimary","RTPerfClassificationSecondary","RTPerfMaxProbes","RTPerfAOQuality",0 /* V5.2 RC6: Shading Frame Budget removed, never read */,0 /* rc3: Shading Rays removed, never read */},
+ {"RTQualityClassificationPrimary","RTQualityClassificationSecondary","RTQualityMaxProbes","RTQualityAOQuality",0 /* V5.2 RC6: Shading Frame Budget removed, never read */,0 /* rc3: Shading Rays removed, never read */}};
  CR01RtLegacyPreferences fresh=g_pref;
  if(!value(file,"RayTracedOptimizations",&fresh.enabled)||fresh.enabled>3u)goto invalid;
  /* V4 upgrade compatibility: old saved Quality=2 / Performance=3 now both
@@ -136,6 +137,11 @@ int cr01_rt_legacy501_reload(const WCHAR*file){
    /* V5.1.0-rc3: RTGI Shading Rays Per Probe was removed from the menu and is
     * ALWAYS Native/Auto: any value still saved in dx12user.settings is ignored. */
    if(i==CR01_RT_L_SHADING){fresh.profile[p].values[i]=0u;continue;}
+   /* V5.2.0 RC6: RTGI Quality/Performance Shading Frame Budget were removed (lighting
+    * problems in testing). ALWAYS Native/Auto: a value still saved in dx12user.settings
+    * (key RTQualityShadingBudget / RTPerfShadingBudget) is never read, so the engine's
+    * ShadingRaysPerFrameBudget is never owned or written by URT. */
+   if(i==CR01_RT_L_BUDGET){fresh.profile[p].values[i]=0u;continue;}
    if(!value(file,keys[p][i],&fresh.profile[p].values[i]))goto invalid;
   }
   if(!cr01_rt_legacy_profile_valid(&fresh.profile[p]))goto invalid;

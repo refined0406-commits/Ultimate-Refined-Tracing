@@ -50,6 +50,11 @@ check(not list(containers(asi)), 'IWO ASI contains no shaders')
 SITES = {'CameraCB serializer call': 0x1EF0FCF, 'geometry bounce store': 0x1EF29E1, 'hair bounce store': 0x1EF2F6C,
          'PT Final registration': 0x1EE6DC6, 'PT SER registration': 0x1EE6FF3, 'PT shadow branch': 0x228F866,
          'bone read (vtable target)': 0x1CAC050}
+# V5.3.0 R11: on game build 1090142 the same sites at their build-1090142 addresses (src/urt_build_table.h)
+import hashlib as _h, re as _re, pathlib as _p
+if _h.sha256(exe).hexdigest() == '05948d7238e1c9620a1cb9b3125520f1c143ce04a8e5718a3735120c37d7bae0':
+    _m = {int(a, 16): int(b, 16) for a, b in _re.findall(r'\{0x([0-9a-f]+)u,0x([0-9a-f]+)u\}', (_p.Path(__file__).resolve().parents[2] / 'src/urt_build_table.h').read_text())}
+    SITES = {k: _m[v] for k, v in SITES.items()}
 pe = struct.unpack_from('<I', exe, 0x3c)[0]; ns = struct.unpack_from('<H', exe, pe + 6)[0]; opt = struct.unpack_from('<H', exe, pe + 20)[0]
 secs = [struct.unpack_from('<8sIIII', exe, pe + 24 + opt + i * 40) for i in range(ns)]
 def off(r):

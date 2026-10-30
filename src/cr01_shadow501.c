@@ -2,6 +2,7 @@
  * Two uniquely signature-located sites plus 11 independently fingerprinted
  * shadow reads; original game owns its native RT shadows CVar. This module
  * never writes NAPL light settings or normal RT shadow state. */
+#include "urt_build.h"
 #include "cr01_shadow501.h"
 #include "cr01_shadow_policy.h"
 #include "refined_pt_shadow_ext_501.h"
@@ -81,7 +82,7 @@ int cr01_shadow501_prepare(uint8_t*base,uint32_t image){
  static const char gm[]="xxxxxxxxxx????xxxxx????xxxxxxxxxx";
  static const uint8_t lp[]={0x84,0xc9,0x74,0x0d,0x84,0xc0,0x75,0x09,0x83,0x3d,0,0,0,0,0x00,0x77,0x1d,0x80,0x3d,0,0,0,0,0x00,0x0f,0x84,0,0,0,0,0x84,0xc9,0x0f,0x84};
  static const char lm[]="xxxxxxxxxx????xxxxx????xxx????xxxx";
- if(g_ready||g_fault||!base||image!=0x6402000u)return 0;
+ if(g_ready||g_fault||!base||image!=urt_image_bytes())return 0;
  uint8_t*g=unique_text(base,image,gp,gm,sizeof(gp));
  uint8_t*l=unique_text(base,image,lp,lm,sizeof(lp));
  if(!g||!l||g[23]!=0x74||l[24]!=0x0f||l[25]!=0x84)return 0;
@@ -89,7 +90,8 @@ int cr01_shadow501_prepare(uint8_t*base,uint32_t image){
  if(!read_target(g+10,g+14,&na)||!read_target(l+10,l+15,&nr)||
     !read_target(g+19,g+23,&ptg)||!read_target(l+19,l+24,&ptl)||
     na!=nr||ptg!=ptl||na==ptg)return 0;
- uint8_t*p=base+0x228f866u,*s=base+0x228f858u;
+ if(!urt_rva(0x228f866u)||!urt_rva(0x228f858u))return 0;
+ uint8_t*p=base+urt_rva(0x228f866u),*s=base+urt_rva(0x228f858u);
  if(p[-7]!=0x80||p[-6]!=0x3d||p[-1]!=0||p[0]!=0x74||p[1]!=0x0b||
     s[-2]!=0x83||s[-1]!=0x3d||s[4]!=0||s[5]!=0x77||s[6]!=0x11)return 0;
  if(p+(int32_t)raw32(p-5)!=ptg||s+5+(int32_t)raw32(s)!=na)return 0;

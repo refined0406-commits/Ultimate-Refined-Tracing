@@ -1,3 +1,4 @@
+#include "urt_build.h"
 #include "cr01_prod_early501.h"
 #include <stdint.h>
 #include <stddef.h>
@@ -15,14 +16,14 @@ extern int cr01_gate_verify_native_blob(const uint8_t*,size_t);
 extern int cr01_register_sites_preflight(const uint8_t*,size_t);
 extern int cr01_gate_exact_call_preflight(const uint8_t*,const uint8_t*,const uint8_t*,
  uintptr_t,uintptr_t,uintptr_t,int32_t*,int32_t*);
-#define CR01_CREATE_GLOBAL_RVA 0x5e514d8u
-#define CR01_ADD_GLOBAL_RVA 0x5e514d0u
-#define CR01_REG_SER_RVA 0x1ee6ff3u
-#define CR01_NATIVE_RVA 0x32e7c28u
-#define CR01_CALL_RVA 0x1ef0fcfu
-#define CR01_GEOM_RVA 0x1ef29e1u
-#define CR01_HAIR_RVA 0x1ef2f6cu
-#define CR01_WRITER_RVA 0x1ef2340u
+#define CR01_CREATE_GLOBAL_RVA urt_rva(0x5e514d8u)
+#define CR01_ADD_GLOBAL_RVA urt_rva(0x5e514d0u)
+#define CR01_REG_SER_RVA urt_rva(0x1ee6ff3u)
+#define CR01_NATIVE_RVA urt_rva(0x32e7c28u)
+#define CR01_CALL_RVA urt_rva(0x1ef0fcfu)
+#define CR01_GEOM_RVA urt_rva(0x1ef29e1u)
+#define CR01_HAIR_RVA urt_rva(0x1ef2f6cu)
+#define CR01_WRITER_RVA urt_rva(0x1ef2340u)
 static volatile uint32_t g_entered;
 static volatile uint32_t g_valid;
 int cr01_prod_early501_eligibility(int first,uint64_t create,uint64_t add,

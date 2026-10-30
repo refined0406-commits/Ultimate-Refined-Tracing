@@ -1,0 +1,39 @@
+{
+  "status": "PRIVATE GAMEPLAY TEST ONLY. NOT NEXUS OR GITHUB RELEASE",
+  "baseline_v51_dev_zip_sha256": "564c2094b07d33a652d73a473560a2f5b8bf1bafdd8b38d64c18db6600427c41",
+  "wcc_source_sha256": "988170a96e082b94a2a7ed2088fddd5ac9147e6ab5f284a58b7a6e3bd72b5034",
+  "wcc_menu_sha256": "40d5dea48e0a5112a6bca34b2eae904997395ec3720ce0db47582ba7287142b5",
+  "wcc_blob_sha256": "4b700ef8d9e2799515150dd514f8558b617d919ff81191085ce02e49758b4a75",
+  "wcc_windows_exit_code": 0,
+  "wcc_workspace_restored_per_receipt": true,
+  "native_asi_sha256": "3d8f76605076023f0115891a2357425bcf2819729ee9269ceb38779e28322d49",
+  "two_pass_asi_reproducible": true,
+  "host_tests": "21/21 passed, 0 failed (no game runtime)",
+  "visible_controls": 49,
+  "new_controls": 11,
+  "removed_rtao_controls": 4,
+  "locales": 18,
+  "compiled_script_verified": true,
+  "in_game_validation": false,
+  "native_graphics_prefs_integrity_verified_in_game": false,
+  "orange_hair_fix_compatibility_verified_in_game": false,
+  "immersive_world_compatibility_verified_in_game": false,
+  "private_packages": {
+    "MAIN": {
+      "name": "Ultimate_Refined_Tracing_V5.2.0_CURATED_PRIVATE_RC1_MAIN.zip",
+      "sha256": "105dd30f5cd9ffdda597b2a064faf63d7dc2794f9788de41baa4ec7e5da4e241",
+      "bytes": 10256026
+    },
+    "ASI_ONLY": {
+      "name": "Ultimate_Refined_Tracing_V5.2.0_CURATED_PRIVATE_RC1_ASI_ONLY.zip",
+      "sha256": "045b3cc2f9024e6291392bc55eb154a6a4f12b84bf9c9df437393ae5ef17adf1",
+      "bytes": 9870691
+    }
+  },
+  "release_blockers": [
+    "Windows gameplay acceptance",
+    "Native graphics preferences integrity",
+    "Two-mod compatibility in RT and PT",
+    "Experimental FG optional runtime validation before enablement"
+  ]
+}

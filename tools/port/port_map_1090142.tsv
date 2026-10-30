@@ -1,0 +1,85 @@
+# old_rva	new_rva	kind	user	evidence
+1cac050	1cabab0	code	bone_hook NATIVE	window 175 insns; vtable slot +0x50 holds it
+37ae6e0	37ac6a0	rdata	bone_hook VTABLE_HEAD	vtable[-8] = COL
+37ae730	37ac6f0	rdata	bone_hook VTABLE slot	head+0x50 in both
+3ac8e10	3ac6d68	rdata	bone_hook RTTI_COL	COL self-rva field
+1ef0fcf	1ef08df	code	gate CALL	window 61; rel32 0x136c to writer unchanged
+1ef2340	1ef1c50	code	gate WRITER	function exact (826 insns)
+1ef29e1	1ef22f1	code	gate GEOM store	function exact
+1ef2f6c	1ef287c	code	gate HAIR store	function exact
+5149b40	5147b90	data	PTUseSHARC value	cvar by name + rip refs
+1ee6dc6	1ee66d6	code	PT final register call	window 112
+1ee6ff3	1ee6903	code	PT SER register call	window 117
+32e7c28	32de6a8	rdata	native PT blob	byte-identical 231144 B, 22144 zero bytes after
+5e514d0	5e4f480	data	D3D12 add global	4 referencing functions
+5e514d8	5e4f488	data	D3D12 create global	site functions
+512ee58	512ce68	data	LODBudget value	cvar by name
+4fe390	4ff3f0	code	register helper	function exact
+4fe399	4ff3f9	code	helper continue	function exact
+4fec7a	4ffcda	code	helper branch	function exact
+228f858	228dee8	code	PT shadow read (disp)	window 207
+228f866	228def6	code	PT shadow guard (disp)	window 210
+1c2ae35	1c2aa05	code	PT shadow ext read	window 114
+1c2e7f1	1c2e3c1	code	PT shadow ext read	function exact
+1c2f5cb	1c2f19b	code	PT shadow ext read	function exact
+1c345c3	1c34123	code	PT shadow ext read	function exact
+1c3ae28	1c3a988	code	PT shadow ext read	window 252
+1c6d7a8	1c6d348	code	PT shadow ext read	window 105
+1d60c78	1d60858	code	PT shadow ext read	function exact
+227351c	2271c7c	code	PT shadow ext read	window 229
+228f8f1	228df81	code	PT shadow ext read	window 249
+229025f	228e8ef	code	PT shadow ext read	function exact
+1b81530	1b81070	code	fg function	function exact
+1b81566	1b810a6	code	fg site	function exact
+1b8158a	1b810ca	code	fg site	function exact
+1b815ac	1b810ec	code	fg site	function exact
+1b815b3	1b810f3	code	fg site	function exact
+51513e8	514f438	data	fg data	4 referencing functions
+5ca8140	5ca6140	data	fg data	site functions
+1c1e97e	1c1e52e	code	gfx site	function exact
+1ef0870	1ef0180	code	gfx site	function exact
+382a950	3828918	rdata	render interface vtable	2 referencing functions
+405af10	4058f10	rdata	gfx rdata	site functions
+405af14	4058f14	rdata	gfx rdata	site functions
+405af23	4058f23	rdata	gfx rdata	site functions
+5c92af0	5c90af0	data	render interface global	site functions
+40671e8	4065208	cvar-value	urt_gfx_table.c Rendering/Async/RT/UseAsyncRTAO	cvar registry by name+category
+4067300	4065320	cvar-value	urt_gfx_table.c Rendering/UseAsyncShading	cvar registry by name+category
+40673a8	40653c8	cvar-value	urt_gfx_table.c Rendering/RT/HBIL/UseHBIL	cvar registry by name+category
+40684f0	4066510	cvar-value	urt_gfx_table.c Rendering/RT/EnableAOSSSampling	cvar registry by name+category
+4069358	4067378	cvar-value	urt_gfx_table.c RTXGI/GlobalGrid/ClassifyProbesAsync	cvar registry by name+category
+5130388	512e3d8	cvar-value	urt_gfx_table.c Rendering/RT/AS/Config/RTConfigDefragThresholdPerCent	cvar registry by name+category
+5130468	512e4b8	cvar-value	urt_gfx_table.c Rendering/RayTracing/RTConfigMaxBlasesInBatch	cvar registry by name+category
+5130580	512e5d0	cvar-value	urt_gfx_table.c Rendering/RayTracing/RTConfigFastTraceDynamic	cvar registry by name+category
+5130bd8	512ec28	cvar-value	urt_gfx_table.c Rendering/RayTracing/EnableAOPretrace	cvar registry by name+category
+5149750	51477a0	cvar-value	urt_gfx_table.c Rendering/RT/PathTracer/PTMoonImpact	cvar registry by name+category
+5149910	5147960	cvar-value	urt_gfx_table.c Rendering/RT/PathTracer/PTSkinIndirectDesaturation	cvar registry by name+category
+5149be8	5147c38	cvar-value	urt_gfx_table.c Rendering/RT/PathTracer/PTSharcDownscaleFactor	cvar registry by name+category
+514a908	5148958	cvar-value	urt_gfx_table.c Rendering/TerrainReadAheadDistance	cvar registry by name+category
+514c250	514a2a0	cvar-value	urt_gfx_table.c Rendering/RT/PathTracer/PTAOQuality	cvar registry by name+category
+514c6e8	514a738	cvar-value	urt_gfx_table.c Rendering/TextureUnloadSpeed	cvar registry by name+category
+514c838	514a888	cvar-value	urt_gfx_table.c Rendering/RT/SpeedTree/RTSTConfigUpdateDistance	cvar registry by name+category
+514c870	514a8c0	cvar-value	urt_gfx_table.c Rendering/RT/RTSTConfigUpdateWindSimBlendDistance	cvar registry by name+category
+514caa0	514aaf0	cvar-value	urt_gfx_table.c Rendering/TextureInFlightCountBudget	cvar registry by name+category
+514dc90	514bce0	cvar-value	urt_gfx_table.c Rendering/RT/RtRadianceShadingFog	cvar registry by name+category
+514de18	514be68	cvar-value	urt_gfx_table.c Rendering/RT/ReflectionsRadianceMipLevel	cvar registry by name+category
+514dec0	514bf10	cvar-value	urt_gfx_table.c Rendering/RT/GIAlphaTestMipLevel	cvar registry by name+category
+514f698	514d6e8	cvar-value	urt_gfx_table.c Rendering/RT/RtRadianceScreenSpaceTrace	cvar registry by name+category
+515e628	515c678	cvar-value	urt_gfx_table.c Streaming/Sector/GenericOffset	cvar registry by name+category
+515e660	515c6b0	cvar-value	urt_gfx_table.c Streaming/Sector/MeshOffset	cvar registry by name+category
+516f550	516d5a0	cvar-value	urt_gfx_table.c Memory/GC/IdleFrameCount	cvar registry by name+category
+5170158	516e1a8	cvar-value	urt_gfx_table.c MetadataStore/AutoDiscardCount	cvar registry by name+category
+4068508	4066528	cvar-desc	cr01_rt_legacy501.c Rendering/RT/AOPretraceQualityLevel	cvar registry by name+category
+4069b88	4067ba8	cvar-desc	cr01_rt_legacy501.c RTXGI/GlobalGrid/NumClassificationRaysPerProbe	cvar registry by name+category
+4069c68	4067c88	cvar-desc	cr01_rt_legacy501.c RTXGI/GlobalGrid/MaxProbesShadedPerFrame	cvar registry by name+category
+4069f78	4067f98	cvar-desc	cr01_rt_legacy501.c RTXGI/Grid1/ShadingRaysPerFrameBudget	cvar registry by name+category
+4069fb0	4067fd0	cvar-desc	cr01_rt_legacy501.c RTXGI/Grid1/NumClassificationRaysPerProbe	cvar registry by name+category
+406a090	40680b0	cvar-desc	cr01_rt_legacy501.c RTXGI/Grid1/MaxProbesShadedPerFrame	cvar registry by name+category
+406a0c8	40680e8	cvar-desc	cr01_rt_legacy501.c RTXGI/Grid1/MaxProbesClassificatedPerFrame	cvar registry by name+category
+514c7c8	514a818	cvar-value	urt_ptperf501.c Rendering/RT/ProximityExtendedTLASSize	cvar registry by name+category
+514c800	514a850	cvar-value	urt_ptperf501.c Rendering/RT/SpeedTree/ProximityTLASSize	cvar registry by name+category
+514f4d8	514d528	cvar-value	urt_ptperf501.c Rendering/RT/EnableRT	cvar registry by name+category
+51510a0	514f0f0	cvar-value	urt_ptperf501.c PostProcess/DisableEnableRayTracing	cvar registry by name+category
+514def8	514bf48	cvar-value	urt_rtperf501.c Rendering/RT/ShadowsAlphaTestMipLevel	cvar registry by name+category
+514e588	514c5d8	cvar-value	urt_rtperf501.c Rendering/RT/RtRadianceShadingLocalLights	cvar registry by name+category
+514e898	514c8e8	cvar-value	urt_rtperf501.c Rendering/RT/LocalShadowsSlots	cvar registry by name+category

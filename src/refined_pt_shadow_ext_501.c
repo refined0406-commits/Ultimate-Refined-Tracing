@@ -4,6 +4,7 @@
    The mirror is set to native outside PT and to the PT-shadow choice only during PT.
    All target instructions are byte-checked, with fail-closed transactional rollback.
    All instruction sites are checked before temporary installation. */
+#include "urt_build.h"
 #include "refined_pt_shadow_ext_501.h"
 #include <stdint.h>
 #include <stddef.h>
@@ -69,7 +70,8 @@ int refined_pt_shadow_ext_install(uint8_t*base,const volatile uint32_t*native,vo
    /* No patches at all unless every original instruction and RIP destination matches. */
    for(i=0;i<SITE_COUNT;i++){
      const ShadowReference *ref=&g_refs[i];
-     p=base+ref->disp_rva;
+     if(!urt_rva(ref->disp_rva))return 0;                 /* R11: not ported to this build: no patch */
+     p=base+urt_rva(ref->disp_rva);
      for(j=0;j<ref->opcode_len;j++)if(p[-(ptrdiff_t)ref->opcode_len+j]!=ref->opcode[j])return 0;
      if(ref->check_trailer && p[4]!=ref->last_byte)return 0;
      diff=(int64_t)(intptr_t)mirror-(int64_t)(intptr_t)(p+4+ref->trailing_immediate);

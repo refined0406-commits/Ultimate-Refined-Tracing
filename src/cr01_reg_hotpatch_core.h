@@ -1,5 +1,6 @@
 #ifndef CR01_REG_HOTPATCH_CORE_H
 #define CR01_REG_HOTPATCH_CORE_H
+#include "urt_build.h"
 #include <stdint.h>
 #include <stddef.h>
 /* Patch 5.01 native register-helper entrance, preverified unchanged:
@@ -7,12 +8,12 @@
  * We install the 5-byte pad jump before publishing the atomic two-byte short
  * jump at entry. We do not write either original protected registration E8.
  */
-#define CR01_HELPER_RVA 0x4fe390u
+#define CR01_HELPER_RVA urt_rva(0x4fe390u)
 #define CR01_HELPER_PAD_LENGTH 8u
 #define CR01_REG_TRAMPOLINE_OFFSET 0x40u
 #define CR01_REG_RELAY_LENGTH 0x80u
-#define CR01_NATIVE_BRANCH_RVA 0x4fec7au
-#define CR01_NATIVE_CONTINUE_RVA 0x4fe399u
+#define CR01_NATIVE_BRANCH_RVA urt_rva(0x4fec7au)
+#define CR01_NATIVE_CONTINUE_RVA urt_rva(0x4fe399u)
 #define CR01_ATOMIC_OLD 0x8548u
 #define CR01_ATOMIC_NEW 0xf6ebu
 /* A preflight rejection makes no game-code changes. A failed protection

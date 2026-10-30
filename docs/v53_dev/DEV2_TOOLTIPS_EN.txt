@@ -1,0 +1,108 @@
+## tooltip_cr01_masterenabled 
+ Turns every Ultimate Refined Tracing change on or off. Off restores the game's own values at once and keeps your choices for later; it never changes the game's RT/PT mode. FPS effects in these tooltips are expectations and vary by scene and hardware.
+## tooltip_cr01_cpu_distant_trees 
+ Keeps distant tree billboards out of the ray-traced scene, so the CPU prepares less ray-tracing work. Distant trees may be missing from RT reflections and shadows. Paused in Path Tracing while PT: Billboards is On. Native / Auto: Off, the game's own behaviour. Saves CPU time; helps FPS mainly when the CPU is the limit. Normal RT and Path Tracing. Applies to newly loaded areas.
+## tooltip_cr01_cpu_fast_bone_reads 
+ Speeds up how the CPU reads the animation bones of characters and creatures. Animation looks exactly the same. Native / Auto: Off, the game's own behaviour. Saves CPU time; helps FPS mainly when the CPU is the limit. All renderers (raster, RT, PT). Applies immediately.
+## tooltip_cr01_cpu_physics_lod 
+ Lowers the physics level-of-detail budget (game 25, On 5), so distant objects and cloth are simulated in less detail. Close-up physics is unchanged. Native / Auto: Off, the game's own behaviour. Saves CPU time; helps FPS mainly when the CPU is the limit. All renderers (raster, RT, PT). Applies immediately.
+## tooltip_cr01_geometrybounces 
+ How many times light bounces between surfaces. Fewer bounces are faster but make interiors and shaded areas darker and flatter; more bounces fill them with light at a GPU cost. Native / Auto: 2 Bounces. The cheaper choice may raise FPS. Applies immediately.
+## tooltip_cr01_hairbounces 
+ How many times light bounces inside hair. Fewer bounces are faster but hair looks slightly darker and flatter; more bounces give softer, brighter hair at a GPU cost. Native / Auto: 4 Bounces. The cheaper choice may raise FPS. Applies immediately.
+## tooltip_cr01_indirectlight 
+ Brightens bounced light (1.00 = unchanged). Useful to win back brightness when you lower PT: Geometry Bounces; higher values lift shadowed areas. Native / Auto: 1.00. Visual only; no known FPS effect. Applies immediately.
+## tooltip_cr01_ptbillboards 
+ Includes distant tree billboards in the path-traced scene, so far forests cast shadows and show in reflections. Off removes them for less ray-tracing work. On pauses CPU: Distant Trees. Native / Auto: On. The cheaper choice may raise FPS. Applies to newly loaded areas.
+## tooltip_cr01_ptshadows 
+ Path-traced shadows from the sun and lights. Off switches to cheaper shadows and also skips the CPU wait for the ray-traced scene; shadows lose softness and fine detail. Native / Auto: follows the game's Ray-Traced Shadows option. The cheaper choice may raise FPS. Applies immediately.
+## tooltip_cr01_pt_scene_range 
+ Shrinks the area around you that is path traced. Smaller ranges do less work, but distant reflections, bounced light and shadows can be reduced; gains are usually small. Native / Auto: 400 m. The cheaper choice may raise FPS. Applies immediately.
+## tooltip_cr01_ambientocclusion 
+ The path tracer's ambient occlusion: soft contact shadows in corners and under objects. Off is cheaper but objects look less grounded. Native / Auto: On. The cheaper choice may raise FPS. Applies immediately.
+## tooltip_urtx_ptaoquality 
+ Quality level of the path-traced ambient occlusion pass (0 = lowest, 3 = highest). Lower levels are faster but noisier. Native / Auto: chosen automatically by the game. The cheaper choice may raise FPS. Applies immediately.
+## tooltip_cr01_aostrength 
+ How dark ambient occlusion is. 0.00 removes the darkening; higher values deepen contact shadows. Native / Auto: chosen automatically by the game. Visual only; no known FPS effect. Applies immediately.
+## tooltip_cr01_aoradius 
+ How far ambient occlusion reaches from corners and contact points. Larger radii give broader, softer darkening; smaller radii keep it tight. Native / Auto: chosen automatically by the game. Visual only; no known FPS effect. Applies immediately.
+## tooltip_cr01_aocontrast 
+ Contrast of ambient occlusion. Higher values make corner shading sharper and darker; lower values make it gentler. Native / Auto: chosen automatically by the game. Visual only; no known FPS effect. Applies immediately.
+## tooltip_cr01_sunimpact 
+ Strength of direct sunlight in path tracing (1.00 = unchanged). Lower values soften bright daylight; higher values make it harsher. Native / Auto: 1.00. Visual only; no known FPS effect. Applies immediately.
+## tooltip_cr01_skyimpact 
+ Strength of sky light in path tracing (1.00 = unchanged). Lower values give darker shade under open sky; higher values brighten it. Native / Auto: 1.00. Visual only; no known FPS effect. Applies immediately.
+## tooltip_urtx_ptskinbouncedesat 
+ Removes colour from light bouncing onto skin. Higher values give more neutral skin tones; 0.00 keeps the full bounce colour (for example green tints in forests). Native / Auto: 0.50. Visual only; no known FPS effect. Applies immediately.
+## tooltip_cr01_grassday 
+ Brightness of grass in path tracing during the day. Lower values darken bright meadows; higher values brighten them. Native / Auto: chosen automatically by the game. Visual only; no known FPS effect. Applies immediately.
+## tooltip_cr01_grassnight 
+ Brightness of grass in path tracing at night. Lower values give darker nights; higher values make grass more visible in moonlight. Native / Auto: chosen automatically by the game. Visual only; no known FPS effect. Applies immediately.
+## tooltip_cr01_specularscreenspace 
+ An extra screen-space pass that adds detail to some path-traced reflections. Off skips it: slightly faster, with some reflection detail lost. Native / Auto: On. The cheaper choice may raise FPS. Applies immediately.
+## tooltip_cr01_specularcheckerboard 
+ Traces some reflection rays on alternating pixels (checkerboard) and fills in the rest. On is faster; Off gives slightly sharper reflections at a GPU cost. Native / Auto: On. The cheaper choice may raise FPS. Applies immediately.
+## tooltip_urtx_ptnoblueglow 
+ Shades surfaces seen in path-traced reflections with very low-detail textures (mip 10), which removes the blue glow visible on some armour. Reflected textures become softer. Native / Auto: Off. Visual fix; no measured FPS change. Applies immediately.
+## tooltip_cr01_rt_refl_local_lights 
+ Whether lamps, torches and fires light the surfaces seen in RT reflections. Off is cheaper, but lamp-lit areas look darker in reflections. Native / Auto: On. The cheaper choice may raise FPS. Applies immediately.
+## tooltip_cr01_rt_shadow_local_lights 
+ How many nearby lights (lamps, torches, fires) may cast ray-traced shadows. Fewer is cheaper; lights beyond the limit cast no RT shadow. Sun shadows are unaffected. Native / Auto: 8. The cheaper choice may raise FPS. Applies immediately.
+## tooltip_cr01_rt_shadow_foliage_detail 
+ Texture detail used to cut out leaves for RT shadow rays (Reduced, Low, Very Low = mip 3, 4, 6). Lower detail is cheaper, but leaf shadows turn into softer blobs. Native / Auto: mip 2. The cheaper choice may raise FPS. Applies immediately.
+## tooltip_urtx_rtaoscreenspace 
+ Lets ray-traced ambient occlusion use screen-space samples where possible. Off uses rays only, which can look slightly cleaner in some scenes. Native / Auto: On. The FPS effect varies by scene. Applies immediately.
+## tooltip_urtx_rthbil 
+ Adds screen-space bounce light (HBIL) on top of ray-traced global illumination for extra fill light in corners and under objects. On costs GPU time; Off is cheaper. Native / Auto: Off. The cheaper choice may raise FPS. Applies immediately.
+## tooltip_urtx_rtaopretrace 
+ Runs a quick pre-trace that guides ray-traced ambient occlusion. Off skips it; depending on the scene this can be faster or slower, with similar image quality. Native / Auto: On. The FPS effect varies by scene. Applies immediately.
+## tooltip_urtx_rtreflscreenspace 
+ Lets RT reflections reuse what is already on screen before tracing rays. On is usually cheaper; Off traces every reflection ray, which can be slightly more accurate at screen edges. Native / Auto: On. The cheaper choice may raise FPS. Applies immediately.
+## tooltip_urtx_rtgialphatest 
+ Texture detail used to cut out leaves and other see-through surfaces for global-illumination rays (higher number = coarser). Coarser is slightly cheaper; foliage may let a little more or less bounced light through. RT foliage shadows are not affected. Native / Auto: 5. The cheaper choice may raise FPS. Applies immediately.
+## tooltip_cr01_rt_quality_primary 
+ Rays each probe of the main lighting grid uses to decide whether its light needs updating. Fewer rays are cheaper, but lighting may update less accurately. Native / Auto: 128. The cheaper choice may raise FPS. Applies immediately. Needs Ray-Traced Optimizations = Auto.
+## tooltip_cr01_rt_quality_secondary 
+ Rays each probe of the near, detailed lighting grid uses to decide whether its light needs updating. Fewer rays are cheaper, but nearby lighting may update less accurately. Native / Auto: 32. The cheaper choice may raise FPS. Applies immediately. Needs Ray-Traced Optimizations = Auto.
+## tooltip_cr01_rt_quality_cap 
+ Maximum lighting probes checked for updates per frame. Lower limits are cheaper, but lighting may react more slowly to changes such as moving lights. Native / Auto: 65536. The cheaper choice may raise FPS. Applies immediately. Needs Ray-Traced Optimizations = Auto.
+## tooltip_cr01_rt_quality_ao 
+ Quality of the ambient-occlusion pre-trace used with RT global illumination (1 = lowest). Lower is cheaper but contact shading gets rougher. Native / Auto: the game's own value. The cheaper choice may raise FPS. Applies immediately. Needs Ray-Traced Optimizations = Auto.
+## tooltip_cr01_rt_quality_global_shading_limit 
+ Maximum probes of the main (far) lighting grid re-lit per frame. Lower limits are cheaper, but distant lighting catches up more slowly after time-of-day, weather or light changes. Native / Auto: 16384. The cheaper choice may raise FPS. Applies immediately. Needs Ray-Traced Optimizations = Auto.
+## tooltip_cr01_rt_quality_grid1_shading_limit 
+ Maximum probes of the near, detailed lighting grid re-lit per frame. Lower limits are cheaper, but nearby lighting catches up more slowly when lights or surroundings change. Native / Auto: the game's own value. The cheaper choice may raise FPS. Applies immediately. Needs Ray-Traced Optimizations = Auto.
+## tooltip_cr01_rt_perf_primary 
+ Rays each probe of the main lighting grid uses to decide whether its light needs updating. Fewer rays are cheaper, but lighting may update less accurately. Native / Auto: 128. The cheaper choice may raise FPS. Applies immediately. Needs Ray-Traced Optimizations = Auto.
+## tooltip_cr01_rt_perf_secondary 
+ Rays each probe of the near, detailed lighting grid uses to decide whether its light needs updating. Fewer rays are cheaper, but nearby lighting may update less accurately. Native / Auto: 16. The cheaper choice may raise FPS. Applies immediately. Needs Ray-Traced Optimizations = Auto.
+## tooltip_cr01_rt_perf_cap 
+ Maximum lighting probes checked for updates per frame. Lower limits are cheaper, but lighting may react more slowly to changes such as moving lights. Native / Auto: 32768. The cheaper choice may raise FPS. Applies immediately. Needs Ray-Traced Optimizations = Auto.
+## tooltip_cr01_rt_perf_ao 
+ Quality of the ambient-occlusion pre-trace used with RT global illumination (1 = lowest). Lower is cheaper but contact shading gets rougher. Native / Auto: the game's own value. The cheaper choice may raise FPS. Applies immediately. Needs Ray-Traced Optimizations = Auto.
+## tooltip_cr01_rt_perf_global_shading_limit 
+ Maximum probes of the main (far) lighting grid re-lit per frame. Lower limits are cheaper, but distant lighting catches up more slowly after time-of-day, weather or light changes. Native / Auto: 8192. The cheaper choice may raise FPS. Applies immediately. Needs Ray-Traced Optimizations = Auto.
+## tooltip_cr01_rt_perf_grid1_shading_limit 
+ Maximum probes of the near, detailed lighting grid re-lit per frame. Lower limits are cheaper, but nearby lighting catches up more slowly when lights or surroundings change. Native / Auto: the game's own value. The cheaper choice may raise FPS. Applies immediately. Needs Ray-Traced Optimizations = Auto.
+## tooltip_urtx_rtreflfog 
+ Draws fog inside ray-traced reflections. Off saves a little GPU time and gives clearer reflections, but reflections may look too clear in foggy weather. Native / Auto: On. The cheaper choice may raise FPS. Normal RT and Path Tracing. Applies immediately.
+## tooltip_urtx_texturestreams 
+ How many textures may load at the same time. Higher values make sharp textures appear sooner (less blur and pop-in) but add loading work that can cause hitches on slower CPUs or drives; lower values do the opposite. Native / Auto: 12. Affects pop-in and loading hitches, not average FPS. Applies immediately.
+## tooltip_urtx_terrainpreload 
+ How far ahead terrain is loaded in your direction of travel. Higher values reduce terrain pop-in when riding fast, but add loading work and memory use. Native / Auto: 20 m. Affects pop-in and loading hitches, not average FPS. Applies to newly loaded areas.
+## tooltip_urtx_texunloadspeed 
+ How quickly textures you no longer see leave video memory (0.5x = keep them longer, 4x = remove sooner). Faster removal frees VRAM, which can reduce stutter on cards that run short of VRAM, but textures may reload (brief blur) when you look back. Native / Auto: 1x. Affects memory use and occasional stutter, not average FPS. Applies immediately.
+## tooltip_urtx_meshstreamlead 
+ How early object models start loading before they come into view. Lower values save memory and loading work but can cause pop-in, mostly on horseback; higher values reduce pop-in but use more memory. Native / Auto: 10 m. Affects pop-in and loading hitches, not average FPS. Applies to newly loaded areas.
+## tooltip_urtx_genericstreamlead 
+ The same early-loading distance for everything else in the world (not object models). Lower values save memory but things may appear late; higher values reduce pop-in but use more memory. Native / Auto: 45 m. Affects pop-in and loading hitches, not average FPS. Applies to newly loaded areas.
+## tooltip_urtx_gcdiscardthreshold 
+ How many discarded game objects may pile up before an automatic memory cleanup (garbage collection) runs. Lower frees memory sooner but cleans up more often (possible brief hitches); higher cleans up less often but keeps more memory in use. Native / Auto: the game's own value. Affects memory use and occasional stutter, not average FPS. Applies immediately.
+## tooltip_urtx_gcidleframes 
+ Minimum number of frames between automatic memory cleanups. Lower cleans up more often (less memory held, more chances of a periodic hitch); higher cleans up less often (fewer interruptions, more memory held). Native / Auto: 1800. Affects memory use and occasional stutter, not average FPS. Applies immediately.
+## tooltip_urtx_rtasdefrag 
+ How fragmented ray-tracing geometry memory may get before it is defragmented. Lower defragments more often: tidier VRAM in long sessions, but extra work and possible brief spikes. Higher defragments less often. Does not raise FPS. Native / Auto: 30%. Affects memory use and occasional stutter, not average FPS. Applies after a game restart.
+## tooltip_urtx_rtasbatch 
+ How many ray-tracing structures for newly loaded objects are built at once. Smaller batches spread the work over more frames and may smooth loading spikes; new objects may show up in RT shadows and reflections slightly later. Lower is not automatically better. Native / Auto: 256. Affects loading smoothness, not average FPS. Applies after a game restart.
+## tooltip_urtx_fgmenuresources 
+ Keeps DLSS Frame Generation resources while a full-screen menu (inventory, map) is open, which can avoid a hitch when you return to the game. No other Frame Generation, Reflex or V-Sync setting is changed. Native / Auto: the game releases these resources. No FPS change in play; extra video memory only while a menu is open. Applies immediately.

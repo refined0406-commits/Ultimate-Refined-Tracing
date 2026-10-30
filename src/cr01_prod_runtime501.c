@@ -2,6 +2,7 @@
  * no PT/RT optimizers, no rendering worker or per-frame writer. All writes are
  * edge-driven, private and conditional on verified game slots. This module
  * runs ONLY after the DirectInput bootstrap outside DllMain. */
+#include "urt_build.h"
 #include "cr01_menu_bridge.h"
 #include "cr01_release_log.h"
 #include "cr01_settings_store_windows.h"
@@ -16,6 +17,9 @@
 #include "cr01_dx12_safety.h"
 #include "urt_cvar_index.h"
 #include "urt_rtperf501.h"
+#include "urt_gfx501.h"
+#include "urt_bounce_boot501.h"
+#include "urt_ptperf501.h"
 #include "urt_exe_identity.h"
 #include "urt_runtime.h"
 #include "urt_environment.h"
@@ -74,9 +78,14 @@ IMP DWORD WIN SetFilePointer(HANDLE,long,long*,DWORD);
 IMP DWORD WIN GetFileAttributesW(const WCHAR*);
 IMP BOOL WIN GetFileAttributesExW(const WCHAR*,int,void*);
 IMP DWORD WIN GetPrivateProfileStringW(const WCHAR*,const WCHAR*,const WCHAR*,WCHAR*,DWORD,const WCHAR*);
+IMP unsigned long long WIN GetTickCount64(void);
+IMP BOOL WIN VirtualProtect(void*,size_t,DWORD,DWORD*);
+IMP BOOL WIN FlushInstructionCache(HANDLE,const void*,size_t);
+IMP HANDLE WIN GetCurrentProcess(void);
 extern int cr01_gate_verify_exe_file(void);
 extern int cr01_shader_slots_active(void);
 extern int cr01_gate_win_publish_settings(const CR01Settings*,uint32_t,uint32_t);
+extern void cr01_gate_sharc_stats(unsigned*,unsigned*);   /* R10 (cr01_gate_windows.c) */
 static int g_tier=URT_TIER_ADAPTIVE;
 static int g_shader_state=URT_SHADER_NONE;
 static CR01MenuBridge g_menu;
@@ -101,6 +110,23 @@ static int wide_append(WCHAR*buf,unsigned cap,const WCHAR*s){
  unsigned a=0,b=0;while(a<cap&&buf[a])a++;if(a==cap)return 0;
  while(s[b]){if(a+1>=cap)return 0;buf[a++]=s[b++];}buf[a]=0;return 1;
 }
+/* V5.3.0 rev4: startup guard file, Documents\The Witcher 3\UltimateRefinedTracing.startupguard (separate from every
+ * settings file; never touches dx12user.settings or UltimateRefinedTracing.settings). */
+static WCHAR g_guardfile[1024];
+static int guard_read(char*buf,unsigned cap){
+ if(!g_guardfile[0])return -1;
+ HANDLE h=CreateFileW(g_guardfile,GENERIC_READ,FILE_SHARE_READ,0,OPEN_EXISTING,FILE_ATTRIBUTE_NORMAL,0);
+ if(h==INVALID_HANDLE||!h)return 0;                /* no file = no records */
+ DWORD got=0;BOOL ok=ReadFile(h,buf,cap,&got,0);CloseHandle(h);
+ return ok?(int)got:0;
+}
+static int guard_write(const char*buf,unsigned len){
+ if(!g_guardfile[0])return -1;
+ HANDLE h=CreateFileW(g_guardfile,GENERIC_WRITE,0,0,CREATE_ALWAYS,FILE_ATTRIBUTE_NORMAL,0);
+ if(h==INVALID_HANDLE||!h)return -1;
+ DWORD w=0;BOOL ok=WriteFile(h,buf,len,&w,0);CloseHandle(h);
+ return ok?(int)w:-1;
+}
 static int build_paths(void){
  static const WCHAR shell[]={ 's','h','e','l','l','3','2','.','d','l','l',0};
  static const WCHAR slash[]={ '\\',0};
@@ -116,6 +142,10 @@ static int build_paths(void){
  if(!wide_append(g_userdir,1024,slash)||!wide_append(g_userdir,1024,userdir))return 0;
  for(unsigned i=0;i<1024;i++){g_userfile[i]=g_userdir[i];if(!g_userfile[i])break;}
  if(!wide_append(g_userfile,1024,slash)||!wide_append(g_userfile,1024,settings))return 0;
+ {static const WCHAR guard[]={'U','l','t','i','m','a','t','e','R','e','f','i','n','e','d','T','r','a','c','i','n','g','.',
+   's','t','a','r','t','u','p','g','u','a','r','d',0};
+  for(unsigned i=0;i<1024;i++){g_guardfile[i]=g_userdir[i];if(!g_userdir[i])break;}
+  if(!wide_append(g_guardfile,1024,slash)||!wide_append(g_guardfile,1024,guard))g_guardfile[0]=0;}
  return 1;
 }
 /* V5: CVar registry resolution uses a one-pass index (urt_cvar_index.c) with
@@ -151,6 +181,98 @@ static int detect_mode(CR01RenderMode*mode){
  if(rt>1||rad>1)return 0;
  *mode=rt&&rad?CR01_RENDER_NORMAL_RT:CR01_RENDER_RASTER;return 1;
 }
+
+/* ---- R12 FIX3 reliability diagnostics (worker thread only; no render-thread work beyond the gate's atomic counters) ---- */
+extern int cr01_shader_slots_verify(void);
+extern void cr01_gate_level_stats(unsigned*,unsigned*,unsigned*,unsigned*);
+extern unsigned urt_gfx501_owned(void);
+extern unsigned urt_gfx501_writes(void);
+IMP unsigned WIN GetSystemDirectoryW(WCHAR*,unsigned);
+typedef BOOL (WIN *UrtFnMemInfo)(HANDLE,void*,DWORD);
+typedef long (WIN *UrtFnCreateFactory1)(const void*,void**);
+typedef struct { uint32_t a; uint16_t b,c; uint8_t d[8]; } UrtGuid;
+static unsigned g_settings_events,g_renderer_changes;
+static void *g_vram_adapter;                       /* IDXGIAdapter3 of the largest hardware adapter, or 0 */
+static unsigned g_vram_tried;
+static void put_u(char*b,unsigned*n,unsigned long long v){char d[24];unsigned k=0;do{d[k++]=(char)('0'+v%10u);v/=10u;}while(v&&k<23u);while(k&&*n<500u)b[(*n)++]=d[--k];}
+static void put_s(char*b,unsigned*n,const char*s){while(*s&&*n<500u)b[(*n)++]=*s++;}
+/* Game process GPU memory, read-only, through the SYSTEM dxgi.dll (full path: never a proxy dxgi.dll in the game folder).
+   One factory, created once, the first time a snapshot is taken in game; nothing is hooked or changed. */
+static int vram_query(unsigned long long*usage,unsigned long long*budget){
+ if(!g_vram_tried){
+  g_vram_tried=1u;
+  WCHAR path[300];unsigned n=GetSystemDirectoryW(path,260u);static const WCHAR tail[]={'\\','d','x','g','i','.','d','l','l',0};
+  if(!n||n>=260u)return 0;for(unsigned i=0;tail[i]&&n<298u;i++)path[n++]=tail[i];path[n]=0;
+  HMODULE m=LoadLibraryW(path);if(!m)return 0;
+  UrtFnCreateFactory1 cf=(UrtFnCreateFactory1)GetProcAddress(m,"CreateDXGIFactory1");if(!cf)return 0;
+  static const UrtGuid kF1={0x770aae78u,0xf26fu,0x4dbau,{0xa8,0x29,0x25,0x3c,0x83,0xd1,0xb3,0x87}};
+  static const UrtGuid kA3={0x645967a4u,0x1392u,0x4310u,{0xa7,0x98,0x80,0x53,0xce,0x3e,0x93,0xfd}};
+  void*f=0;if(cf(&kF1,&f)<0||!f)return 0;
+  void**fv=*(void***)f;void*pick=0;unsigned long long best=0;
+  for(unsigned i=0;i<16u;i++){
+   void*a=0;if(((long(WIN*)(void*,unsigned,void**))fv[12])(f,i,&a)<0||!a)break;          /* IDXGIFactory1::EnumAdapters1 */
+   void**av=*(void***)a;uint8_t d[320];for(unsigned k=0;k<sizeof d;k++)d[k]=0;
+   unsigned long long ded=0;uint32_t flags=2u;
+   if(((long(WIN*)(void*,void*))av[10])(a,d)>=0){                                           /* IDXGIAdapter1::GetDesc1 */
+    for(unsigned k=0;k<8u;k++)ded|=(unsigned long long)d[272u+k]<<(8u*k);
+    flags=(uint32_t)d[304]|(uint32_t)d[305]<<8;}
+   if(!(flags&2u)&&ded>best){if(pick)((unsigned long(WIN*)(void*))(*(void***)pick)[2])(pick);pick=a;best=ded;}
+   else ((unsigned long(WIN*)(void*))av[2])(a);                                              /* Release */
+  }
+  if(pick){void*a3=0;
+   if(((long(WIN*)(void*,const void*,void**))(*(void***)pick)[0])(pick,&kA3,&a3)>=0&&a3)g_vram_adapter=a3;   /* QueryInterface */
+   ((unsigned long(WIN*)(void*))(*(void***)pick)[2])(pick);}
+  ((unsigned long(WIN*)(void*))fv[2])(f);
+ }
+ if(!g_vram_adapter)return 0;
+ uint64_t info[4]={0,0,0,0};
+ if(((long(WIN*)(void*,unsigned,int,void*))(*(void***)g_vram_adapter)[14])(g_vram_adapter,0u,0,info)<0)return 0;   /* QueryVideoMemoryInfo, local */
+ *usage=info[1];*budget=info[0];return 1;
+}
+static const char*mode_name(unsigned m){return m==CR01_RENDER_PT?"Path Tracing":m==CR01_RENDER_NORMAL_RT?"Normal RT":"raster";}
+/* One line: renderer, Master, game GPU / process memory, PT coverage frames, URT-owned state. Every 5 minutes and at
+   renderer changes; the same spot before and after a long session can be compared from the log alone. */
+static void session_snapshot(const char*why,unsigned mode_valid,unsigned mode,unsigned master){
+ char b[520];unsigned n=0;unsigned long long u=0,bu=0;
+ put_s(b,&n,"URT: session snapshot (");put_s(b,&n,why);put_s(b,&n,"): renderer ");put_s(b,&n,mode_valid?mode_name(mode):"not active");
+ put_s(b,&n,master?", Master On":", Master Off");
+ if(vram_query(&u,&bu)){put_s(b,&n,"; game GPU memory ");put_u(b,&n,u>>20);put_s(b,&n," MB of ");put_u(b,&n,bu>>20);put_s(b,&n," MB budget");
+  if(u>bu)put_s(b,&n," (OVER BUDGET: Windows moves data out of video memory)");}
+ else put_s(b,&n,"; game GPU memory not available");
+ {static UrtFnMemInfo mi;static unsigned mi_tried;
+  if(!mi_tried){static const WCHAR k32[]={'k','e','r','n','e','l','3','2','.','d','l','l',0};HMODULE k=GetModuleHandleW(k32);mi_tried=1u;
+   if(k)mi=(UrtFnMemInfo)GetProcAddress(k,"K32GetProcessMemoryInfo");}
+  uint8_t pm[80];for(unsigned k=0;k<sizeof pm;k++)pm[k]=0;pm[0]=80;
+  if(mi&&mi(GetCurrentProcess(),pm,80)){unsigned long long ws=0,pv=0;for(unsigned k=0;k<8u;k++){ws|=(unsigned long long)pm[16u+k]<<(8u*k);pv|=(unsigned long long)pm[72u+k]<<(8u*k);}
+   put_s(b,&n,"; process memory ");put_u(b,&n,pv>>20);put_s(b,&n," MB private, ");put_u(b,&n,ws>>20);put_s(b,&n," MB working set");}}
+ {unsigned lv=urt_bc_active_level(),c=0,sh=0,lb=0,off=0;cr01_gate_level_stats(&c,&sh,&lb,&off);
+  if(lv){put_s(b,&n,"; PT coverage variant");put_s(b,&n,((lv>>2)&3u)?" diffuse 50%":"");put_s(b,&n,((lv>>4)&3u)?" sun shadow 50%":"");put_s(b,&n,((lv>>6)&3u)?" local-light shadow 50%":"");
+   put_s(b,&n,", frames carrying it ");put_u(b,&n,c);put_s(b,&n,", not (SHaRC / library / Master Off or not PT) ");put_u(b,&n,sh);put_s(b,&n," / ");put_u(b,&n,lb);put_s(b,&n," / ");put_u(b,&n,off);
+   put_s(b,&n,cr01_shader_slots_verify()?", shader slots intact":", SHADER SLOTS CHANGED");}
+  else put_s(b,&n,"; PT coverage options off (normal URT PT library)");}
+ put_s(b,&n,"; URT: ");put_u(b,&n,urt_gfx501_owned());put_s(b,&n," engine values held (");put_u(b,&n,urt_gfx501_writes());put_s(b,&n," writes so far), ");put_u(b,&n,g_settings_events);put_s(b,&n," settings events, ");
+ put_u(b,&n,g_renderer_changes);put_s(b,&n," renderer changes, 1 worker thread, no per-event allocations\r\n");
+ b[n]=0;cr01_release_log_event(b);
+}
+/* Coverage state machine: logs only when the state changes (in effect / paused with its reason). */
+static void coverage_watch(unsigned mode_valid,unsigned mode,unsigned master){
+ static unsigned lc,lsh,llb,loff,state,started;
+ unsigned lv=urt_bc_active_level(),c=0,sh=0,lb=0,off=0;
+ if(!lv)return;
+ cr01_gate_level_stats(&c,&sh,&lb,&off);
+ if(!started){started=1u;lc=c;lsh=sh;llb=lb;loff=off;}
+ unsigned dc=c-lc,dsh=sh-lsh,dlb=lb-llb,doff=off-loff,next=state;
+ lc=c;lsh=sh;llb=lb;loff=off;
+ if(!mode_valid||mode!=CR01_RENDER_PT)return;      /* frames outside Path Tracing never carry it (by design) */
+ if(dc)next=1u;else if(dsh)next=2u;else if(dlb)next=3u;else if(doff)next=master?4u:5u;   /* a 50 ms window with no carried frame */
+ if(next==state)return;
+ state=next;
+ cr01_release_log_event(next==1u?"URT: PT shader coverage in effect: Path Tracing frames carry the variant's coverage level (checked on the render thread)\r\n":
+  next==2u?"URT: PT shader coverage paused: the game's PT radiance cache (SHaRC) is on, so URT's PT words stay native (resumes automatically)\r\n":
+  next==3u?"URT: PT shader coverage paused: URT's PT library is not live (normal Path Tracing)\r\n":
+  next==4u?"URT: PT shader coverage paused: URT's Path Tracing values are not staged for these frames (resumes with the next settings publish)\r\n":
+           "URT: PT shader coverage paused: Master Off (native Path Tracing by design; resumes with Master On)\r\n");
+}
 static int ascii(WCHAR*s,char*out,unsigned cap){
  unsigned i=0;while(s[i]&&i+1<cap){if(s[i]>127)return 0;out[i]=(char)s[i];i++;}
  if(s[i])return 0;out[i]=0;return 1;
@@ -162,6 +284,11 @@ static const WCHAR kSection[]={ 'R','e','f','i','n','e','d','T','r','a','c','i',
  * finds ANY difference from GetPrivateProfileStringW (V4.3.1 path retained). */
 #include "urt_ini.h"
 static UrtIniSection g_snap;
+/* V5.2 selected URT controls live in their own hidden config group [URTExtended]
+ * (written by the game's menu only); parsed from the SAME file read as the core group. */
+static UrtIniSection g_snapx;
+static int g_snapx_ok;
+static const WCHAR kSectionX[]={'U','R','T','E','x','t','e','n','d','e','d',0};
 static int g_snap_mode=1, g_snap_ok, g_snap_checked, g_snap_trusted;
 static uint8_t *g_snap_buf;
 #define URT_SNAP_CAP (1024u*1024u)
@@ -180,6 +307,7 @@ static int snapshot_refresh(void){
  }
  CloseHandle(h);
  g_snap_ok=urt_ini_parse(g_snap_buf,total,"RefinedTracingCR01",&g_snap);
+ g_snapx_ok=g_snap_ok&&urt_ini_parse(g_snap_buf,total,"URTExtended",&g_snapx);
  return g_snap_ok;
 }
 __declspec(noinline) DWORD urt_cfg_get(const WCHAR*key,WCHAR*out,DWORD cap){
@@ -196,17 +324,32 @@ __declspec(noinline) DWORD urt_cfg_get(const WCHAR*key,WCHAR*out,DWORD cap){
 api:
  return GetPrivateProfileStringW(kSection,key,(const WCHAR*)0,out,cap,g_userfile);
 }
+/* Same contract for the [URTExtended] section (Advanced controls). */
+__declspec(noinline) DWORD urt_cfg_get_ext(const WCHAR*key,WCHAR*out,DWORD cap){
+ char k[96],v[128];unsigned i=0;
+ if(!key||!out||!cap)return 0;
+ if(g_snap_mode&&g_snap_trusted&&g_snap_ok&&g_snapx_ok&&cap<=128u){
+  while(key[i]&&i<95){if(key[i]>127)goto api;k[i]=(char)key[i];i++;}
+  if(key[i])goto api;
+  k[i]=0;
+  unsigned n=urt_ini_get(&g_snapx,k,v,(unsigned)cap);
+  for(unsigned j=0;j<=n;j++)out[j]=(WCHAR)(unsigned char)v[j];
+  return n;
+ }
+api:
+ return GetPrivateProfileStringW(kSectionX,key,(const WCHAR*)0,out,cap,g_userfile);
+}
 static const char*const kSelfCheckKeys[]={"MasterEnabled","QuickPresetSelect","PTShadows","PTBillboards",
  "GeometryBounces","HairBounces","IndirectLight","SunImpact","SkyImpact","AmbientOcclusion","AOStrength",
- "AORadius","AOContrast","GrassDay","GrassNight","SpecularScreenSpace","SpecularCheckerboard","PTRTAOEnabled",
- "PTRTAORayCount","PTRTAORadius","PTRTAOStrength","CPUFastBoneReads","CPUDistantTrees","CPUPhysicsLOD",
+ "AORadius","AOContrast","GrassDay","GrassNight","SpecularScreenSpace","SpecularCheckerboard","CPUFastBoneReads","CPUDistantTrees","CPUPhysicsLOD",
  "RayTracedOptimizations","RTPerfClassificationPrimary","RTPerfClassificationSecondary","RTPerfMaxProbes",
- "RTPerfAOQuality","RTPerfShadingBudget","RTPerfGlobalShadingLimit",
+ "RTPerfAOQuality","RTPerfGlobalShadingLimit",
  "RTPerfGrid1ShadingLimit","RTQualityClassificationPrimary","RTQualityClassificationSecondary",
- "RTQualityMaxProbes","RTQualityAOQuality","RTQualityShadingBudget",
- "RTQualityGlobalShadingLimit","RTQualityGrid1ShadingLimit"};
+ "RTQualityMaxProbes","RTQualityAOQuality",
+ "RTQualityGlobalShadingLimit","RTQualityGrid1ShadingLimit","PTSceneRange"};
 /* Startup: snapshot must agree with the Windows API for every key URT reads.
- * V5.1.0-rc3: the removed RTGI Shading Rays Per Probe keys are never read. */
+ * V5.1.0-rc3: the removed RTGI Shading Rays Per Probe keys are never read.
+ * V5.2.0 RC6: the removed RTGI Shading Frame Budget keys are never read either. */
 static __declspec(noinline) void snapshot_self_check(void){
  if(g_snap_checked||!g_snap_mode)return;
  if(!snapshot_refresh())return;      /* retry at the next refresh */
@@ -304,8 +447,7 @@ static void cpu_physics_refresh(void){
 }
 static const char*const kNames[]={"MasterEnabled","PTShadows","PTBillboards","GeometryBounces","HairBounces",
  "IndirectLight","SunImpact","SkyImpact","AmbientOcclusion","AOStrength","AORadius","AOContrast",
- "GrassDay","GrassNight","SpecularScreenSpace","SpecularCheckerboard",
- "PTRTAOEnabled","PTRTAORayCount","PTRTAORadius","PTRTAOStrength"};
+ "GrassDay","GrassNight","SpecularScreenSpace","SpecularCheckerboard"};
 /* Read-only three-state menu import. Missing keys legitimately occur because
  * Witcher omits default-valued CR01 options. A malformed PRESENT value is an
  * error, not permission to overwrite game-owned configuration at startup. */
@@ -543,21 +685,22 @@ static DWORD WIN worker(void*unused){
  cr01_release_log_event(cr01_shadow501_ready()?"URT: PT Ray-Traced Shadows control ready\r\n":
    "URT: PT Ray-Traced Shadows control unavailable (refused); the game's own shadow setting applies\r\n");
  urt_environment_report();
- cr01_release_log_event(g_tier==URT_TIER_FULL?"URT: runtime tier FULL (known Patch 5.01 code, early start)":
+ cr01_release_log_event(g_tier==URT_TIER_FULL?"URT: runtime tier FULL (known game code, early start)":
    g_tier==URT_TIER_LATE?"URT: runtime tier LATE (known code, late start: CVar/CPU features only)":
    "URT: runtime tier ADAPTIVE (unknown executable: name-resolved CVar features only; code patches and PT shader off)");
- cr01_release_log_event("URT: camera-light settings are never changed (compatible with camera-light mods such as NAPL)");
+ cr01_release_log_event("URT: camera-light settings remain native (no camera-light overrides)");
  uint8_t*base=(uint8_t*)GetModuleHandleW(0);
  if(!base||u32(base+0x3c)>0x1000)return 0;
  uint32_t image=u32(base+u32(base+0x3c)+24+56);
- if(g_tier!=URT_TIER_ADAPTIVE&&image!=0x6402000u)return 0;
+ if(g_tier!=URT_TIER_ADAPTIVE&&image!=urt_image_bytes())return 0;
  if(!image||image>0x20000000u)return 0;
  if(!resolve_renderer_bindings_startup(base,image))
   cr01_release_log_event("URT: some engine settings could not be resolved after retrying; those controls stay native\r\n");
  else
   cr01_release_log_event("URT: engine settings resolved; live controls available\r\n");
  if(cr01_shader_slots_active())
-  cr01_release_log_event("URT: PT shader slots installed; validated DXC shader SHA-256 f1ad5c374ae1188508568d621e8be64ede3f2167e4ab06dcfca5a6781746e6ac (identity unchanged since V4.2.x)");
+  cr01_release_log_event(urt_bc_active_level()?"URT: PT shader slots installed; URT's PT library variant for the PT coverage options (built from the validated library SHA-256 f1ad5c374ae1188508568d621e8be64ede3f2167e4ab06dcfca5a6781746e6ac)":
+   "URT: PT shader slots installed; validated DXC shader SHA-256 f1ad5c374ae1188508568d621e8be64ede3f2167e4ab06dcfca5a6781746e6ac (identity unchanged since V4.2.x)");
  else
   cr01_release_log_event("URT: PT shader slots not installed; shader-driven controls remain native (other controls unaffected)\r\n");
  CR01RenderMode last=CR01_RENDER_RASTER;
@@ -599,6 +742,20 @@ static DWORD WIN worker(void*unused){
   }
   if(waiting)cr01_release_log_event("URT: valid dx12user.settings detected; startup synchronization completed (recovered)\r\n");
  }
+ /* V5.2 r2 Selected graphics controls: bind + read as early as possible, then the startup-only
+  * acceleration-structure step (must happen before the game prepares ray tracing). */
+ /* V5.3: when W3LoadFix is installed and enabled, read (only) its [Override] section so that a variable it
+  * sets stays W3LoadFix's; then apply the startup-read RT memory rows before ray tracing initialises. */
+ {
+  static char w3lf[8192];
+  unsigned n=urt_w3lf_override_section(w3lf,(unsigned)sizeof w3lf);
+  urt_gfx501_set_external_overrides(n?w3lf:0,n);
+ }
+ urt_gfx501_set_guard_io(guard_read,guard_write);   /* V5.3.0 rev4 startup guard */
+ (void)urt_bc_prepare_paths();                     /* R12 FIX2: clean-exit recording also after a late start */
+ urt_gfx501_set_bounce_decided(urt_bc_decided());   /* V5.3.0 R11 PT: Second Bounce Coverage guard record */
+ if(urt_gfx501_init(base,image))(void)urt_gfx501_reload();
+ urt_gfx501_boot(g_menu.controller.saved.master,(uint32_t)GetTickCount64());
  /* Seed exact-file metadata after startup repair/import so broad directory
   * activity cannot masquerade as a CR01 settings event. */
  (void)settings_stamp_sample(0);
@@ -624,13 +781,15 @@ static DWORD WIN worker(void*unused){
  }
  /* V5.1: Normal RT performance controls (all Native by default: no writes). */
  if(urt_rtperf501_init(base,image))(void)urt_rtperf501_reload();
+ /* V5.2: Path Tracing performance control PT: Scene Range (Native by default: no writes). */
+ if(urt_ptperf501_init(base,image))(void)urt_ptperf501_reload();
  cpu_bone_refresh();
  /* Pin exact native backing and registered default for this single EXE.
   * This intentionally rejects a different game binary/layout. */
  {
   uint32_t *budget=find_cvar(base,image,"LODBudget");
   uint32_t *distance=find_cvar(base,image,"LODDistanceLimit");
-  const uint32_t budget_rva=0x512EE58u;
+  const uint32_t budget_rva=urt_rva(0x512EE58u);
   /* Known code: exact V4.x RVA pin. Adaptive: same descriptor shape (the
    * registered 25.0f default 8 bytes before the live value), no RVA pin. */
   if(!budget || (g_tier!=URT_TIER_ADAPTIVE && budget!=(uint32_t*)(base+budget_rva)) ||
@@ -657,7 +816,13 @@ static DWORD WIN worker(void*unused){
 
   if(config_event){
    if(!FindNextChangeNotification(watch)){
-    cr01_release_log_event("URT: settings change notifications lost; URT-owned values released\r\n");break;
+    /* R12 FIX3: re-arm once instead of stopping the whole runtime (which released every URT value for the session) */
+    HANDLE again=FindFirstChangeNotificationW(g_userdir,0,FILE_NOTIFY_CHANGE_FILE_NAME|FILE_NOTIFY_CHANGE_LAST_WRITE|FILE_NOTIFY_CHANGE_SIZE);
+    if(again==INVALID_HANDLE||!again){
+     cr01_release_log_event("URT: settings change notifications lost and could not be re-armed; URT-owned values released\r\n");break;
+    }
+    (void)FindCloseChangeNotification(watch);watch=again;
+    cr01_release_log_event("URT: settings change notifications re-armed (no setting lost)\r\n");
    }
    /* FindFirstChangeNotification is directory-scoped. Ignore every wake that
     * did not alter the exact dx12user.settings file. */
@@ -671,9 +836,11 @@ static DWORD WIN worker(void*unused){
     cr01_release_log_event(mode==CR01_RENDER_PT ? "CR01: renderer transition -> PT" : (mode==CR01_RENDER_NORMAL_RT ? "CR01: renderer transition -> Normal RT" : "CR01: renderer transition -> raster"));
    }
    (void)cr01_dt501_release(); /* Avoid sharing PT Billboards slot during policy updates. */
-   if(consume_exact_settings_edge()){publish=1u;shadow=1u;}
+   if(consume_exact_settings_edge()){publish=1u;shadow=1u;g_settings_events++;}
    (void)cr01_rt_legacy501_reload(g_userfile);
    (void)urt_rtperf501_reload();
+   (void)urt_ptperf501_reload();
+   (void)urt_gfx501_reload();
    cpu_bone_refresh();
    physics_pref=cpu_physics_preference();
    cpu_physics_refresh();
@@ -713,6 +880,31 @@ static DWORD WIN worker(void*unused){
   else cr01_rt_legacy501_tick(0u,0u);
   if(detect_mode(&mode))urt_rtperf501_tick((unsigned)mode,g_menu.controller.saved.master);
   else urt_rtperf501_tick(0u,0u);
+  if(detect_mode(&mode))urt_ptperf501_tick((unsigned)mode,g_menu.controller.saved.master);
+  else urt_ptperf501_tick(0u,0u);
+  {int mv=detect_mode(&mode);extern unsigned cr01_gate_level_frames(void);
+   urt_gfx501_note_variant_frames(cr01_gate_level_frames());   /* R12 FIX4: PT coverage qualification by rendered frames */
+   urt_gfx501_tick(mv?1u:0u,mv?(unsigned)mode:0u,g_menu.controller.saved.master,(uint32_t)GetTickCount64());}
+  /* R12 FIX3: PT coverage state (in effect / paused + reason, logged on change), slot re-check at every renderer change,
+     session snapshot every 5 minutes and at renderer changes (all worker-thread, read-only) */
+  {static unsigned long long next_snap;static unsigned snap_mode=99u;
+   int mv=detect_mode(&mode);const unsigned m=mv?(unsigned)mode:99u,master=g_menu.controller.saved.master;
+   coverage_watch(mv?1u:0u,mv?(unsigned)mode:0u,master);
+   const unsigned long long now=GetTickCount64();
+   if(m!=snap_mode){
+    if(snap_mode!=99u)g_renderer_changes++;
+    snap_mode=m;
+    if(mv&&mode==CR01_RENDER_PT&&urt_bc_active_level())
+     cr01_release_log_event(cr01_shader_slots_verify()?"URT: PT shader variant re-checked at the renderer change: both PT shader slots still hold the installed, validated variant\r\n":
+      "URT: WARNING: the PT shader slots no longer hold URT's variant (written by something else); the coverage options cannot be in effect\r\n");
+    if(mv){session_snapshot("renderer change",1u,(unsigned)mode,master);next_snap=now+300000ull;}
+   }else if(mv&&now>=next_snap){session_snapshot("every 5 minutes",1u,(unsigned)mode,master);next_snap=now+300000ull;}}
+  /* R10: SHaRC runtime proof from the serializer gate (render thread counts, logged here once each) */
+  {static unsigned ok_logged,trip_logged;unsigned ok=0,trips=0;cr01_gate_sharc_stats(&ok,&trips);
+   if(ok&&!ok_logged){ok_logged=1;
+    cr01_release_log_event("URT: PT radiance cache (SHaRC): frame data checked; the game selects its registered SHaRC shaders (PTRGS_SharcUpdateFinal / PTRGS_SharcQueryFinal) and URT's bounce words stay native\r\n");}
+   if(trips&&!trip_logged){trip_logged=1;
+    cr01_release_log_event("URT: PT radiance cache (SHaRC) switched off for this session: the frame data would have selected SHaRC shaders the game never registers (normal Path Tracing continues)\r\n");}}
   if(__atomic_load_n(&g_running,__ATOMIC_ACQUIRE)!=1u)break;
  }
  (void)cr01_physics501_shutdown();
@@ -720,6 +912,8 @@ static DWORD WIN worker(void*unused){
  (void)cr01_bone501_shutdown();
  (void)cr01_rt_legacy501_shutdown();
  urt_rtperf501_shutdown();
+ urt_ptperf501_shutdown();
+ urt_gfx501_shutdown();
  (void)FindCloseChangeNotification(watch);
  (void)cr01_shadow501_update(&g_menu.controller.saved,0u);
  (void)cr01_release_owner(&g_indirect_owner);

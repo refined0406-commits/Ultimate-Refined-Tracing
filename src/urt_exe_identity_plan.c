@@ -1,5 +1,6 @@
 /* Pure planning half of urt_exe_identity (host-testable, no Win32). */
 #include "urt_exe_identity.h"
+#include "urt_build.h"
 
 static uint32_t r32(const uint8_t *p){return (uint32_t)p[0]|(uint32_t)p[1]<<8|(uint32_t)p[2]<<16|(uint32_t)p[3]<<24;}
 static uint16_t r16(const uint8_t *p){return (uint16_t)(p[0]|p[1]<<8);}
@@ -52,7 +53,9 @@ int urt_codeid_feed_chunk(const UrtCodeIdPlan *pl, uint64_t off, const uint8_t *
 }
 
 const char *urt_exe_identity_name(int t){
-  return t==URT_EXE_EXACT?"exact Patch 5.01 executable":
-         t==URT_EXE_CODE_IDENTICAL?"code-identical Patch 5.01 executable (resources/signature differ)":
+  const int b=urt_build()==URT_BUILD_1090142;
+  return t==URT_EXE_EXACT?(b?"exact game build 1090142 executable (Steam update of 29 October 2026)":"exact Patch 5.01 executable"):
+         t==URT_EXE_CODE_IDENTICAL?(b?"code-identical game build 1090142 executable (resources/signature differ)":
+                                      "code-identical Patch 5.01 executable (resources/signature differ)"):
          "unknown executable (adaptive CVar-only mode)";
 }

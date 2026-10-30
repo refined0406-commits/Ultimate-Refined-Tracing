@@ -48,6 +48,16 @@ int cr01_custom_shader_identity_register(const uint8_t*blob,size_t size){
     which includes DXC assembly, container recomposition and validator success. */
  g_r14_dynamic_shader=blob;g_r14_dynamic_size=size;return 1;
 }
+/* V5.3.0 R11: PT: Second Bounce Coverage variant (urt_bounce501.c). Accepted only after the exact validated URT
+   library (the pinned SHA-256 above) was registered in this process, which is the variant builder's only input; the
+   variant itself was assembled, validated, signed and re-checked by that builder. From here on identity means the
+   exact bytes of this variant (the comparison below), exactly as for the registered URT library. */
+int cr01_custom_shader_identity_register_variant(const uint8_t*blob,size_t size){
+ if(!g_r14_dynamic_shader||g_r14_dynamic_size!=236120u||!blob||size<200000u||size>253288u)return 0;
+ if(blob[0]!='D'||blob[1]!='X'||blob[2]!='B'||blob[3]!='C')return 0;
+ if(((uint32_t)blob[24]|(uint32_t)blob[25]<<8|(uint32_t)blob[26]<<16|(uint32_t)blob[27]<<24)!=(uint32_t)size)return 0;
+ g_r14_dynamic_shader=blob;g_r14_dynamic_size=size;return 1;
+}
 int cr01_custom_shader_identity(const uint8_t*blob,size_t size){
  HCRYPTPROV provider=0;HCRYPTHASH hash=0;unsigned char found[32];
  DWORD count=32;int ok=0;

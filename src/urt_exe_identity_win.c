@@ -5,6 +5,7 @@
  * the worker and on every Fast Bone Reads enable). A running image file cannot
  * be rewritten by Windows while mapped, so one result is valid for the run. */
 #include "urt_exe_identity.h"
+#include "urt_build.h"
 #define WIN __stdcall
 #define IMP __declspec(dllimport)
 typedef void *HANDLE; typedef void *HMODULE; typedef unsigned long DWORD; typedef int BOOL;
@@ -32,6 +33,14 @@ static const uint8_t kCodeIdSha[32]={
  0xea,0x05,0x68,0xe9,0xa5,0xce,0xc8,0x89,0xa2,0x7b,0xea,0x86,0xee,0x59,0xf4,0xa9,
  0x98,0x8a,0x77,0xe6,0x1b,0x3e,0x61,0x36,0xd6,0xe3,0x89,0x10,0x7f,0x68,0x50,0x87};
 
+/* V5.3.0 R11: game build 1090142 (Steam update of 29 October 2026, FileVersion 5.0.0.1090142) */
+static const uint8_t kFileSha1090142[32]={
+ 0x05,0x94,0x8d,0x72,0x38,0xe1,0xc9,0x62,0x0a,0x1c,0xb9,0xb3,0x12,0x55,0x20,0xf1,
+ 0xc1,0x43,0xce,0x04,0xa8,0xe5,0x71,0x8a,0x37,0x35,0x12,0x0c,0x37,0xd7,0xba,0xe0};
+static const uint8_t kCodeIdSha1090142[32]={
+ 0x42,0xd5,0xc3,0x40,0x67,0xed,0x3c,0xc7,0x55,0xfe,0xea,0x38,0x83,0x9c,0xee,0xd1,
+ 0x9a,0x83,0x9e,0xa1,0xb6,0x71,0x6f,0x9e,0xa6,0x6a,0xde,0x92,0xeb,0x84,0xfd,0x5c};
+
 static URT_ONCE g_once;
 static int g_tier=URT_EXE_UNKNOWN;
 static uint8_t g_chunk[65536];
@@ -40,10 +49,9 @@ static UrtCodeIdPlan g_plan;
 static int feed(void *ctx, const uint8_t *p, uint32_t n){
   return CryptHashData(*(HCRYPTHASH*)ctx,p,n,0)!=0;
 }
-static int finish(HCRYPTHASH h, const uint8_t want[32]){
-  uint8_t got[32];DWORD len=32;
-  if(!CryptGetHashParam(h,2,got,&len,0)||len!=32)return 0;
-  for(unsigned i=0;i<32;i++)if(got[i]!=want[i])return 0;
+/* A hash value can be read once; both digests are read and then compared with every known build. */
+static int same(const uint8_t a[32], const uint8_t b[32]){
+  for(unsigned i=0;i<32;i++)if(a[i]!=b[i])return 0;
   return 1;
 }
 static BOOL WIN compute(URT_ONCE *o, void *a, void **c){
@@ -71,8 +79,12 @@ static BOOL WIN compute(URT_ONCE *o, void *a, void **c){
   ok=1;
  done:
   if(ok){
-    if(finish(whole,kFileSha))g_tier=URT_EXE_EXACT;
-    else if(planned&&finish(code,kCodeIdSha))g_tier=URT_EXE_CODE_IDENTICAL;
+    uint8_t fw[32],fc[32];DWORD lw=32,lc=32;
+    int hw=CryptGetHashParam(whole,2,fw,&lw,0)&&lw==32,hc=planned&&CryptGetHashParam(code,2,fc,&lc,0)&&lc==32;
+    if(hw&&same(fw,kFileSha)){g_tier=URT_EXE_EXACT;urt_build_set(URT_BUILD_1048522);}
+    else if(hw&&same(fw,kFileSha1090142)){g_tier=URT_EXE_EXACT;urt_build_set(URT_BUILD_1090142);}
+    else if(hc&&same(fc,kCodeIdSha)){g_tier=URT_EXE_CODE_IDENTICAL;urt_build_set(URT_BUILD_1048522);}
+    else if(hc&&same(fc,kCodeIdSha1090142)){g_tier=URT_EXE_CODE_IDENTICAL;urt_build_set(URT_BUILD_1090142);}
   }
   if(whole)CryptDestroyHash(whole);
   if(code)CryptDestroyHash(code);

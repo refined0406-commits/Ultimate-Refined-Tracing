@@ -1,0 +1,73 @@
+  ok   archives pass CRC test
+  ok   MAIN = ASI-ONLY + loader + licence
+  ok   no Beardmo file or asset shipped
+  ok   shared files byte-identical in both archives
+  ok   winmm.dll is the unmodified UAL 9.7.4 x64 build
+  ok   no dinput8.dll shipped (no collision with Witcher Native Bridge)
+  ok   no legacy-named ASI shipped
+  ok   unchanged vs V4.3.1: panel_ingamemenu.redswf
+  ok   precompiled.rsblob is the approved WCC blob (receipt-pinned)
+  ok   compiled script has exactly the rc3 V5.1 rows (Console Probe Grid and both Shading Rays rows absent)
+  ok   compiled script contains the option-ownership gate
+  ok   ASI has no reference to RTTreeShadowDistance
+  ok   ASI has no reference to RTSTConfigInstancingDistance
+  ok   ASI has no reference to RTSTConfigUpdateDistance
+  ok   ASI has no reference to RTSTConfigUpdateWindSimBlendDistance
+  ok   menu has no RTTreeShadowDistance row
+  ok   ASI is an x64 DLL
+  ok   exports exactly InitializeASI + CR01EarlyPrepare (UAL + legacy bootstrap)
+  ok   imports only KERNEL32 + ADVAPI32 (no CRT, no D3D/DXGI hooks)
+  FAIL imported APIs within the audited allow-list: {'GetTickCount64'}
+  ok   no INI writer imported (never writes dx12user.settings)
+  ok   no TLS section
+  ok   no ReShade add-on shipped (no ReShade dependency)
+  ok   no obsolete development log wording in the ASI: ZERO-OPT
+  ok   no obsolete development log wording in the ASI: RC1 runtime
+  ok   no obsolete development log wording in the ASI: RT private
+  ok   no obsolete development log wording in the ASI: C17 private
+  ok   no obsolete development log wording in the ASI: runtime-attested
+  ok   no obsolete development log wording in the ASI: private, pinned
+  ok   no obsolete development log wording in the ASI: native-passive
+  ok   no obsolete development log wording in the ASI: one-shot entry
+  ok   README is release text (no candidate wording)
+  ok   V5.1 Normal RT performance module linked (no console probe grid code)
+  ok   ASI never reads a removed key (saved Console Probe Grid / Shading Rays values cannot reach the engine)
+  ok   ASI contains no layering/ReShade code or text: URTLayer
+  ok   ASI contains no layering/ReShade code or text: ReShadeRegister
+  ok   ASI contains no layering/ReShade code or text: layering
+  ok   ASI contains no layering/ReShade code or text: cr01_build_layered_dxil
+  FAIL all 47 other V4.3.1 menu rows unchanged and in place; both Shading Rays rows removed
+  FAIL exactly the V5.1 separator + 3 Normal RT rows appended at the end
+  FAIL every new row defaults to Native / Auto (0)
+  FAIL new rows only set themselves (option index == stored value)
+  FAIL XML preset entries never name the new rows: they are preset by the compiled script only
+  ok   removed control absent from menu and ASI: RTGIProbeRayDistance
+  ok   removed control absent from menu and ASI: RTReflTextureDetail
+  ok   removed control absent from menu and ASI: RTAOFoliageDetail
+  ok   removed control absent from menu and ASI: RTGIConsoleGrid
+  ok   removed control absent from menu and ASI: RTQualityShadingRaysPerProbe
+  ok   removed control absent from menu and ASI: RTPerfShadingRaysPerProbe
+  ok   group id kept (compiled WCC + saved preferences compatibility)
+  FAIL Quick Preset XML entries: only the rc3 changes (Perf Secondary 12; Balanced Secondary 16 + Budget 262144; Shading Rays dropped)
+  FAIL Balanced = 64 / 16 / 65536 / 2 / 262144 / 12288 / 49152 in both RTGI groups
+  FAIL preset assignment entries: 48 V4.3.1 - 6 Shading Rays = 36
+  FAIL ar: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL br: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL cn: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL cz: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL de: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL en: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL es: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL esmx: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL fr: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL hu: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL it: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL jp: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL kr: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL pl: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL ru: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL tr: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL ua: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+  FAIL zh: every other V4.3.1 ID/key/text preserved, 12 Shading Rays records removed, +15 V5.1 strings, every row label resolves with its option_ twin
+FAIL 27
+PASS verify_release: 44 checks ok; only the 27 known V5.1-layout checks differ (0 of them now pass)

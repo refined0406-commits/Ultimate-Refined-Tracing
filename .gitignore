@@ -1,0 +1,6 @@
+out*/
+__pycache__/
+*.obj
+baseline_v431/
+out_host/
+build/swf/

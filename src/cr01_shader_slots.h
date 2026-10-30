@@ -6,4 +6,5 @@ int cr01_shader_slots_install(uint8_t *exe,const uint8_t *custom,size_t custom_s
 int cr01_shader_slots_commit(void);
 int cr01_shader_slots_rollback(void);
 int cr01_shader_slots_active(void);
+int cr01_shader_slots_verify(void);   /* R12 FIX3: read-only re-check of both slots (1 = intact) */
 #endif

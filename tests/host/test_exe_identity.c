@@ -29,12 +29,15 @@ static int codeid(const uint8_t*d,size_t n,char hex[65]){
 int main(int c,char**v){
   FILE*f=fopen(v[1],"rb");fseek(f,0,SEEK_END);size_t n=(size_t)ftell(f);fseek(f,0,SEEK_SET);
   uint8_t*d=malloc(n);if(fread(d,1,n,f)!=n)return 1;fclose(f);
-  char h[65];const char*want="ea0568e9a5cec889a27bea86ee59f4a9988a77e61b3e6136d6e389107f685087";
+  /* V5.3.0 R11: both known builds (URT_TEST_BUILD from run_host_tests.sh); .rsrc raw offset per build */
+  const char*eb=getenv("URT_TEST_BUILD");const int b1=eb&&eb[0]=='1';
+  char h[65];const char*want=b1?"42d5c34067ed3cc755feea38839ceed19a839ea1b6716f9ea66ade92eb84fd5c":"ea0568e9a5cec889a27bea86ee59f4a9988a77e61b3e6136d6e389107f685087";
+  const size_t rsrc=b1?0x551a200u:0x551c800u;
   if(!codeid(d,n,h)||strcmp(h,want)){printf("FAIL codeid %s\n",h);return 1;}
   printf("  real exe code-id %s (matches Python reference)\n",h);
   int fails=0;
   /* 1. resource-only change (inside .rsrc raw data) keeps identity */
-  uint8_t*m=malloc(n);memcpy(m,d,n);m[0x551c800+0x1000]^=0xff;
+  uint8_t*m=malloc(n);memcpy(m,d,n);m[rsrc+0x1000]^=0xff;
   if(!codeid(m,n,h)||strcmp(h,want)){puts("FAIL: .rsrc edit changed code-id");fails++;}else puts("  .rsrc byte edit: identity kept (CODE_IDENTICAL tier)");
   /* 2. one .text byte change breaks identity */
   memcpy(m,d,n);m[0x600+0x123456]^=1;

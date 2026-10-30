@@ -3,6 +3,7 @@
  * IMPORTANT: ASI pinned for process lifetime before publishing any code pointer.
  * DllMain must never call this module. Only settings worker mutates the slot.
  */
+#include "urt_build.h"
 #include "cr01_bone_hook501.h"
 #include <stdint.h>
 #include <stddef.h>
@@ -11,11 +12,11 @@
 #define PAGE_READWRITE 0x04u
 #define GET_MODULE_HANDLE_EX_FLAG_PIN 0x00000001u
 #define GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS 0x00000004u
-#define IMAGE_BYTES 0x6402000u
-#define NATIVE_RVA 0x1cac050u
-#define VTABLE_RVA 0x37ae730u
-#define VTABLE_HEAD_RVA 0x37ae6e0u
-#define RTTI_COL_RVA 0x3ac8e10u
+#define IMAGE_BYTES urt_image_bytes()
+#define NATIVE_RVA urt_rva(0x1cac050u)
+#define VTABLE_RVA urt_rva(0x37ae730u)
+#define VTABLE_HEAD_RVA urt_rva(0x37ae6e0u)
+#define RTTI_COL_RVA urt_rva(0x3ac8e10u)
 typedef unsigned long DWORD;
 typedef void* HMODULE;
 typedef uint16_t WCHAR;

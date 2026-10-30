@@ -36,7 +36,7 @@ FindCloseChangeNotification
 SetFilePointer
 GetFileAttributesW
 GetFileAttributesExW
-GetPrivateProfileStringW
+GetPrivateProfileStringW GetPrivateProfileSectionW
 GetEnvironmentVariableW
 CreateDirectoryW
 GetLastError

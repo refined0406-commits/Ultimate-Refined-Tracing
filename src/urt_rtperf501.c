@@ -9,6 +9,7 @@
  * - rc3: the RTGI console probe grid was removed after gameplay testing; this
  *   module no longer touches BalanceModeRT or RTXGI re-initialisation at all.
  * See docs/V5.1_RT_RESEARCH.md for the evidence behind every address. */
+#include "urt_build.h"
 #include "urt_rtperf501.h"
 #include "urt_rtperf_core.h"
 #include "urt_cvar_index.h"
@@ -39,7 +40,7 @@ static uint32_t *bind(uint8_t*base,uint32_t image,const struct Bind*b,int known)
   if(!ix||ix->base!=base||ix->image_size!=image)return 0;
   uint32_t*slot=urt_cvar_lookup_cat(ix,b->name,b->category,b->flags,b->def,&desc);
   if(!slot)return 0;
-  if(known&&(uint8_t*)slot!=base+b->pinned_value_rva)return 0;
+  if(known&&(uint8_t*)slot!=base+urt_rva(b->pinned_value_rva))return 0;
   return slot;
 }
 int urt_rtperf501_init(uint8_t*base,uint32_t image){

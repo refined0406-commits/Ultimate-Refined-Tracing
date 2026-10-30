@@ -5,6 +5,7 @@
  * adapter writes/restores the actual engine slots; and a full console-grid pulse
  * (set BalanceModeRT, flip the game's checkerboard latch, restore after the game's
  * re-init) behaves as designed. Usage: test_rtperf_image <witcher3.exe> */
+#include "urt_test_build.h"
 #include "pe_map.h"
 #include "../../src/urt_cvar_index.h"
 #include "../../src/urt_rtperf501.h"
@@ -30,13 +31,14 @@ DWORD urt_cfg_get(const WCHAR*key,WCHAR*out,DWORD cap){
 static float f32(uint8_t*p){float f;memcpy(&f,p,4);return f;}
 int main(int argc,char**argv){
   PeImage img; if(argc<2||!pe_map_file(argv[1],&img)){puts("FAIL map");return 1;}
+  if(!urt_test_build_init(img.size))return 1;
   uint8_t*B=img.base;
   CHECK(urt_cvar_index_build(&g_ix,B,img.size,g_store,200000),"registry index built");
   CHECK(urt_rtperf501_init(B,img.size),"adapter init");
   CHECK(strstr(g_log,"performance controls ready")!=0,"all 3 live bindings verified at pinned RVAs");
     /* native snapshot */
-  const uint32_t R_REFL=0x514e588,R_SLOTS=0x514e898,R_SHMIP=0x514def8,R_BAL=0x514d280,R_PRESET=0x406aac0,R_CHK=0x406a9e0,
-    R_COUNTS=0x4069e80,R_LATCH=0x4017c5c,R_GLOBAL=0x4069588,R_RMIP=0x514de18,R_AOMIP=0x514df30;
+  const uint32_t R_REFL=RV(0x514e588),R_SLOTS=RV(0x514e898),R_SHMIP=RV(0x514def8),R_BAL=RV(0x514d280),R_PRESET=RV(0x406aac0),R_CHK=RV(0x406a9e0),
+    R_COUNTS=RV(0x4069e80),R_LATCH=RV(0x4017c5c),R_GLOBAL=RV(0x4069588),R_RMIP=RV(0x514de18),R_AOMIP=RV(0x514df30);
   /* The on-disk image holds zeros: the engine's static initialisers write the
    * registered defaults at startup. Seed them exactly as the game does. */
   { float g=128.0f,m4=4.0f,m2=2.0f,m3=3.0f; uint32_t eight=8u;

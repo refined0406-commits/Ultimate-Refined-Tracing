@@ -1,0 +1,47 @@
+Subject: Ultimate Refined Tracing (Witcher 3, mod 13075) V5.0.0 - quarantine review request (generic "Lazy" detections)
+
+Hello Nexus moderation team,
+
+Both V5.0.0 files of Ultimate Refined Tracing (MAIN and ASI-ONLY) were quarantined after upload. The
+VirusTotal report for MAIN shows 7/68, almost entirely the generic "Trojan.Lazy / Gen:Variant.Lazy"
+label, not a named malware family. I have audited both archives and believe these are false positives.
+I would be grateful for a manual review.
+
+Files (SHA-256):
+  Ultimate_Refined_Tracing_V5.0.0_MAIN.zip      22010a2a11c004e87634bf284b9444e968e138dd370ce53110f0121679061338
+  Ultimate_Refined_Tracing_V5.0.0_ASI_ONLY.zip  45c4bd7c496892ed3fa201dacb124ef5b6a6dfb1126c227556ad7738cebf051f
+
+Native code in the archives (everything else is XML, Witcher string tables, a UI .redswf and compiled
+WitcherScript):
+  bin/x64_dx12/UltimateRefinedTracing.asi  8f64af34d3ce6f2c3361d89ad7c2bf058fff857e3e4452bdd050f001c40fd83a
+      The mod itself: my own C code, compiled reproducibly with clang 18 / lld (no CRT). Rebuilding the
+      source reproduces this file and both archives byte for byte.
+  bin/x64_dx12/winmm.dll (MAIN only)       031a3e5576d91dce1e438d36b9a3d462c7334ab4791990a8ff1e3ddc0e132daf
+      Unmodified Ultimate ASI Loader 9.7.4 by ThirteenAG (MIT). It is byte-identical to dinput8.dll in the
+      official GitHub release asset Ultimate-ASI-Loader-NoPDB_x64.zip
+      (https://github.com/ThirteenAG/Ultimate-ASI-Loader/releases/tag/v9.7.4; zip digest e5860e7d...45d1),
+      renamed to winmm.dll as the loader documents.
+
+What the ASI does: it is a performance mod for Witcher 3 Patch 5.01 (ray/path tracing).
+- It runs only inside witcher3.exe.
+- It verifies the game executable's SHA-256.
+- It reads the game's settings without ever writing them.
+- It applies byte-verified in-process code patches, the standard technique for game mods.
+- It stores its own settings and log file.
+
+What the ASI does not contain:
+- It imports only KERNEL32 and ADVAPI32 (CryptoAPI hashing).
+- No networking APIs and no URLs or IP addresses.
+- No access to other processes (no OpenProcess/WriteProcessMemory/CreateRemoteThread).
+- No process creation and no registry writes.
+- No packing or obfuscation.
+
+Why it may be flagged: the ASI is a new, unsigned, small DLL that modifies code in its host process.
+Generic heuristics commonly flag that profile. The ASI-ONLY file, which does not contain the loader,
+is also quarantined.
+
+The previous version (V4.3.1) uses the same toolchain and techniques. I can provide the complete source
+and build package privately for verification, and answer any questions.
+
+Thank you,
+[author name]

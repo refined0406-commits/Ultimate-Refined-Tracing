@@ -27,6 +27,9 @@ uint64_t cr01_gate_snapshot(const CR01GateState*s){
  return s?__atomic_load_n(&s->word,__ATOMIC_ACQUIRE):0;
 }
 int cr01_gate_post_serialize(const CR01GateState *s,void *native_dest,int custom_shader_live){
+ return cr01_gate_post_serialize_level(s,native_dest,custom_shader_live,0u);
+}
+int cr01_gate_post_serialize_level(const CR01GateState *s,void *native_dest,int custom_shader_live,unsigned bounce_level){
  uint64_t p=cr01_gate_snapshot(s);
  uint32_t bits=(uint32_t)p;
  uint32_t geometry=bits&255u, hair=(bits>>HAIR_SHIFT)&255u;
@@ -44,13 +47,29 @@ int cr01_gate_post_serialize(const CR01GateState *s,void *native_dest,int custom
  /* R15: true fixed-point slider, no diagnostic gain stretch. */
  uint32_t shader_indirect=indirect;
  if(shader_indirect>150u)return 0;
- uint32_t packed=geometry | (shader_indirect<<8);
+ uint32_t packed=geometry | (shader_indirect<<8) | ((bounce_level&255u)<<16);   /* R11: bits 16-17 (retired); R12: 18-19 first-bounce diffuse; R12 FIX2: 20-21 sun shadow; R12 FIX3: 22-23 local-light shadow */
  __builtin_memcpy(dst+CR01_GEOM_OFFSET,&packed,sizeof(packed));
  __builtin_memcpy(dst+CR01_HAIR_OFFSET,&hair,sizeof(hair));
  return 1;
 }
 static uint32_t rd32(const uint8_t*p){
  return (uint32_t)p[0]|(uint32_t)p[1]<<8|(uint32_t)p[2]<<16|(uint32_t)p[3]<<24;
+}
+int cr01_gate_effective_custom(int custom_shader_live,unsigned sharc_on){return custom_shader_live&&!sharc_on;}
+uint32_t cr01_gate_infunc_word(uint64_t gate_word,int custom_shader_live,unsigned sharc_on,unsigned level){
+ uint32_t bits=(uint32_t)gate_word,geom=bits&255u,indirect=(bits>>COMP_SHIFT)&255u;
+ if(!cr01_gate_effective_custom(custom_shader_live,sharc_on)||((bits>>MASTER_SHIFT)&3u)!=3u||geom<1u||geom>6u||
+    indirect<100u||indirect>150u)return 2u;
+ return geom|(indirect<<8)|((level&255u)<<16);
+}
+int cr01_gate_level_valid(unsigned level){
+ const unsigned dc=(level>>2)&3u,sc=(level>>4)&3u,lc=(level>>6)&3u;
+ return level<256u&&(level&3u)==0u&&(dc==0u||dc==2u)&&sc<=1u&&lc<=1u;
+}
+int cr01_gate_sharc_final_words(const uint8_t *d){
+ if(!d)return 0;
+ return rd32(d+0x210u)==2u&&rd32(d+0x214u)==1u&&rd32(d+0x380u)==4u&&rd32(d+0x384u)==1u&&
+        rd32(d+0x410u)==0x3efffu&&rd32(d+0x118u)==0u&&rd32(d+0x4e4u)==0u;
 }
 int cr01_gate_exact_call_preflight(const uint8_t *call_instruction,
  const uint8_t *geo,const uint8_t *hair,uintptr_t call_va,

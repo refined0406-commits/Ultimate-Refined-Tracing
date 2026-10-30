@@ -2,6 +2,7 @@
  * Heavy preparation always runs outside DllMain, via the proven DI gateway
  * or the optional standards-based InitializeASI callback. Every caller
  * shares a one-shot safety gate and the existing early-eligibility checks. */
+#include "urt_build.h"
 #include "cr01_bootstrap_owner.h"
 #include "cr01_release_log.h"
 #include "cr01_register_sites.h"
@@ -37,6 +38,10 @@ extern int cr01_pre_registration_quiescence_approved(void);
 extern int cr01_custom_shader_identity(const uint8_t*,size_t);
 extern int cr01_custom_shader_identity_register(const uint8_t*,size_t);
 #include "cr01_pt_shared_dxil.h"
+#include "urt_bounce501.h"
+#include "urt_bounce_boot501.h"
+extern int cr01_custom_shader_identity_register_variant(const uint8_t*,size_t);
+extern void cr01_gate_set_bounce_level(unsigned);
 extern int cr01_gate_win_install(int,int);
 extern int cr01_shader_slots_install(uint8_t*,const uint8_t*,size_t);
 extern int cr01_shader_slots_commit(void);
@@ -59,6 +64,22 @@ static int CR01_prepare_shader(void*ignored,const uint8_t**out,size_t*n){
  create=(CR01DxcCreate)(void*)GetProcAddress(dxc,"DxcCreateInstance");
  if(!create||!cr01_build_shared_dxil(native,CR01_NATIVE_BLOB_LENGTH,create,&verified,&count))return 0;
  if(!cr01_custom_shader_identity_register(verified,count)||!cr01_custom_shader_identity(verified,count))return 0;
+ /* V5.3.0 R11/R12: PT: Second Bounce Coverage / PT: First Bounce Diffuse Coverage (urt_bounce501.c). Either not Native
+    at this start: a variant of the library just verified (both coverage edits + Orange Hair Fix's PT hair patch) replaces
+    it, or nothing changes. Both Native: untouched. The packed level (bits 0-1 / 2-3) reaches the shader via the gate. */
+ {const unsigned level=urt_bc_startup_level();
+  if(level){
+   uint8_t*v=0;uint32_t vn=0;const char*why=0;
+   /* R12 fix: each stage reports its own reason (urt_bc_diag: compiler, disassembly, text passes, assembly, container,
+      validation, re-check; here: slot capacity and identity) */
+   int ok=urt_bc_build_variant_lv(verified,(uint32_t)count,(UrtBcDxcCreate)create,&v,&vn,level);   /* R12 FIX3: module 4 only when set */
+   if(!ok)why=urt_bc_diag();
+   else if(vn<200000u||vn>253288u){ok=0;why="11 slot capacity: the variant does not fit the PT shader slot (native 231144 + 22144 free bytes = 253288 max)";}
+   else if(!cr01_custom_shader_identity_register_variant(v,vn)||!cr01_custom_shader_identity(v,vn)){ok=0;why="12 identity: the variant could not be registered as URT's PT library";}
+   if(ok){verified=v;count=vn;cr01_gate_set_bounce_level(level);}
+   else if(!cr01_custom_shader_identity_register(verified,count))return 0;   /* back to URT's verified library */
+   urt_bc_note_result(level,ok,vn,why);
+  }}
  if(!cr01_shader_slots_install(exe,verified,count))return 0;
  if(!cr01_gate_win_install(1,1)){
   (void)cr01_shader_slots_rollback();return 0;
@@ -94,8 +115,11 @@ EXP int WIN CR01EarlyPrepare(void){
  }
  (void)cr01_release_log_begin();
  cr01_release_log_event("URT: loaded by the ASI loader; starting");
+ (void)urt_bc_prepare_paths();   /* R12 FIX2: startup-guard file path, so a clean exit can be recorded from DllMain */
  int identity=urt_exe_identity();
  cr01_release_log_event(urt_exe_identity_name(identity));
+ if(identity!=URT_EXE_UNKNOWN&&urt_build()==URT_BUILD_1090142)
+  cr01_release_log_event("URT: game build 1090142: every URT code site, engine setting and the PT shader slots verified at their build-1090142 addresses (shaders and serializer code byte-identical to Patch 5.01)");
  if(!exe){cr01_release_log_event("URT: no executable module; fail-closed");return 0;}
  if(identity==URT_EXE_UNKNOWN){
   tier=URT_TIER_ADAPTIVE;
@@ -124,7 +148,7 @@ EXP int WIN CR01EarlyPrepare(void){
    * only installed it after shader success; V5 keeps it tied to a genuinely
    * early, known-code start and installs it when the shader was prepared,
    * never after an unexplained shader failure. */
-  if(prepared)(void)cr01_shadow501_prepare(exe,0x6402000u);
+  if(prepared)(void)cr01_shadow501_prepare(exe,urt_image_bytes());
   cr01_prod_early501_exit();
  }
  (void)early;
@@ -143,6 +167,9 @@ EXP void WIN InitializeASI(void){
  (void)CR01EarlyPrepare();
 }
 int WIN DllMain(HMODULE instance,DWORD reason,void*unused){
- (void)unused;if(reason==1u)DisableThreadLibraryCalls(instance);
+ if(reason==1u)DisableThreadLibraryCalls(instance);
+ /* R12 FIX2: DLL_PROCESS_DETACH with a non-NULL reserved pointer = the process is ending normally (ExitProcess).
+    A crash or a killed process never gets here. File I/O only (paths prepared at load); nothing else runs. */
+ else if(reason==0u&&unused)urt_bc_clean_exit();
  return 1;
 }
